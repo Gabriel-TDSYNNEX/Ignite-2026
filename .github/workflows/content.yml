@@ -58,7 +58,7 @@ jobs:
           git switch -c "$branch"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Review official Ignite Book of News changes" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+          git commit -m "Review official Ignite Book of News changes"
           git push "--force-with-lease=refs/heads/$branch:$lease" origin "HEAD:refs/heads/$branch"
           if [ -z "$pr" ]; then
             gh pr create --head "$branch" --title "Review Ignite Book of News changes" --body "Official source changes detected. Review content/changes.json and content/pending.json. Update the Spanish editorial summaries and sourceHash values in content/editorial.json, update the corresponding entries and sourceHash values in content/translations.en.json, content/translations.pt.json and content/translations.de.json, remove retired entries from all catalogs, then run npm run content:accept. Pending content intentionally blocks publication. See README for the full review process."

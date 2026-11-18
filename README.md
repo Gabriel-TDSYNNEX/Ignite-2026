@@ -13,17 +13,6 @@ An interactive guide to the [Microsoft Ignite 2026 Book of News](https://news.mi
 
 The portal is an independent editorial resource, not an official Microsoft website. Editorial interpretations are not product commitments. Check the original sources for availability, licensing, and requirements. Translations are machine-assisted and should be reviewed before reuse outside the portal.
 
-## Run locally
-
-Requirements: Node.js 24 and npm.
-
-```powershell
-npm ci
-npm run dev
-```
-
-Open the local address displayed by Vite.
-
 ## Validate
 
 ```powershell
@@ -34,14 +23,6 @@ npm run test:e2e
 ```
 
 The browser tests build and serve the production artifact under the `/Ignite-2026/` path and require local port 4173. On Linux CI, install Chromium with `npx playwright install --with-deps chromium`.
-
-To preview the production build locally:
-
-```powershell
-$env:PAGES_BASE = '/Ignite-2026/'
-npm run build
-npm run preview
-```
 
 ## Deployment
 
