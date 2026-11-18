@@ -5,6 +5,25 @@ test.beforeEach(async ({ page }, testInfo) => {
   await page.addInitScript(() => localStorage.setItem('tdsynnex-ignite-2026:language', 'es'));
 });
 
+test('la política de seguridad bloquea scripts inline', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('.explorer .node-area')).toHaveCount(8);
+  const blocked = await page.evaluate(() => new Promise<boolean>(resolve => {
+    const timer = setTimeout(() => resolve(false), 2000);
+    document.addEventListener('securitypolicyviolation', event => {
+      if (event.blockedURI === 'inline' && event.violatedDirective.startsWith('script-src')) {
+        clearTimeout(timer);
+        resolve(true);
+      }
+    });
+    const script = document.createElement('script');
+    script.textContent = "document.documentElement.setAttribute('data-csp-inline-executed', 'true')";
+    document.head.appendChild(script);
+  }));
+  expect(blocked).toBe(true);
+  await expect(page.locator('html')).not.toHaveAttribute('data-csp-inline-executed');
+});
+
 test('mapa navegable con zoom, migas, historial y enlaces directos bajo una subruta Pages', async ({ page }) => {
   await page.goto('./');
   await expect(page).toHaveTitle('Ignite Navigator 2026 · TD SYNNEX');

@@ -49,4 +49,6 @@ To review a content proposal:
 
 Searches and favorites are not sent to a server. The portal has no analytics, authentication, chat, or model calls. Clearing site data removes locally saved preferences and activity.
 
+The site uses a Content Security Policy in its HTML to restrict script sources. GitHub Pages does not allow this project to configure all HTTP security headers; the HTML policy does not prevent framing.
+
 Publish only public content and authorized brand assets. Keep customer information, internal plans, reference documents, and secrets out of the repository. The local brand reference folder and source downloads are excluded by `.gitignore`.
