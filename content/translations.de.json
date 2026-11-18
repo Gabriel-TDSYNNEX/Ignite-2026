@@ -1,0 +1,566 @@
+{
+  "articles": {
+    "bon-442": {
+      "title": "Üben Sie Fehler, bevor sie auftreten",
+      "summary": "Chaos Studio veröffentlicht Arbeitsbereiche und eine AKS-Erweiterung zur allgemeinen Verfügbarkeit für das Hosten wiederholbarer Resilienzexperimente.",
+      "impact": "Ermöglicht Ihnen, die Anwendungswiederherstellung vor einem echten Vorfall zu überprüfen.",
+      "application": "Testen Sie den Verlust einer Zone oder den Absturz eines Pods in einer kontrollierten Umgebung.",
+      "technical": "Die Räume gruppieren wiederverwendbare Ressourcen und Szenarien; Die AKS-Erweiterung reduziert die zum Ausführen von Experimenten erforderlichen Berechtigungen.",
+      "sourceHash": "2d22586aaee85d634b8c5eea9902100fe79bffa6509ed826c7b74b3f50bc602f"
+    },
+    "bon-443": {
+      "title": "Schützt Daten auch während der Verarbeitung",
+      "summary": "Azure erweitert sein Confidential Computing um Vorschauangebote für mehrere GPUs, Enklaven, Container und organisationsübergreifende Zusammenarbeit.",
+      "impact": "Öffnet Optionen für die Arbeit mit vertraulichen Informationen, ohne der gesamten Laufzeitumgebung zu vertrauen.",
+      "application": "Bewerten Sie einen gemeinsamen Datenraum zwischen Partnern, der Ihre Originaldaten nicht offenlegt.",
+      "technical": "VR72, Confidential Enclaves, AKS Kata CoCo und Confidential Clean Room sind in der Vorschau; Überprüfen Sie Ihre Anforderungen, bevor Sie die Produktion entwerfen.",
+      "sourceHash": "3408729d0d11517e07872a61fa0d3fa9d19e1fb58139ecebfa0cb05cc80302f1"
+    },
+    "bon-444": {
+      "title": "Cobalt 200 erreicht die Produktion",
+      "summary": "Virtuelle Cobalt 200 Arm-Maschinen sind jetzt allgemein verfügbar, mit neuen Größen, die auf Arbeitsspeicher und Massenspeicher ausgerichtet sind.",
+      "impact": "Auch die CPU, die die Modelle umgibt, ist für die Effizienz der Agenten von Bedeutung.",
+      "application": "Vergleichen Sie vor der Migration eine Arm-kompatible Last mit Ihrer aktuellen Infrastruktur.",
+      "technical": "Microsoft kündigt bis zu 50 % mehr CPU-Leistung gegenüber Cobalt 100 an; Das Ergebnis hängt von der Belastung ab. Überprüfen Sie die Kompatibilität von Region und Arm.",
+      "sourceHash": "682b6829a67694eadae9dda48dab0943d8e7f167d4fb9582a95fd5b4fe4dc852"
+    },
+    "bon-446": {
+      "title": "Cloud-Betrieb mit mehr Kontext und Agenten",
+      "summary": "Azure kombiniert neue Funktionen von Monitor, Copilot und SRE Agent: Gesundheits- und Modelle in natürlicher Sprache sind verfügbar, zusammen mit neuen Agentenfunktionen in der Vorschau.",
+      "impact": "Verknüpfen Sie den technischen Status mit den geschäftlichen Auswirkungen, um Vorfälle besser zu priorisieren.",
+      "application": "Entdecken Sie eine unterstützte Untersuchung, die Telemetrie, Abhängigkeiten und betroffene Dienste in Beziehung setzt.",
+      "technical": "Gesundheitsmodelle und die natürlichen Sprachfunktionen von Monitor sind GA; Bereiche, Fähigkeiten und neue SRE-Agent-Funktionen sind in der Vorschau verfügbar.",
+      "sourceHash": "e89d1a5766c8c4d44dabe0e8f245b13424e8bf5e7a6ade7a4ec6f19a68a4cca9"
+    },
+    "bon-447": {
+      "title": "Vom Agenten zum Cluster: eine gemeinsame KI-Grundlage",
+      "summary": "Microsoft verbindet Foundry mit seinen eigenen AKS-Clustern und führt neue Teile zum Ausführen, Isolieren und Steuern von Agenten und Inferenzen ein.",
+      "impact": "Es bietet mehr Kontrolle über Infrastruktur, Datenresidenz und Inferenzökonomie.",
+      "application": "Bewerten Sie die Bereitstellung offener Modelle in einem AKS, das bereits von der Organisation verwaltet wird.",
+      "technical": "Foundry auf AKS-, Agent Grid-, Agent Sandbox- und Flex-Knoten befindet sich in der Vorschau; Kobalt 200 ist GA. Nicht alle Stücke haben die gleiche Reife.",
+      "sourceHash": "f6235f1bd35789388ff954e626715a0b599bc4bbb462d126beeef80b75fc0b5a"
+    },
+    "bon-448": {
+      "title": "Azure Catalyst verbindet Migration und Modernisierung",
+      "summary": "Azure Catalyst vereint unterstützte Erkennung, Planung und Ausführung, um Infrastruktur, Anwendungen und Daten zwischen Azure und GitHub zu transformieren.",
+      "impact": "Es hilft, Modernisierung als zusammenhängenden Prozess und nicht als isolierte Migrationen zu betrachten.",
+      "application": "Identifizieren Sie Abhängigkeiten einer Legacy-Anwendung und bereiten Sie überprüfbare Modernisierungsalternativen vor.",
+      "technical": "Katalysator und sein Wirkstoff sind GA; Bestimmte Laufzeitfunktionen und -szenarien, z. B. BizTalk to Logic Apps, bleiben in der Vorschau.",
+      "sourceHash": "b0f868705e0a9b35b5dfdeafdb06e57a96e056d5beede26c1c2897e933d574fc"
+    },
+    "bon-449": {
+      "title": "Schauen Sie sich zunächst Windows Server 2028 an",
+      "summary": "Windows Server 2028 geht mit Fortschritten in den Bereichen Sicherheit, Speicher, Verwaltung und Unternehmens-KI-Inferenz in die Vorschau.",
+      "impact": "Damit können Sie die Weiterentwicklung des Rechenzentrums vorbereiten, ohne eine Vorschau mit einer sofortigen Migrationsempfehlung zu verwechseln.",
+      "application": "Erstellen Sie ein Labor, um die Sicherheit und Kompatibilität vorhandener Anwendungen zu bewerten.",
+      "technical": "Der Vorschlag umfasst gehärtete Serverkerne, Post-Quanten-Kryptographie, NVMe und hybride KI-Szenarien. Validieren Sie die Anforderungen und die Unterstützung jeder Funktion.",
+      "sourceHash": "05439706bb0f97dfcbe666e8e0ac4ee75e81e225fa594afaf3815a8f4da528b6"
+    },
+    "bon-451": {
+      "title": "Cosmos DB stärkt Suche und Entwicklung",
+      "summary": "Cosmos DB umfasst Wiederherstellungsverbesserungen, Entwicklungstools und Datenschutz, wobei GA und andere Komponenten noch in der Vorschau sind.",
+      "impact": "Reduziert den Integrationsaufwand durch verbesserte Relevanz, Modellierung und Datenabruf.",
+      "application": "Testen Sie semantische Suchen und überprüfen Sie den Schutz einer Anwendung mit verteilten Daten.",
+      "technical": "Shell, Rust SDK, Semantic Reranker und Backup sind GA; Der von VS Code unterstützte Modellierer befindet sich in der Vorschau. Überprüfen Sie die Verfügbarkeit nach Kapazität.",
+      "sourceHash": "b5d828ea7cf43c53056b183b90d08fce279db3f1217329036554a4f27fa0ea9e"
+    },
+    "bon-452": {
+      "title": "DocumentDB erstreckt sich auf die Hybridumgebung",
+      "summary": "Azure DocumentDB bietet agilere Bereitstellung und Tools und bereitet Bereitstellungen mit Arc, Azure Local und feineren Berechtigungen vor.",
+      "impact": "Bietet neue Optionen für MongoDB-kompatible Lasten mit Souveränitätsanforderungen.",
+      "application": "Entdecken Sie die Entwicklung von VS Code und erfahren Sie, wo sich Dokumente befinden sollten.",
+      "technical": "Die VS-Code-Erweiterung und die M10–M30-Bereitstellung sind GA; Arc, Azure Local und granulares RBAC sind in der Vorschau.",
+      "sourceHash": "b70e5f7a1e427f7c06521bd8ea4b8007479e9f4d8cd84a770f35e45b7a681bd2"
+    },
+    "bon-453": {
+      "title": "HorizonDB: PostgreSQL für kritische Lasten",
+      "summary": "Azure HorizonDB ist als PostgreSQL-kompatible verwaltete Datenbank allgemein verfügbar, mit Vektorsuche und neuen KI-Funktionen in der Vorschau.",
+      "impact": "Kombinieren Sie Transaktionsanforderungen mit Optionen für intelligente Anwendungen.",
+      "application": "Bewerten Sie eine PostgreSQL-Anwendung, die Ausfallsicherheit und Informationsabruf für KI erfordert.",
+      "technical": "Beinhaltet Entra ID, private Endpunkte und Mehrzonenreplikation; KI-Funktionen, KI-Pipelines und die Spiegelung auf Fabric befinden sich noch in der Vorschau.",
+      "sourceHash": "1d6970888673622799d1dd6a4c0468151356b3a9137e06d5fae7ffb82427eb6a"
+    },
+    "bon-454": {
+      "title": "Redis 8 und ein Kit zur Entwicklung mit Agenten",
+      "summary": "Azure Managed Redis präsentiert in der Vorschau Redis 8 und ein Agent-Kit, das Konfigurationen überprüft und Verbesserungen für die Nutzung des Dienstes vorschlägt.",
+      "impact": "Das Gedächtnis und der Kontext der Agenten werden Teil des Datenlayouts.",
+      "application": "Experimentieren Sie mit der Vektorwiederherstellung oder der Wiederverwendung ähnlicher Antworten.",
+      "technical": "Redis 8 vereint JSON, Suche, Zeitreihen und Vektoren; Kit-Empfehlungen sollten vom Entwickler bewertet werden.",
+      "sourceHash": "d1683251d5aad35b870d43f8977c5dd80b258eaba8c87ef20181c39e0f43d5e4"
+    },
+    "bon-455": {
+      "title": "Azure SQL erweitert die Ausfallsicherheit und die lokale Entwicklung",
+      "summary": "Azure SQL umfasst GA-Verbesserungen in Managed Instance und einen Vorschlag in der Vorschau zur Entwicklung mit einem lokalen Azure SQL-Datenbankcontainer.",
+      "impact": "Es erleichtert die Modernisierung von SQL Server-Anwendungen und Testszenarien, ohne ständig auf die Cloud angewiesen zu sein.",
+      "application": "Überprüfen Sie die Notfallwiederherstellung und testen Sie den lokalen Entwicklungsablauf.",
+      "technical": "Managed Instance fügt Zonenredundanz und flexiblen Speicher in unterstützten Konfigurationen hinzu; MI Link unterstützt Always On-Gruppen mit mehreren Basen.",
+      "sourceHash": "f78439162ef8c7001648b652495cf8522024fbfc27c1bebf9413fc9b1bed4331"
+    },
+    "bon-456": {
+      "title": "Ein Kontrollpunkt für Datenbanken",
+      "summary": "Database Hub in Fabric ist bereits GA und vereint die Datenbankverwaltung; Neue SQL- und PostgreSQL-Agenten bieten Betriebsunterstützung in der Vorschau.",
+      "impact": "Reduziert die Tool-Fragmentierung für Teams, die mehrere Engines und Standorte verwalten.",
+      "application": "Zentralisieren Sie die Beobachtung des Datenbankparks und studiengestützte Empfehlungen.",
+      "technical": "Agenten respektieren Genehmigungen, Genehmigungen und Audits; Database Hub und die VS Code PostgreSQL-Erweiterung sind vorgesehene Zugriffspunkte.",
+      "sourceHash": "afa8257733bfcd95ba2683c10f2ba798306030e27250003107df3cc0bb3d2710"
+    },
+    "bon-457": {
+      "title": "Serverloses PostgreSQL betritt Fabric",
+      "summary": "Fabric HorizonDB soll in der Vorschau PostgreSQL-Anwendungen, OneLake-Analysen und Backend-Dienste für Fabric-Apps verbinden.",
+      "impact": "Sie können Anwendungen mit variablem Bedarf und verknüpften Betriebs- und Analysedaten vereinfachen.",
+      "application": "Erstellen Sie einen Prototyp einer Anwendung, die Transaktions- und Analysedaten gemeinsam abfragt.",
+      "technical": "Beinhaltet Pause und Wiederaufnahme, translytische Abfragen, Spiegelung und Reverse-ETL. Es unterscheidet sich vom Azure HorizonDB-Dienst.",
+      "sourceHash": "8bd8bd0b8f8ffbe1d7fe5498cc47bef9438270e3c73d43c15d36299b2e021ba3"
+    },
+    "bon-458": {
+      "title": "Weitere Möglichkeiten zur Modernisierung mit PostgreSQL",
+      "summary": "Azure erweitert die PostgreSQL-Migrations-, Computing- und Schutzoptionen und kombiniert verfügbare Fortschritte mit neuen Vorschauen.",
+      "impact": "Es ermöglicht den Vergleich von Modernisierungspfaden, ohne alle Szenarien als gleichwertig zu betrachten.",
+      "application": "Studieren Sie eine Migration von Oracle oder die Entwicklung hin zu HorizonDB.",
+      "technical": "DMS für Oracle zu PostgreSQL und zu HorizonDB ist in der Vorschau; Cobalt 200 und AMD Confidential Protection v6 sind als GA aufgeführt.",
+      "sourceHash": "1cf742846a1f067480d292d4ea8d1ff4366707bc1e7e05a9ceabf57b008b19fe"
+    },
+    "bon-459": {
+      "title": "Vom Bericht zur App in Power BI",
+      "summary": "Power BI Pro umfasst in der Vorschau die Erstellung von Datenanwendungen vom Desktop aus mit semantischen Modellen und natürlicher Sprache.",
+      "impact": "Bringt Dateneingabe und Aktionen näher an den Ort, an dem sie analysiert werden.",
+      "application": "Testen Sie eine Planungsanwendung, die Datensätze aktualisiert, anstatt sie nur anzuzeigen.",
+      "technical": "Der Vorschlag basiert auf kontrollierten semantischen Modellen und Fabric-Datenbankfunktionen. Sehen Sie sich die Vorschau- und Lizenzbedingungen an.",
+      "sourceHash": "a11497e3012d18e699b6da2922db0d15df60aa133ab0a4b44ede655e88afd5db"
+    },
+    "bon-460": {
+      "title": "Rayfin- und Fabric-Apps sind allgemein verfügbar",
+      "summary": "Rayfin- und Fabric-Apps vereinen Backend, Daten und Governance, um Unternehmensanwendungen zu erstellen, die mit dem Fabric-Ökosystem verbunden sind.",
+      "impact": "Es reduziert die Teile, die ein Team zusammenstellen muss, um von einer Idee zu einer Anwendung zu gelangen.",
+      "application": "Entwerfen Sie eine interne Anwendung für bereits verwaltete Geschäftsdaten und -definitionen.",
+      "technical": "Die Plattform unterstützt SQL oder Fabric HorizonDB und die Anbindung an semantische Modelle, Warehouses und Lakehouses; Überprüfen Sie die Reife des ausgewählten Backends.",
+      "sourceHash": "d533376cdffdc9a4cc113345f957ae672179a4eec3bf4a36102804986715dfa9"
+    },
+    "bon-465": {
+      "title": "Upgrade-Agenten mit Produktionsnachweisen",
+      "summary": "Foundry verbindet Auswertung, Traces, Anmerkung, Optimierung und Training, um zu testen, ob Änderungen einen Agent tatsächlich verbessern.",
+      "impact": "Ersetzen Sie intuitive Anpassungen durch einen messbaren Zyklus aus Qualität, Kosten und Latenz.",
+      "application": "Definieren Sie eine Reihe verifizierter Fälle und vergleichen Sie Konfigurationen, bevor Sie sie bereitstellen.",
+      "technical": "Multi-Turn-Auswertung, Erkenntnisse und Agent Optimizer sind GA; Menschliche Anmerkungen und neue Trainingsoptionen umfassen Funktionen in der Vorschau.",
+      "sourceHash": "b4de423548ba6899cb60433bc9fd5f113592b1046abd025742b2bee099528cf0"
+    },
+    "bon-467": {
+      "title": "Ein spezialisiertes Modell zur Entscheidungsfindung",
+      "summary": "Microsoft-Decision-1.1 steht allgemein für Klassifizierung, Routing und Aktionsauswahl innerhalb definierter Grenzen zur Verfügung.",
+      "impact": "Damit können Sie die größten Modelle für Aufgaben reservieren, die wirklich komplexe Überlegungen erfordern.",
+      "application": "Bewerten Sie einen Anforderungsklassifikator, der bei unzureichender Konfidenz Abstand nehmen kann.",
+      "technical": "Unterstützt Bildeingabe und Konfidenzwerte; Zulässige Aktionen und Umgehungsschwellenwerte müssen in der Anwendung definiert werden.",
+      "sourceHash": "3dbe391fe4037bc0c9c615cea8b5aefbd0ac28ff49b1e44d087c7d9c9ab34141"
+    },
+    "bon-468": {
+      "title": "Weitere Modelle, je nach Aufgabenstellung ausgewählt",
+      "summary": "Foundry erweitert Optionen für Code, Bilder, Sicherheit, Entscheidungen und Routing mit unterschiedlicher Verfügbarkeit je nach Modell und Plattform.",
+      "impact": "Bei der Auswahl der Modelle kommt es auf das Gleichgewicht zwischen Qualität, Kosten und Spezialisierung an.",
+      "application": "Bereiten Sie eine Bewertung pro Aufgabe vor, anstatt ein einziges Modell für alle Verwendungszwecke zu übernehmen.",
+      "technical": "MAI-Code-2 ist GA auf GitHub; Andere Angebote bieten öffentliche Vorschauen, private Vorschauen oder eingeschränkten Zugriff auf MDASH. Konsultieren Sie jede Karte vor der Planung.",
+      "sourceHash": "1b9a25a25166a46614d4bcaa99409ad35c8303f3bd5fc8689093f4a7b09da48d"
+    },
+    "bon-473": {
+      "title": "Copilot SDK 2.0 zur Integration von Agenten in Ihre Apps",
+      "summary": "Copilot SDK 2.0 ist mit einer nativen Rust-Laufzeitumgebung allgemein verfügbar und konzentriert sich auf umfangreiche, mandantenfähige Unternehmensanwendungen.",
+      "impact": "Bringt die Technologie zur Agentenausführung näher an Ihre eigenen Anwendungen heran.",
+      "application": "Bewerten Sie einen in eine bestehende Anwendung integrierten Agenten hinsichtlich seiner Sicherheitsgrenzen.",
+      "technical": "Das SDK unterstützt sechs Sprachen und nutzt das von Microsoft und GitHub verwendete System; Überprüfen Sie die Isolation und die Anforderungen jeder Integration.",
+      "sourceHash": "81aab219ddad2eb45c9c31584b1c08ceba2f3419e7cdca90d05a46b167512049"
+    },
+    "bon-478": {
+      "title": "FinOps, um den Wert von KI zu verstehen",
+      "summary": "Agent 365 verbindet Ausgabenmanagement und Geschäftsanalysen, um Kosten, Grenzen und Ergebnisse von KI-Diensten und Agenten zu beobachten.",
+      "impact": "Es hilft dabei, die Rückkehr der KI mit Daten zu diskutieren, nicht nur mit dem Token-Verbrauch.",
+      "application": "Definieren Sie Kostenindikatoren pro nützlicher Aufgabe, bevor Sie ein Pilotprojekt erweitern.",
+      "technical": "Cost Management befindet sich in der Vorschau und Business Analytics in Frontier; Für Dezember angekündigte Erweiterungen gelten heute nicht als verfügbar.",
+      "sourceHash": "3c167f0fcff2e1c48cb8e839e9b86766a407e6caf0cf3c49b8fc0a092d3dabc7"
+    },
+    "bon-479": {
+      "title": "Autopilot: Arbeit, die zwischen Gesprächen fortgesetzt wird",
+      "summary": "Autopilot wird in Frontier als langfristiger persönlicher Agent mit eigener Identität, eigenem Gedächtnis und eigenen Tools eingesetzt.",
+      "impact": "Erkunden Sie die Produktivität, indem Sie Folgearbeiten und wiederkehrende Arbeiten delegieren.",
+      "application": "Versuchen Sie es mit regelmäßiger Überwachung mit minimalen Berechtigungen und expliziter Aufsicht.",
+      "technical": "Es befindet sich im Mandanten, seine Aktionen sind mit der Agent-ID verknüpft und können von Administratoren verwaltet werden; Es handelt sich nicht um eine allgemeine Verfügbarkeit.",
+      "sourceHash": "0012c960c02b6a9bd7b8140d6462e1a86ea3c03df949a95957c4210902a97b7a"
+    },
+    "bon-480": {
+      "title": "Eine verwaltete Laufzeit zum Veröffentlichen von Anwendungen",
+      "summary": "Copilot Managed Runtime erreicht allgemeine Verfügbarkeit und verbindet Hosting und Governance mit einem optionalen Fabric-Daten-Backend.",
+      "impact": "Es trennt das Tool, mit dem eine App erstellt wird, von der Umgebung, in der sie ausgeführt und verwaltet wird.",
+      "application": "Vergleichen Sie eine verwaltete Veröffentlichung mit einer App, die Datenpersistenz erfordert.",
+      "technical": "Fabric kann Datenbanken, Speicher und APIs bereitstellen; Die Ankündigung stellt außerdem Agenten und Workflows sowie die Veröffentlichung über lokale Tools vor.",
+      "sourceHash": "0c3d24f071142aaaab3cf473a9348cbc84dbca48cc019887b31b399118a1d7c6"
+    },
+    "bon-481": {
+      "title": "Arbeitsbereiche bringen Menschen, Kontext und Copilot zusammen",
+      "summary": "Copilot Workspaces entwickeln Notebooks innerhalb von Frontier zu gemeinsamen Räumen für Dokumente, laufende Arbeiten und Teamkontext.",
+      "impact": "Dies kann es einem Team erleichtern, sich auf den neuesten Stand zu bringen und die nächsten Schritte zu koordinieren.",
+      "application": "Organisieren Sie die Dokumente und Entscheidungen einer Initiative in einem gemeinsamen Raum.",
+      "technical": "Die Autopilot-Integration wird als Zukunft angekündigt. Der aktuelle Zugriff auf Workspaces erfolgt über das Frontier-Programm.",
+      "sourceHash": "6688baa73d95287e533a30737f5254a72758c85c33800f8e0dfbbb32fd05663f"
+    },
+    "bon-482": {
+      "title": "CRM und ERP kommen in den Copilot-Flow",
+      "summary": "Dynamics 365 Sales- und ERP-Plugins sind bereits allgemein verfügbar, um kommerzielle, finanzielle und betriebliche Aufgaben näher an Copilot heranzuführen.",
+      "impact": "Reduziert Werkzeugwechsel bei der Erstellung von Konten oder der Verwaltung von Geschäftsprozessen.",
+      "application": "Entdecken Sie die Vorbereitung eines Geschäftstreffens oder eines unterstützten Kaufprozesses.",
+      "technical": "Der Vertrieb berücksichtigt den Opportunitätskontext. ERP integriert Aufgaben mit Copilot Cowork und Excel. Überprüfen Sie die Berechtigungen und Bedingungen jeder Anwendung.",
+      "sourceHash": "f69b0ab03b9bbbee5f18112b92a081895c52af0cb24d9e2bf8dc6a4e3bcc7e60"
+    },
+    "bon-483": {
+      "title": "Erstellen Sie Anwendungen mit natürlicher Sprache und Steuerelementen",
+      "summary": "Mit Copilot Code können Sie Anwendungen in Frontier mit Sandboxes und kompatibler App-Veröffentlichung über Copilot Managed Runtime erstellen.",
+      "impact": "Bringt die Erstellung von Tools näher an die Geschäftsteams heran und behält gleichzeitig eine Governance-Rolle für die IT bei.",
+      "application": "Erstellen Sie einen Prototyp eines Team-Trackers und überprüfen Sie dessen Datenzugriff, bevor Sie ihn freigeben.",
+      "technical": "Die lokale Sandbox ist unter Windows verfügbar; macOS wird später angekündigt. Die allgemeine Verfügbarkeit des Copilot-Codes wird für Dezember angekündigt.",
+      "sourceHash": "828da9bc0dc18ba6971d551cdabe41bde3d4785ce9326e917632bdaec1048c0b"
+    },
+    "bon-484": {
+      "title": "Copilot Home verbindet Fragen, Delegieren und Erstellen",
+      "summary": "Home vereint Chat und Cowork, integriert Office und erweitert die Aufgabenweiterleitung um GA-, Frontier- und Vorschaufunktionen.",
+      "impact": "Es ermöglicht Ihnen, von einem Gespräch zu einer ausführlicheren Arbeit überzugehen, ohne den Kontext zu verlieren.",
+      "application": "Vergleichen Sie, wann eine Anfrage in Chat gelöst und wann ein Ablauf in Cowork delegiert werden sollte.",
+      "technical": "Office zu Copilot und Empfehlungen zum Wechsel zu Cowork sind GA; Andere Funktionen, wie z. B. deklarative Agenten, haben einen eingeschränkteren Zugriff.",
+      "sourceHash": "bcab26e627cc969b6a33ea1e742c267d27d385665e5f9de558d5f7e490d2b82d"
+    },
+    "bon-485": {
+      "title": "Activate erweitert die unterstützte Migration zu ERP",
+      "summary": "Dynamics 365 Activate erweitert seine Reichweite auf SAP ECC mit Erkennung, Anforderungen, Konfiguration und Migration durch eine progressive Bereitstellung.",
+      "impact": "Hilft bei der Analyse, welche Prozesse und Integrationen verschoben, vereinfacht oder neu gestaltet werden sollten.",
+      "application": "Bewerten Sie den Umfang einer ERP-Modernisierung, bevor Sie sich auf ein Projekt festlegen.",
+      "technical": "Die CRM-Migration von Salesforce ist GA; ERP-Funktionen werden in den folgenden Wochen bereitgestellt und erfordern eine menschliche Validierung.",
+      "sourceHash": "a3526d06de349effbfe82d60822452f66591c5e25ad9c14c283285b2be56c6ce"
+    },
+    "bon-486": {
+      "title": "Salesforce verbindet sich mit Copilot, Teams und Fabric",
+      "summary": "Microsoft und Salesforce kündigen neue Geschäftskontext-, Kollaborations- und Datenintegrationen mit unterschiedlichen Verfügbarkeitsstatus an.",
+      "impact": "Es ermöglicht Ihnen, den Kontext vom Kunden auf die Tools zu übertragen, mit denen das Team bereits arbeitet.",
+      "application": "Erkunden Sie Geschäftsanfragen in Copilot und respektieren Sie dabei die vorhandenen Salesforce-Berechtigungen.",
+      "technical": "Salesforce auf Copilot befindet sich in der Vorschau, Sales Cloud on Teams befindet sich in der Pilotphase und Data Federation mit OneLake ist GA. Es handelt sich nicht um eine Einzelveröffentlichung.",
+      "sourceHash": "1a157b94221e1d792396c73f3934bbb052677ad360a9703fa46f922df64a1500"
+    },
+    "bon-487": {
+      "title": "Der heutige Tag bereitet Prioritäten und nächste Schritte vor",
+      "summary": "Heute wird eine private Frontier-Vorschau angekündigt, um Prioritäten zu sammeln und Entwürfe und Aktionen vorzubereiten, die der Benutzer überprüft und genehmigt.",
+      "impact": "Erleben Sie einen proaktiveren Tag, ohne die Zustimmung der Menschen zu verlieren.",
+      "application": "Bewerten Sie ein tägliches Briefing und messen Sie, ob es die Vorbereitungszeit verkürzt.",
+      "technical": "Today Brief ist in Microsoft 365 Copilot enthalten; Für wiederkehrende Today-Feed-Updates sind Copilot-Credits pro Ankündigung erforderlich.",
+      "sourceHash": "616130822a2228b071162b15f08cd01a4216993130c4b89f2d304421b460b896"
+    },
+    "bon-492": {
+      "title": "Der Browser regelt auch die Arbeit mit Agenten",
+      "summary": "Edge for Business bietet Flow-Aufzeichnung und Agent-Navigation in der Vorschau sowie Erweiterungsrisikoinventar und GA.",
+      "impact": "Es macht den Browser zum Kontrollpunkt für Produktivität, Identität und Sicherheit.",
+      "application": "Überprüfen Sie installierte Erweiterungen und proben Sie einen wiederholbaren Cowork-Ablauf mit IT-Kontrolle.",
+      "technical": "Der Skills-Recorder und das Durchsuchen verwalteter Agenten befinden sich in der Vorschau. Die Erweiterungssicherheit ist GA und die Erweiterungsleckkontrolle bleibt in der Vorschau.",
+      "sourceHash": "f0ac478e6c2b7ed9cc5f20d5c5f72dbead49c314c8bd438e5509c648ff383deb"
+    },
+    "bon-497": {
+      "title": "Microsoft IQ verbindet Kontext und kontinuierliche Verbesserung",
+      "summary": "Microsoft IQ wird als Unternehmensplattform präsentiert, die Organisationswissen und Erkenntnisse aus Anwendungs- und Agentenerfahrung zusammenführt.",
+      "impact": "Es hilft zu verstehen, wie die verschiedenen IQ-Teile in eine KI-Strategie passen.",
+      "application": "Ordnen Sie zu, welche Quellen und Metriken ein Anwendungsfall benötigt, bevor Sie Tools auswählen.",
+      "technical": "Die Plattform wird GA und ohne neue SKU angekündigt; Dies bedeutet nicht, dass alle Komponenten oder Verbraucherdienste kostenlos oder allgemein verfügbar sind.",
+      "sourceHash": "08630056a0c36438cf7208a758424e6106c360d3954c2844295dd303ede55957"
+    },
+    "bon-499": {
+      "title": "Verwandeln Sie Geschäftserfahrung in wiederverwendbaren Kontext",
+      "summary": "Microsoft IQ verbindet Work, Fabric, Foundry und Web IQ mit wiederverwendbaren Tools, Fähigkeiten und Agenten; Business-Plugins fügen Szenario-Anleitung in Frontier hinzu.",
+      "impact": "Sie können verhindern, dass jedes Team dieselben Anweisungen und Integrationen neu erstellt.",
+      "application": "Definieren Sie einen Prozessleitfaden mit autorisierten Quellen und den für die Wartung Verantwortlichen.",
+      "technical": "Der Zugriff auf Kontext und wiederverwendbare Blöcke ist GA; Business-Plugins mit verwalteter Hierarchie sind Frontier-verfügbar.",
+      "sourceHash": "605c05196fca8f50ad9ce6c614cd421a10cdad6e7c0b928b14676eee96cbfda8"
+    },
+    "bon-501": {
+      "title": "Foundry IQ geht tiefer in Dokumente und Beziehungen ein",
+      "summary": "Foundry IQ erweitert den Abruf mit Wissensdiagrammen und Microsoft-Retriever-1 in der Vorschau, während der in SharePoint indizierte Feed GA erreicht.",
+      "impact": "Verbessert die Möglichkeiten, Antworten auf Organisationsinformationen zu basieren.",
+      "application": "Bewerten Sie Fragen, die eine Verknüpfung von Klauseln, Lieferanten und Dokumenten mit Zitaten erfordern.",
+      "technical": "Kombiniert lexikalische, Vektor- und Hybridsuche; Der Zugriff auf SharePoint respektiert die Ursprungsberechtigungen. Neue serverlose Diagramme und Ressourcen befinden sich noch in der Vorschau.",
+      "sourceHash": "1a64664c7bf5560511704516b3eaf245bff5c5d722c076e9926af9958ddf6867"
+    },
+    "bon-503": {
+      "title": "Fabric IQ bringt die Bedeutung von Daten in mehr Tools",
+      "summary": "Fabric IQ erweitert seine Integrationen, um verwaltete Daten und Geschäftskontext mit Copilot, Anwendungen und Erfahrungen von Drittanbietern zu verbinden.",
+      "impact": "Stellen Sie sicher, dass Mitarbeiter und Agenten konsistente Definitionen von Metriken und Regeln verwenden.",
+      "application": "Testen Sie Geschäftsfragen anhand eines von den Verantwortlichen validierten semantischen Modells.",
+      "technical": "GA-Integrationen koexistieren mit Vorschauen für Excel, Ontologien in GitHub Copilot und ChatGPT- und Claude-Konnektoren. Überprüfen Sie jedes Ziel.",
+      "sourceHash": "8dc26ea3bdd1a230f4cbb6aa477da835f89effff1bb4ca0beead014946020bfa"
+    },
+    "bon-505": {
+      "title": "Web IQ öffnet den Zugriff auf den Webkontext",
+      "summary": "Web IQ ist jetzt allgemein verfügbar für Azure-Kunden mit den Modi „Auto“, „Auto Advanced“ und „Scopes“ zum Abrufen und Eingrenzen externer Informationen.",
+      "impact": "Es ermöglicht Ihnen, Ihr Geschäftswissen durch aktuelle Informationen und kontrollierte Quellen zu ergänzen.",
+      "application": "Vergleichen Sie die externe Wiederherstellung mit zulässigen Domänen, um einen Informationsassistenten zu erhalten.",
+      "technical": "Auto führt Inhaltskategorien zusammen; Auto Advanced iteriert Abfragen und Scopes ermöglicht Ihnen das Ein- oder Ausschließen von URLs, Domänen und Routen.",
+      "sourceHash": "c7e05a3afa1a583ac0e076928b5aac0d2c01bc0c0164e1d53edda796ee9cec7f"
+    },
+    "bon-507": {
+      "title": "Arbeits-IQ erweitert Kontext, Aktionen und Kontrolle",
+      "summary": "Work IQ erweitert die Wiederherstellung und die verfügbaren Aktionen und fügt Vorschaufunktionen hinzu, um auf Ereignisse zu reagieren und detailliertere Kontrollen anzuwenden.",
+      "impact": "Es bringt Akteure, die im Arbeitskontext handeln, mit neuen Überwachungsbedürfnissen zusammen.",
+      "application": "Studieren Sie einen ereignisbasierten Ablauf mit Genehmigungen, bevor Sie sensible Aktionen ausführen.",
+      "technical": "Wiederherstellung und neue Maßnahmen sind GA; Zuhören und erweiterte Steuerelemente sind Vorschau. Zukünftige Integrationen sollten gesondert geprüft werden.",
+      "sourceHash": "01390d4b09257d0c01d2a3ee006ef8ceefa832de2a2866b936e0cafbe63a4cd2"
+    },
+    "bon-509": {
+      "title": "Vom echten Ergebnis zu einem besseren Agenten",
+      "summary": "Microsoft IQ verbindet Produktionssignale mit Agent Optimizer und Modelltraining, um Anwendungen nach vom Team definierten Kriterien zu verbessern.",
+      "impact": "Es konzentriert sich auf die Kosten und die Qualität pro erzieltem Ergebnis und nicht nur auf isolierte Antworten.",
+      "application": "Messen Sie eine Aufgabe von Anfang bis Ende und genehmigen Sie Änderungen nur, wenn sie die Ausgangslage verbessern.",
+      "technical": "Die Einstellungen können vor dem Training optimiert werden; Programmed Training befindet sich in der Vorschau und bietet Kontrolle über kompatible Modelle.",
+      "sourceHash": "0e4298cf29cd1d8cb45ad22c68af397456e65c5e4c8f0a70f82f2bb8bea3b98b"
+    },
+    "bon-514": {
+      "title": "Das Risiko des Agenten ändert sich, während er arbeitet",
+      "summary": "Dynamic Agent Risk erscheint in der Vorschau, um Identität, Daten, Geräte und Ausführungssignale in einer Agentenrisikobewertung zu kombinieren.",
+      "impact": "Hilft dabei, isolierte Ansichten durch eine kontextbezogenere Priorisierung zu ersetzen.",
+      "application": "Erfahren Sie, wie Sie Ausführungssignale in die Agenteninventarisierung und -überprüfung integrieren können.",
+      "technical": "Integriert den Kontext von Exposition und Wirkung; Partnersignale tragen zu einer einheitlichen, von Microsoft berechneten Auswertung bei.",
+      "sourceHash": "08ff77964cc6084741bd062aa6b1005fc1572099383c520001f27d9cd8193159"
+    },
+    "bon-515": {
+      "title": "Grundlegendere Einblicke in die Agentennutzung",
+      "summary": "Microsoft erweitert den GA-Zugriff auf Agentenaktivitäts- und Nutzungsmetriken, ohne dass Agent 365 für die gesamte grundlegende Sichtbarkeit erforderlich ist.",
+      "impact": "Erleichtert das Verständnis der Einführung, bevor über zusätzliche staatliche Investitionen entschieden wird.",
+      "application": "Überprüfen Sie aktive Benutzer, Sitzungen und Ausnahmen als Ausgangspunkt für die Bestandsaufnahme.",
+      "technical": "Nicht gleichbedeutend mit allen nicht lizenzierten Funktionen: Erweiterte Governance- und Sicherheitsanforderungen bleiben erhalten. Für Viva Insights sind mindestens 50 zugewiesene Copilot-Lizenzen erforderlich.",
+      "sourceHash": "550606fad64abc7ce63d2e7ebc4737081d6dea17d5ba0483f950620eb7030254"
+    },
+    "bon-516": {
+      "title": "Behandeln Sie Agenten, Fähigkeiten und Werkzeuge aus einer gemeinsamen Sicht",
+      "summary": "Agent 365 erweitert Plugin-Governance, MCP-Tools und Agenten um GA-Funktionen, Vorschauen und ein Action Center, das für später angekündigt wird.",
+      "impact": "Das Inventar muss auch Tools und Abhängigkeiten umfassen, nicht nur Agenten.",
+      "application": "Identifizieren Sie nicht im Besitz befindliche Agenten und prüfen Sie, wer jedes Plugin verwenden kann.",
+      "technical": "Plugins und Skills-Governance ist GA; MCP-Gateway-Unterstützung und andere Funktionen sind in der Vorschau. Die private Vorschau von Action Center ist für Dezember geplant.",
+      "sourceHash": "15f17d0517d0d6ab9944dfbc79fa93caf994347e48d29277c9ec10a8b1cbbaf3"
+    },
+    "bon-517": {
+      "title": "Messen Sie, wo Investitionen in Makler einen Mehrwert schaffen",
+      "summary": "Agent 365 Business Analytics bietet in Frontier Preview eine Ansicht der Kosten und Ergebnisse für Microsoft- und Drittanbieter-Agenten.",
+      "impact": "Es verknüpft Investitionsentscheidungen mit dem beobachteten Nutzen der Agenten.",
+      "application": "Definieren Sie Erfolgs- und Effizienzindikatoren, um KI-Initiativen zu vergleichen.",
+      "technical": "Die Ankündigung versetzt Business Analytics in die Frontier-Vorschau; Bestätigen Sie die Berechtigung und Kostenübernahme, bevor Sie eine Scorecard erstellen.",
+      "sourceHash": "723bc06692371eed78eacb72b781d2e3f9f0f5ca5dabb211621f6d8ed640f528"
+    },
+    "bon-519": {
+      "title": "MDASH strebt nach besser validierten Codeergebnissen",
+      "summary": "Codename MDASH ist für berechtigte Organisationen in der Vorschau und bietet agentenbasierte Codeanalyse, Validierung von Ergebnissen und Verbesserungen für große Repositories.",
+      "impact": "Ziel ist es, den Zeitaufwand für die Überprüfung minderwertiger Ergebnisse zu reduzieren.",
+      "application": "Bewerten Sie den Dienst nur auf autorisierten Repositories und mit Überprüfung der Ergebnisse.",
+      "technical": "Der Ablauf kombiniert nach Möglichkeit Identifizierung, Analyse, Diskussion zwischen Agenten und Reproduktion; Die Modellabdeckung entwickelt sich mit den Bewertungen.",
+      "sourceHash": "6c8d19b39cd77115935ebc3d14071b8486d43329f9dfb1e9258e9b865b48440e"
+    },
+    "bon-521": {
+      "title": "Ein integriertes SOC und neue temporäre Verteidigungsmaßnahmen",
+      "summary": "Die Kernfunktionen des integrierten SOC sind GA; Die SIEM-Breite und die Abschirmung von Schwachstellen werden in der Vorschau vorgestellt.",
+      "impact": "Es verbindet Erkennung und Reaktion mit vorübergehenden Maßnahmen, während eine endgültige Korrektur angewendet wird.",
+      "application": "Erfahren Sie, wie Sie Telemetrie, Untersuchung und Behebung im SOC koordinieren können.",
+      "technical": "Abschirmung ist kein Ersatz für Patches: Sie führt vorübergehende Kontrollen gegen aktive Angriffe durch. Die angegebene 90-tägige Aufbewahrungsfrist für den Defender stammt aus der Vorschau.",
+      "sourceHash": "419ad53487a2c6759d34594e2153e05ec2f984f927607c736f5668ee54b3bb85"
+    },
+    "bon-522": {
+      "title": "Defender schützt lokale Agenten, während sie ausgeführt werden",
+      "summary": "Defender erweitert den Schutz unter Windows für unterstützte lokale Agents mit Überwachungs- oder Blockierungsmodi und einer differenzierten Abdeckung nach Tool.",
+      "impact": "Trägt dazu bei, das Risiko schädlicher Anweisungen zu begrenzen, die in verarbeiteten Inhalten verborgen sind.",
+      "application": "Beginnen Sie im Audit und überprüfen Sie die Auswirkungen, bevor Sie Sperren aktivieren.",
+      "technical": "Die beworbenen Schutzmaßnahmen gelten allgemein für bestimmte Tools. Defender für Endpunkt P2 wird angezeigt. Überprüfen Sie je nach Agent die native oder Netzwerkabdeckung.",
+      "sourceHash": "039c9160a64aecd1622dcd3e55f883002b365e89eff5ad265f470a9028ca6315"
+    },
+    "bon-523": {
+      "title": "Mehr Kontext für neu auftretende und Zero-Day-Bedrohungen",
+      "summary": "Defender zeigt eine Vorschau neuer Bezeichnungen, Ansichten, Warnungen und Schutzvalidierungen für sich schnell entwickelnde Bedrohungen an.",
+      "impact": "Es ermöglicht die Priorisierung der Forschung entsprechend dem tatsächlichen Kontext der Organisation.",
+      "application": "Überprüfen Sie die Gefährdung nach Sektor und Region und validieren Sie relevante Schutzmaßnahmen.",
+      "technical": "Die Erfahrung verknüpft Bedrohungsanalysen mit dem Schutz-Playbook von Perception. Bestätigen Sie den Zugriff auf die Vorschau- und Informationsquellen.",
+      "sourceHash": "6d68254d31b0b2a4986a394eff64dbe63878d17bbe7e8a7b5f6c6f33d02df0bf"
+    },
+    "bon-524": {
+      "title": "Reduziert das Risiko von On-Premise-Systemen",
+      "summary": "Microsoft kündigt eine Initiative zur Unterstützung von Exchange, SharePoint und Skype for Business Server an, die Härtung, Migration und progressive Schutzmaßnahmen kombiniert.",
+      "impact": "Beachten Sie, dass einige Systeme lokal bleiben und eine Sicherheitsgrundlage benötigen.",
+      "application": "Inventarisieren Sie Versionen, wenden Sie Updates an und überprüfen Sie Wiederherstellungspläne.",
+      "technical": "Der Basissicherheitsmodus und zukünftige Funktionen sind je nach Produkt unterschiedlich verfügbar. Gehen Sie nicht davon aus, dass das gesamte Programm bereits bereitgestellt ist.",
+      "sourceHash": "2f6e0ded393eead9d0658984c1842b3e4c29d0866c7d3d257f939fedb6fba806"
+    },
+    "bon-526": {
+      "title": "Entra erweitert Identität und Zugang zur Welt der Agenten",
+      "summary": "Entra integriert Agent-ID für neue Szenarien, Pläne für bedingten Zugriff sowie Wiederherstellungs- und Governance-Verbesserungen zwischen Mandanten, meist in der Vorschau.",
+      "impact": "Die Identität von Agenten erfordert die Unterscheidung ihrer Handlungen von denen von Menschen.",
+      "application": "Überprüfen Sie ein Berechtigungs- und Rückverfolgbarkeitsmodell für lokale und Cloud-Agenten.",
+      "technical": "Microsoft MCP Server für Unternehmen ist GA; Agent-ID entdeckt, neue Anmeldeinformationen und Backup and Recovery Premium in der Vorschau angekündigt.",
+      "sourceHash": "5e27e4016d28165b7855c17d7ddeb7fa7b98bb68f7b8aea3f8f2200ff08ef1b9"
+    },
+    "bon-527": {
+      "title": "Messbare Pläne zur Vorbereitung auf KI-Sicherheit",
+      "summary": "AI Readiness Initiatives werden zur Vorschau im Januar angekündigt, mit Roadmaps zu Schwachstellen, Authentifizierung und Agenten-Governance.",
+      "impact": "Es wird vorgeschlagen, die Expositionsreduzierung anhand von Belegen des Mieters und nicht nur anhand von Aufgabenlisten zu messen.",
+      "application": "Bereiten Sie Verantwortliche und Metriken für Patching und Phishing-resistente Authentifizierung vor.",
+      "technical": "Es handelt sich um eine zukünftige Verfügbarkeit, nicht um eine Vorschau, die heute geöffnet ist. Die Initiativen sind auf Secure Now und Perception abgestimmt und behalten die Kontrolle durch den Administrator.",
+      "sourceHash": "a3a77f6b2e15b5b8b786e2e7e091f6b9179cf38f89ced7a6918da77b8e34547d"
+    },
+    "bon-529": {
+      "title": "Intune limits what local agents can do",
+      "summary": "Intune zeigt eine Vorschau der Erkennung und Richtlinien für lokale Agenten an und verbindet Gerätekonformität, Identität und Isolierung.",
+      "impact": "Hilft bei der Einführung von Agenten, ohne die Sichtbarkeit der verwalteten Teams zu verlieren.",
+      "application": "Erstellen Sie eine Bestandsaufnahme der zugelassenen Agenten und bewerten Sie Richtlinien in einer Pilotgruppe.",
+      "technical": "Kombiniert Agent 365, bedingten Zugriff, Microsoft Execution Containers und Global Secure Access für Ausführung und Netzwerkgrenzen.",
+      "sourceHash": "2bb180b8ec68cb20ade32ed88ffba029295c80b93d0c5d64a2dc255f822cbc92"
+    },
+    "bon-531": {
+      "title": "Perception bringt spezialisierte Agenten in die Sicherheitsarbeit ein",
+      "summary": "Microsoft Perception erreicht GA für bereits angekündigte Agenten und Playbooks und erweitert Recherche, Abdeckung durch Dritte und andere Funktionen mit spezifischer Verfügbarkeit.",
+      "impact": "Es kann dabei helfen, sich wiederholende Sicherheitsaufgaben zu organisieren und menschliche Arbeit zu priorisieren.",
+      "application": "Bewerten Sie unter Aufsicht eines Analysten ein Triage-Playbook für Ihre eigenen Warnungen.",
+      "technical": "Spezialisierte Agenten arbeiten an Abläufen zusammen; Der Web App Pen Test Agent bleibt in der Vorschau und sollte nur mit ausdrücklicher Genehmigung verwendet werden.",
+      "sourceHash": "80851fad9943cafe6cfdca466dc280a9376fe4397b5607543982bf6d02d5b466"
+    },
+    "bon-533": {
+      "title": "Purview erweitert den Datenschutz gegen Agenten",
+      "summary": "Purview zeigt eine Vorschau der verbesserten Klassifizierung und Kennzeichnung, des neuen Copilot-Schutzes und der Kontrollen für Windows-Endpunktagenten.",
+      "impact": "Stellen Sie sicher, dass der Schutz nicht ausschließlich von der Kennzeichnung aller Dateien abhängt.",
+      "application": "Überprüfen Sie den Zugriff von Copiloten und Agenten auf vertrauliche Daten mit Datenverlustrichtlinien.",
+      "technical": "Die Anzeige umfasst Erdungsschutz und Abdeckung von Anhängen, Links und Text; Validieren Sie Szenarien und Umfang jedes Steuerelements in der Vorschau.",
+      "sourceHash": "c1b7f513936f468effb28a4ee309e5f5fa5b573d3f94f09107cceeafb3ae046e"
+    },
+    "bon-538": {
+      "title": "Copilot in Windows hilft bei Dateien und Diagnosen",
+      "summary": "Windows bereitet in der Vorschau die Dateiverwaltung in natürlicher Sprache, die PC-Diagnose und den Zugriff auf Copilot aus der neuen Suche vor.",
+      "impact": "Bringt den Support näher an den lokalen Kontext des Teams und die gemeinsamen Supportaufgaben.",
+      "application": "Testen Sie die Organisation nicht sensibler Dateien und vergleichen Sie Diagnoseempfehlungen.",
+      "technical": "Der Zugriff über die Suche erfordert eine Einwilligung und unterstützt die Verwaltung nach IT-Richtlinien. Beworbene Funktionen sollten nicht als GA behandelt werden.",
+      "sourceHash": "971a210f882d5d17bf963554775300c6d41381166081f48244c837ad66b3a0f4"
+    },
+    "bon-539": {
+      "title": "Windows 365 verbessert die Verbindung und Verwaltung",
+      "summary": "Windows 365 kombiniert GA-Vorschauen von Direct Stream und Weiterleitungen mit unterstützten Verwaltungsvorschauen und Zugriffsschutz für Cloud-PCs.",
+      "impact": "Das Cloud-Desktop-Erlebnis hängt sowohl von der Konnektivität als auch von deren Verwaltung ab.",
+      "application": "Bewerten Sie die Sitzungsqualität und Einschränkungen in der Zwischenablage basierend auf der Verbindungszuverlässigkeit.",
+      "technical": "Admin Assistant und Windows MAM sind in der Vorschau; GPU-Verbesserungen mit NVIDIA werden für das nächste Jahr in bestimmten Regionen angekündigt.",
+      "sourceHash": "d5264295f8d42edf053e97bc5519312b998ce3deefbfd8535766ec56589e5d1c"
+    },
+    "bon-540": {
+      "title": "Windows und Intune gehen in Richtung ergebnisbasierter Verwaltung",
+      "summary": "Windows und Intune kombinieren eine GA-Endpunktsicherheitsplattform mit neuen Vorschauen auf Kernschutz, deklarative Verwaltung und Zuverlässigkeit.",
+      "impact": "Ziel ist es, die gewünschte Konfiguration beizubehalten und der IT-Abteilung die Kontrolle über Systemänderungen zu geben.",
+      "application": "Bereiten Sie ein Pilotprojekt mit Zuverlässigkeitsrichtlinien und -metriken vor, bevor Sie neue Erfahrungen erweitern.",
+      "technical": "Endpoint Security Platform ist GA; Basisschutz, Erlebniskontrollen und verschiedene Autopatch-Verbesserungen werden in privaten Vorschauen angekündigt.",
+      "sourceHash": "a23f07d157abb4d01a22af0da90f3d1eff9264f7d3e1305a69c67e7a64099c87"
+    },
+    "bon-541": {
+      "title": "Cloud-PCs als Arbeitsbereich für Agenten",
+      "summary": "Windows 365 für Agenten erweitert seine Verbindungen mit Copilot Studio und kündigt Foundry-Integration und Cloud-PC-Persistenz in verschiedenen Vorschauprogrammen an.",
+      "impact": "Öffnet eine Möglichkeit der Automatisierung für Legacy-Anwendungen ohne APIs.",
+      "application": "Untersuchen Sie den Computernutzungsablauf einer autorisierten Testanwendung.",
+      "technical": "Beinhaltet die Berechtigung für Copilot-Credits; Foundry MCP für nächstes Jahr angekündigt und persistente Cloud-PCs in der Frontier-Vorschau.",
+      "sourceHash": "0722baf2603066b50a5ee42d841284c460c121d010c5733d15f705dd300d6f84"
+    },
+    "bon-542": {
+      "title": "Mehr Optionen zum Ausführen lokaler und hybrider KI",
+      "summary": "Windows erweitert die Modellausführung auf Cloud-PCs und kündigt AVD Hybrid in Windows Server 2025 in einer privaten Vorschau an.",
+      "impact": "Ermöglicht den Vergleich von Ausführungsorten basierend auf Szenariokontrolle, Ressourcen und Wirtschaftlichkeit.",
+      "application": "Messen Sie ein kompatibles Modell auf einem großen Cloud-PC, bevor Sie sich für eine Plattform entscheiden.",
+      "technical": "Cloud-PCs mit bis zu 32 vCPUs und GPU-Optionen sind GA; AVD Hybrid befindet sich in der privaten Vorschau. Foundry Local erfordert unterstützte Modelle und Ressourcen.",
+      "sourceHash": "eb9ac0d772b5ecff722b3dcd86ffd42816ebae07fa306a85829f290c7f2f2b4c"
+    },
+    "bon-543": {
+      "title": "Genauere Grenzwerte für Agenten in Windows",
+      "summary": "Windows führt in der Vorschau neue Prozess-, Netzwerk- und Identitätskontrollen ein; Lern- und Freizügigkeitsmodi sind bereits GA.",
+      "impact": "Es hilft festzustellen, was ein Agent auf einem Gerät kommunizieren, erreichen oder vortäuschen kann.",
+      "application": "Beobachten Sie zunächst die legitimen Kommunikationen eines Agenten, bevor Sie Beschränkungen verhängen.",
+      "technical": "COM- und IPC-Steuerelemente und granulare Richtlinien teilen den Status nicht mit Lernmodi. Überprüfen Sie jede Funktion und ihre Bereitstellungsphase.",
+      "sourceHash": "5bfe02e9eb1d57f37ef4747a9adceab580b88c16e07c319c94866cfb16c59380"
+    }
+  },
+  "products": {
+    "AKS": "AKS",
+    "Agent 365": "Agent 365",
+    "Agent Grid": "Agent Grid",
+    "Agent ID": "Agent ID",
+    "Agent Optimizer": "Agent Optimizer",
+    "Agentes locales": "Lokale Agenten",
+    "Autopilot": "Autopilot",
+    "Azure Arc": "Azure Arc",
+    "Azure Catalyst": "Azure Catalyst",
+    "Azure Copilot": "Azure Copilot",
+    "Azure DMS": "Azure DMS",
+    "Azure HorizonDB": "Azure HorizonDB",
+    "Azure Local": "Azure Local",
+    "Azure Managed Redis": "Azure Managed Redis",
+    "Azure Monitor": "Azure Monitor",
+    "Azure SQL": "Azure SQL",
+    "Azure Virtual Desktop": "Azure Virtual Desktop",
+    "Business Analytics": "Business Analytics",
+    "Business plugins": "Business plugins",
+    "Chaos Studio": "Chaos Studio",
+    "Cobalt 200": "Cobalt 200",
+    "Codename MDASH": "Codename MDASH",
+    "Confidential Computing": "Confidential Computing",
+    "Copilot Code": "Copilot Code",
+    "Copilot Cowork": "Copilot Cowork",
+    "Copilot Managed Runtime": "Copilot Managed Runtime",
+    "Copilot SDK": "Copilot SDK",
+    "Copilot Studio": "Copilot Studio",
+    "Copilot Workspaces": "Copilot Workspaces",
+    "Cosmos DB": "Cosmos DB",
+    "DLP": "DLP",
+    "Database Hub": "Database Hub",
+    "DocumentDB": "DocumentDB",
+    "Dynamic Agent Risk": "Dynamic Agent Risk",
+    "Dynamics 365": "Dynamics 365",
+    "Dynamics 365 Activate": "Dynamics 365 Activate",
+    "Edge for Business": "Edge for Business",
+    "Exchange Server": "Exchange Server",
+    "Fabric HorizonDB": "Fabric HorizonDB",
+    "Fabric IQ": "Fabric IQ",
+    "Fabric apps": "Fabric apps",
+    "FinOps": "FinOps",
+    "Foundry IQ": "Foundry IQ",
+    "Foundry Local": "Foundry Local",
+    "GitHub": "GitHub",
+    "GitHub Copilot": "GitHub Copilot",
+    "Integrated SOC": "Integrated SOC",
+    "MCP": "MCP",
+    "Microsoft Copilot": "Microsoft Copilot",
+    "Microsoft Defender": "Microsoft Defender",
+    "Microsoft Entra": "Microsoft Entra",
+    "Microsoft Execution Containers": "Microsoft Execution Containers",
+    "Microsoft Fabric": "Microsoft Fabric",
+    "Microsoft Foundry": "Microsoft Foundry",
+    "Microsoft IQ": "Microsoft IQ",
+    "Microsoft Intune": "Microsoft Intune",
+    "Microsoft Perception": "Microsoft Perception",
+    "Microsoft Purview": "Microsoft Purview",
+    "Microsoft Sentinel": "Microsoft Sentinel",
+    "Microsoft-Decision-1.1": "Microsoft-Decision-1.1",
+    "Microsoft-Retriever-1": "Microsoft-Retriever-1",
+    "Model router": "Model router",
+    "Modelos MAI": "MAI-Modelle",
+    "Máquinas virtuales": "Virtuelle Maschinen",
+    "Office": "Office",
+    "Outlook": "Outlook",
+    "PostgreSQL": "PostgreSQL",
+    "Power BI": "Power BI",
+    "Rayfin": "Rayfin",
+    "Redis 8": "Redis 8",
+    "SAP ECC": "SAP ECC",
+    "SQL Server": "SQL Server",
+    "SRE Agent": "SRE Agent",
+    "Salesforce": "Salesforce",
+    "Secure Now": "Secure Now",
+    "SharePoint": "SharePoint",
+    "SharePoint Server": "SharePoint Server",
+    "Threat intelligence": "Threat intelligence",
+    "Today": "Today",
+    "VS Code": "VS Code",
+    "Viva Insights": "Viva Insights",
+    "Web IQ": "Web IQ",
+    "Windows": "Windows",
+    "Windows 365": "Windows 365",
+    "Windows 365 for Agents": "Windows 365 for Agents",
+    "Windows Autopatch": "Windows Autopatch",
+    "Windows Server 2028": "Windows Server 2028",
+    "Work IQ": "Work IQ"
+  }
+}

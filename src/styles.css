@@ -44,6 +44,8 @@ nav button:hover { color: white; }
 .nav-count { border-radius: 4px; background: #ffffff0f; padding: 3px 6px; font-size: 11px; }
 .header-source { display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--muted); white-space: nowrap; }
 .header-source:hover { color: var(--aqua); }
+.language-picker { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); }
+.language-picker select { max-width: 116px; padding: 8px 25px 8px 8px; border: 1px solid var(--line); border-radius: 5px; background: var(--panel); color: #f3f6f1; font-size: 11px; }
 main { outline: none; }
 .event-label { display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 600; letter-spacing: 2px; color: #c0c7d9; }
 .live-dot { display: inline-block; width: 6px; height: 6px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 14px #ccd81460; flex-shrink: 0; }

@@ -31,11 +31,23 @@ export const articleSchema = z.object({
   status: z.enum(statuses),
   reviewed: z.literal(true),
 });
+export const localeCatalogSchema = z.object({
+  articles: z.record(z.string(), articleSchema.pick({
+    sourceHash: true,
+    title: true,
+    summary: true,
+    impact: true,
+    application: true,
+    technical: true,
+  }).strict()),
+  products: z.record(z.string(), z.string().min(1)),
+});
 export const editorialSchema = z.array(articleSchema).min(1);
 export type SourceItem = z.infer<typeof sourceItemSchema>;
 export type Snapshot = z.infer<typeof snapshotSchema>;
 export type Editorial = z.infer<typeof articleSchema>;
 export type Article = SourceItem & Editorial;
+export type LocaleCatalog = z.infer<typeof localeCatalogSchema>;
 export type Profile = typeof profiles[number];
 export type Area = typeof areas[number];
 

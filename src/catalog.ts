@@ -7,10 +7,10 @@ export const productNames = [...new Set(articles.flatMap(article => article.prod
 export const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 export type Filters = { q: string; area: string; profile: string; product: string; status: string };
 export const emptyFilters: Filters = { q: '', area: '', profile: '', product: '', status: '' };
-export function filterArticles(items: Article[], filters: Filters) {
+export function filterArticles(items: Article[], filters: Filters, searchExtras: (article: Article) => string[] = () => []) {
   const terms = normalize(filters.q).trim().split(/\s+/).filter(Boolean);
   return items.filter(article => {
-    const text = normalize([article.title, article.originalTitle, article.summary, article.impact, article.area, ...article.products, ...article.profiles].join(' '));
+    const text = normalize([article.title, article.originalTitle, article.summary, article.impact, article.application, article.technical, article.area, ...article.products, ...article.profiles, ...searchExtras(article)].join(' '));
     return terms.every(term => text.includes(term))
       && (!filters.area || filters.area === article.area)
       && (!filters.profile || article.profiles.some(profile => profile === filters.profile))

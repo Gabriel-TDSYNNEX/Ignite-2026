@@ -3,54 +3,54 @@ import {
   ArrowLeft, ArrowUpRight, Bookmark, Check, ChevronRight, Cloud, Expand, GitBranch, Globe2, Hand,
   Layers3, List, Minus, Monitor, MousePointerClick, Network, Package, Plus, ShieldCheck, Sparkles,
 } from 'lucide-react';
-import { articles } from './catalog';
+import { articles as sourceArticles } from './catalog';
 import { areas, type Article, type Area } from './schema';
+import { areaLabel, productLabel, statusLabel, text, type Locale } from './i18n';
 
 type IconType = ComponentType<{ size?: number }>;
 export const areaIcons: Record<Area, IconType> = {
   Azure: Cloud, 'Microsoft Foundry': Layers3, GitHub: GitBranch, 'Microsoft Copilot': Sparkles,
   'Microsoft Edge': Globe2, 'Microsoft IQ': Network, Security: ShieldCheck, Windows: Monitor,
 };
-export const areaLabels: Record<Area, string> = { Azure: 'Azure', 'Microsoft Foundry': 'Foundry', GitHub: 'GitHub', 'Microsoft Copilot': 'Copilot', 'Microsoft Edge': 'Edge', 'Microsoft IQ': 'Microsoft IQ', Security: 'Seguridad', Windows: 'Windows' };
 const areaHues: Record<Area, string> = { Azure: '#3b9bff', 'Microsoft Foundry': '#a77bff', GitHub: '#e6edf3', 'Microsoft Copilot': '#ff7ac8', 'Microsoft Edge': '#2ed3b7', 'Microsoft IQ': '#08bed5', Security: '#ccd814', Windows: '#5aa9ff' };
 
 type Step = { kind: 'area' | 'product' | 'article'; id: string };
 type MapNode = { key: string; kind: Step['kind']; id: string; label: string; sub: string; icon: IconType; color: string; status?: string; read?: boolean; weight?: number };
 const plural = (count: number, one: string, many: string) => `${count} ${count === 1 ? one : many}`;
-const articleById = (id: string) => articles.find(article => article.id === id);
-const productArticles = (product: string) => articles.filter(article => article.products.includes(product));
+const articleById = (id: string, catalog = sourceArticles) => catalog.find(article => article.id === id);
+const productArticles = (product: string, catalog = sourceArticles) => catalog.filter(article => article.products.includes(product));
 const statusClass = (status: string) => status === 'GA' ? 'ga' : status === 'Preview' ? 'preview' : 'mixed';
 
-export function parseMapPath(value: string): Step[] {
+export function parseMapPath(value: string, catalog = sourceArticles): Step[] {
   const steps: Step[] = [];
   for (const part of value.split('/').filter(Boolean)) {
     const separator = part.indexOf(':');
     const kind = part.slice(0, separator);
     const id = part.slice(separator + 1);
     const valid = kind === 'area' ? (areas as readonly string[]).includes(id)
-      : kind === 'product' ? productArticles(id).length > 0
-      : kind === 'article' ? Boolean(articleById(id)) : false;
+      : kind === 'product' ? productArticles(id, catalog).length > 0
+      : kind === 'article' ? Boolean(articleById(id, catalog)) : false;
     if (!valid) break;
     steps.push({ kind: kind as Step['kind'], id });
   }
   return steps.slice(-4);
 }
 const serialize = (steps: Step[]) => steps.map(step => `${step.kind}:${step.id}`).join('/');
-const stepLabel = (step: Step) => step.kind === 'area' ? areaLabels[step.id as Area] : step.kind === 'product' ? step.id : articleById(step.id)?.title ?? step.id;
+const stepLabel = (step: Step, locale: Locale, catalog: Article[]) => step.kind === 'area' ? areaLabel(locale, step.id as Area) : step.kind === 'product' ? productLabel(locale, step.id) : articleById(step.id, catalog)?.title ?? step.id;
 
-function productNode(product: string): MapNode {
-  const count = productArticles(product).length;
-  return { key: `product:${product}`, kind: 'product', id: product, label: product, sub: plural(count, 'anuncio', 'anuncios'), icon: Package, color: '#ccd814' };
+function productNode(product: string, locale: Locale, catalog: Article[]): MapNode {
+  const count = productArticles(product, catalog).length;
+  return { key: `product:${product}`, kind: 'product', id: product, label: productLabel(locale, product), sub: plural(count, text(locale, 'mapArticleOne'), text(locale, 'mapArticleMany')), icon: Package, color: '#ccd814' };
 }
 
-function areaProducts(area: string) {
+function areaProducts(area: string, catalog: Article[]) {
   const inArea = new Map<string, number>();
-  for (const article of articles) if (article.area === area) for (const product of article.products) inArea.set(product, (inArea.get(product) ?? 0) + 1);
-  return [...inArea.keys()].sort((a, b) => (inArea.get(b)! - inArea.get(a)!) || (productArticles(b).length - productArticles(a).length) || a.localeCompare(b, 'es'));
+  for (const article of catalog) if (article.area === area) for (const product of article.products) inArea.set(product, (inArea.get(product) ?? 0) + 1);
+  return [...inArea.keys()].sort((a, b) => (inArea.get(b)! - inArea.get(a)!) || (productArticles(b, catalog).length - productArticles(a, catalog).length) || a.localeCompare(b, 'es'));
 }
 
-function articleNode(article: Article, read: string[]): MapNode {
-  return { key: `article:${article.id}`, kind: 'article', id: article.id, label: article.title, sub: article.status === 'GA' ? 'Disponible · GA' : article.status, icon: areaIcons[article.area], color: areaHues[article.area], status: article.status, read: read.includes(article.id) };
+function articleNode(article: Article, read: string[], locale: Locale): MapNode {
+  return { key: `article:${article.id}`, kind: 'article', id: article.id, label: article.title, sub: statusLabel(locale, article.status), icon: areaIcons[article.area], color: areaHues[article.area], status: article.status, read: read.includes(article.id) };
 }
 
 function layout(count: number, center: 'small' | 'large') {
@@ -90,7 +90,7 @@ type Camera = { x: number; y: number; s: number };
 const listQuery = '(max-width: 860px)';
 const restingCamera: Camera = { x: 0, y: 0, s: 1 };
 
-export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, favorites, toggleFavorite, markRead }: {
+export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, favorites, toggleFavorite, markRead, articles, locale }: {
   path: string;
   onPath: (path: string) => void;
   onOpenArticle: (article: Article) => void;
@@ -99,8 +99,10 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
   favorites: string[];
   toggleFavorite: (id: string) => void;
   markRead: (id: string) => void;
+  articles: Article[];
+  locale: Locale;
 }) {
-  const steps = useMemo(() => parseMapPath(path), [path]);
+  const steps = useMemo(() => parseMapPath(path, articles), [path, articles]);
   const current = steps.at(-1);
   const [listMode, setListMode] = useState(() => window.matchMedia(listQuery).matches);
   useEffect(() => {
@@ -122,32 +124,32 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
   }
   const arrival = motion.current.arrival;
   useLayoutEffect(() => { setCamera(restingCamera); setLeaving(null); }, [path]);
-  const centerArticle = current?.kind === 'article' ? articleById(current.id) : undefined;
+  const centerArticle = current?.kind === 'article' ? articleById(current.id, articles) : undefined;
   useEffect(() => { if (centerArticle) markRead(centerArticle.id); }, [centerArticle, markRead]);
 
   const nodes: MapNode[] = useMemo(() => {
     if (!current) return areas.map(area => {
       const count = articles.filter(article => article.area === area).length;
-      return { key: `area:${area}`, kind: 'area', id: area, label: areaLabels[area], sub: plural(count, 'novedad', 'novedades'), icon: areaIcons[area], color: areaHues[area], weight: count };
+      return { key: `area:${area}`, kind: 'area', id: area, label: areaLabel(locale, area), sub: plural(count, text(locale, 'mapAreaOne'), text(locale, 'mapAreaMany')), icon: areaIcons[area], color: areaHues[area], weight: count };
     });
-    if (current.kind === 'area') return areaProducts(current.id).map(productNode);
+    if (current.kind === 'area') return areaProducts(current.id, articles).map(product => productNode(product, locale, articles));
     if (current.kind === 'product') {
       const parentArea = steps.at(-2)?.kind === 'area' ? steps.at(-2)!.id : undefined;
-      return productArticles(current.id)
+      return productArticles(current.id, articles)
         .sort((a, b) => Number(b.area === parentArea) - Number(a.area === parentArea))
-        .map(article => articleNode(article, read));
+        .map(article => articleNode(article, read, locale));
     }
-    const article = articleById(current.id)!;
-    const products: MapNode[] = article.products.map(productNode);
+    const article = articleById(current.id, articles)!;
+    const products: MapNode[] = article.products.map(product => productNode(product, locale, articles));
     const related = articles
       .filter(other => other.id !== article.id)
       .map(other => ({ other, score: other.products.filter(product => article.products.includes(product)).length * 3 + (other.area === article.area ? 1 : 0) + other.profiles.filter(profile => article.profiles.includes(profile)).length * 0.1 }))
       .filter(entry => entry.score >= 1)
       .sort((a, b) => b.score - a.score)
       .slice(0, Math.max(3, 9 - products.length))
-      .map(entry => articleNode(entry.other, read));
+      .map(entry => articleNode(entry.other, read, locale));
     return [...products.slice(0, 6), ...related];
-  }, [current, steps, read]);
+  }, [current, steps, read, articles, locale]);
   const positions = useMemo(() => layout(nodes.length, centerArticle ? 'large' : 'small'), [nodes.length, centerArticle]);
 
   const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -194,8 +196,8 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
     });
   }
 
-  const title = !current ? 'Ignite 2026' : stepLabel(current);
-  const levelHint = !current ? 'Elige un área para entrar' : current.kind === 'area' ? 'Elige un producto para ver sus anuncios' : current.kind === 'article' ? 'Salta a productos o anuncios conectados' : 'Elige un anuncio para acercarte';
+  const title = !current ? text(locale, 'mapHome') : stepLabel(current, locale, articles);
+  const levelHint = !current ? text(locale, 'mapHintAreas') : current.kind === 'area' ? text(locale, 'mapHintProducts') : current.kind === 'article' ? text(locale, 'mapHintRelated') : text(locale, 'mapHintArticles');
   const centerColor = current?.kind === 'area' ? areaHues[current.id as Area] : current?.kind === 'product' ? '#ccd814' : centerArticle ? areaHues[centerArticle.area] : '#08bed5';
   const CenterIcon = current?.kind === 'area' ? areaIcons[current.id as Area] : current?.kind === 'product' ? Package : Sparkles;
   const levelArticleIds = current?.kind === 'area' ? articles.filter(article => article.area === current.id).map(article => article.id)
@@ -203,25 +205,25 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
   const levelRead = levelArticleIds.filter(id => read.includes(id)).length;
   const levelArticles = levelArticleIds.length;
 
-  return <section className={`explorer ${listMode ? 'is-list' : ''}`} aria-label="Mapa interactivo de Ignite 2026" style={{ '--focus': centerColor } as CSSProperties}>
+  return <section className={`explorer ${listMode ? 'is-list' : ''}`} aria-label={text(locale, 'skipMapLabel')} style={{ '--focus': centerColor } as CSSProperties}>
     <div className="explorer-bar">
-      <nav className="crumbs" aria-label="Ruta en el mapa">
-        {steps.length > 0 && <button className="crumb-back" onClick={() => go(steps.slice(0, -1))} aria-label="Volver un nivel"><ArrowLeft size={16} /></button>}
+      <nav className="crumbs" aria-label={text(locale, 'mapBreadcrumb')}>
+        {steps.length > 0 && <button className="crumb-back" onClick={() => go(steps.slice(0, -1))} aria-label={text(locale, 'mapBack')}><ArrowLeft size={16} /></button>}
         <ol>
-          <li><button onClick={() => go([])} aria-current={!current ? 'location' : undefined}><Sparkles size={13} />Ignite 2026</button></li>
+          <li><button onClick={() => go([])} aria-current={!current ? 'location' : undefined}><Sparkles size={13} />{text(locale, 'mapHome')}</button></li>
           {steps.map((step, index) => <li key={`${step.kind}:${step.id}`}><ChevronRight size={13} aria-hidden="true" />
-            <button onClick={() => go(steps.slice(0, index + 1))} aria-current={index === steps.length - 1 ? 'location' : undefined}>{stepLabel(step)}</button></li>)}
+            <button onClick={() => go(steps.slice(0, index + 1))} aria-current={index === steps.length - 1 ? 'location' : undefined}>{stepLabel(step, locale, articles)}</button></li>)}
         </ol>
       </nav>
       <div className="explorer-tools">
-        {!listMode && <div className="zoom-controls" aria-label="Zoom del mapa">
-          <button onClick={() => zoomBy(1.25)} aria-label="Acercar"><Plus size={15} /></button>
-          <button onClick={() => zoomBy(0.8)} aria-label="Alejar"><Minus size={15} /></button>
-          <button onClick={() => setCamera(restingCamera)} aria-label="Centrar mapa"><Expand size={14} /></button>
+        {!listMode && <div className="zoom-controls" aria-label={text(locale, 'mapZoom')}>
+          <button onClick={() => zoomBy(1.25)} aria-label={text(locale, 'zoomIn')}><Plus size={15} /></button>
+          <button onClick={() => zoomBy(0.8)} aria-label={text(locale, 'zoomOut')}><Minus size={15} /></button>
+          <button onClick={() => setCamera(restingCamera)} aria-label={text(locale, 'centerMap')}><Expand size={14} /></button>
         </div>}
-        <div className="segmented" aria-label="Tipo de vista">
-          <button aria-label="Vista mapa" aria-pressed={!listMode} onClick={() => setListMode(false)}><Network size={16} /></button>
-          <button aria-label="Vista lista" aria-pressed={listMode} onClick={() => setListMode(true)}><List size={16} /></button>
+        <div className="segmented" aria-label={text(locale, 'viewType')}>
+          <button aria-label={text(locale, 'mapView')} aria-pressed={!listMode} onClick={() => setListMode(false)}><Network size={16} /></button>
+          <button aria-label={text(locale, 'listView')} aria-pressed={listMode} onClick={() => setListMode(true)}><List size={16} /></button>
         </div>
       </div>
     </div>
@@ -253,19 +255,19 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
 
           <div className={`explorer-center ${centerArticle ? 'center-article' : ''}`}>
             {centerArticle ? <>
-              <div className="center-meta"><span className="center-area" style={{ color: areaHues[centerArticle.area] }}>{(() => { const Icon = areaIcons[centerArticle.area]; return <Icon size={14} />; })()}{areaLabels[centerArticle.area]}</span><span className={`status ${statusClass(centerArticle.status)}`}>{centerArticle.status}</span></div>
+              <div className="center-meta"><span className="center-area" style={{ color: areaHues[centerArticle.area] }}>{(() => { const Icon = areaIcons[centerArticle.area]; return <Icon size={14} />; })()}{areaLabel(locale, centerArticle.area)}</span><span className={`status ${statusClass(centerArticle.status)}`}>{statusLabel(locale, centerArticle.status)}</span></div>
               <h3>{centerArticle.title}</h3>
               <p>{centerArticle.summary}</p>
-              <p className="center-impact"><strong>Por qué importa · </strong>{centerArticle.impact}</p>
+              <p className="center-impact"><strong>{text(locale, 'whyMatters')} </strong>{centerArticle.impact}</p>
               <div className="center-actions">
-                <button className="button primary" onClick={() => onOpenArticle(centerArticle)}>Ver ficha completa<ArrowUpRight size={16} /></button>
-                <button className={`icon-button ${favorites.includes(centerArticle.id) ? 'is-saved' : ''}`} onClick={() => toggleFavorite(centerArticle.id)} aria-pressed={favorites.includes(centerArticle.id)} aria-label={`${favorites.includes(centerArticle.id) ? 'Quitar de' : 'Añadir a'} mi selección: ${centerArticle.title}`}><Bookmark size={17} fill={favorites.includes(centerArticle.id) ? 'currentColor' : 'none'} /></button>
+                <button className="button primary" onClick={() => onOpenArticle(centerArticle)}>{text(locale, 'fullArticle')}<ArrowUpRight size={16} /></button>
+                <button className={`icon-button ${favorites.includes(centerArticle.id) ? 'is-saved' : ''}`} onClick={() => toggleFavorite(centerArticle.id)} aria-pressed={favorites.includes(centerArticle.id)} aria-label={`${text(locale, favorites.includes(centerArticle.id) ? 'removeSaved' : 'addSaved')} ${text(locale, 'saved')}: ${centerArticle.title}`}><Bookmark size={17} fill={favorites.includes(centerArticle.id) ? 'currentColor' : 'none'} /></button>
               </div>
             </> : <>
               <div className="center-symbol"><CenterIcon size={28} /></div>
               <strong>{title}</strong>
-              <span>{!current ? `${articles.length} novedades · 8 áreas` : `${levelRead}/${levelArticles} exploradas`}</span>
-              {current && <button className="center-link" onClick={() => onShowCatalog(current.kind === 'area' ? { area: current.id } : { product: current.id })}>Ver en el catálogo<ArrowUpRight size={13} /></button>}
+              <span>{!current ? text(locale, 'mapCenterCount', { count: articles.length }) : text(locale, 'mapExploredCount', { read: levelRead, total: levelArticles })}</span>
+              {current && <button className="center-link" onClick={() => onShowCatalog(current.kind === 'area' ? { area: current.id } : { product: current.id })}>{text(locale, 'viewCatalog')}<ArrowUpRight size={13} /></button>}
             </>}
           </div>
 
@@ -275,7 +277,7 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
             return <button key={node.key} className={`explorer-node node-${node.kind} ${node.read ? 'is-read' : ''}`}
               style={{ left: `${x}%`, top: `${y}%`, '--node': node.color, animationDelay: `${80 + i * 35}ms`, ...(node.weight ? { '--weight': Math.min(1.25, 0.9 + node.weight / 40) } : {}) } as CSSProperties}
               onClick={() => enter(node, i)}
-              aria-label={node.kind === 'area' ? `Explorar ${node.label}: ${node.sub}` : node.kind === 'product' ? `Producto ${node.label}: ${node.sub}` : `${node.label} (${node.sub}${node.read ? ', explorada' : ''})`}>
+              aria-label={node.kind === 'area' ? text(locale, 'mapAreaNode', { name: node.label, count: node.sub }) : node.kind === 'product' ? text(locale, 'mapProductNode', { name: node.label, count: node.sub }) : text(locale, 'mapArticleNode', { name: node.label, status: node.sub, read: node.read ? text(locale, 'mapStatusRead') : '' })}>
               <span className="node-glyph"><Icon size={node.kind === 'area' ? 22 : 15} /></span>
               <span className="node-copy"><strong>{node.label}</strong><small>{node.kind === 'article' && node.status ? <span className={`dot ${statusClass(node.status)}`} /> : null}{node.sub}</small></span>
               {node.read && <Check className="node-check" size={13} aria-hidden="true" />}
@@ -283,8 +285,8 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
           })}
         </div>
       </div>
-      {!listMode && <div className="explorer-hint" aria-hidden="true"><span><MousePointerClick size={14} />{levelHint}</span><span><Hand size={14} />Arrastra para moverte · rueda para zoom</span></div>}
-      {current?.kind === 'article' && !listMode && <div className="explorer-legend" aria-hidden="true"><span><i className="legend-product" />Producto</span><span><i className="legend-article" />Anuncio conectado</span></div>}
+      {!listMode && <div className="explorer-hint" aria-hidden="true"><span><MousePointerClick size={14} />{levelHint}</span><span><Hand size={14} />{text(locale, 'mapDragZoom')}</span></div>}
+      {current?.kind === 'article' && !listMode && <div className="explorer-legend" aria-hidden="true"><span><i className="legend-product" />{text(locale, 'mapLegendProduct')}</span><span><i className="legend-article" />{text(locale, 'mapLegendArticle')}</span></div>}
     </div>
   </section>;
 }

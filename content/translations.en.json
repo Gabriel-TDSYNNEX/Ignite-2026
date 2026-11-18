@@ -1,0 +1,566 @@
+{
+  "articles": {
+    "bon-442": {
+      "title": "Rehearse failures before they occur",
+      "summary": "Chaos Studio releases workspaces and an AKS extension in general availability for hosting repeatable resilience experiments.",
+      "impact": "Allows you to check application recovery before a real incident.",
+      "application": "Test the loss of a zone or the crash of a pod in a controlled environment.",
+      "technical": "The spaces group together reusable resources and scenarios; The AKS extension reduces the permissions required to run experiments.",
+      "sourceHash": "2d22586aaee85d634b8c5eea9902100fe79bffa6509ed826c7b74b3f50bc602f"
+    },
+    "bon-443": {
+      "title": "Protects data also while it is processed",
+      "summary": "Azure expands its confidential computing with preview offerings for multiple GPUs, enclaves, containers, and cross-organization collaboration.",
+      "impact": "Opens options for working with sensitive information without trusting the entire runtime environment.",
+      "application": "Evaluate a shared data room between partners that does not expose your original data.",
+      "technical": "VR72, Confidential Enclaves, AKS Kata CoCo and Confidential Clean Room are in preview; review your requirements before designing production.",
+      "sourceHash": "3408729d0d11517e07872a61fa0d3fa9d19e1fb58139ecebfa0cb05cc80302f1"
+    },
+    "bon-444": {
+      "title": "Cobalt 200 reaches production",
+      "summary": "Cobalt 200 Arm virtual machines are now generally available, with new sizes geared toward memory and storage.",
+      "impact": "The CPU surrounding the models also matters for the efficiency of the agents.",
+      "application": "Compare an Arm-compatible load against your current infrastructure before migrating.",
+      "technical": "Microsoft announces up to 50% more CPU performance vs. Cobalt 100; The result depends on the load. Check region and Arm compatibility.",
+      "sourceHash": "682b6829a67694eadae9dda48dab0943d8e7f167d4fb9582a95fd5b4fe4dc852"
+    },
+    "bon-446": {
+      "title": "Cloud operations with more context and agents",
+      "summary": "Azure combines new features from Monitor, Copilot and SRE Agent: health and natural language models available, along with new agent capabilities in preview.",
+      "impact": "Connect technical status to business impact to better prioritize incidents.",
+      "application": "Explore an assisted investigation that relates telemetry, dependencies and affected services.",
+      "technical": "Health models and Monitor's natural language capabilities are GA; spaces, skills and new SRE Agent features have preview availability.",
+      "sourceHash": "e89d1a5766c8c4d44dabe0e8f245b13424e8bf5e7a6ade7a4ec6f19a68a4cca9"
+    },
+    "bon-447": {
+      "title": "From agent to cluster: a common AI foundation",
+      "summary": "Microsoft connects Foundry with its own AKS clusters and introduces new pieces for running, isolating, and governing agents and inference.",
+      "impact": "It offers more control over infrastructure, data residency, and inference economics.",
+      "application": "Assess a deployment of open models in an AKS already governed by the organization.",
+      "technical": "Foundry on AKS, Agent Grid, Agent Sandbox and Flex nodes are in preview; Cobalt 200 is GA. Not all pieces have the same maturity.",
+      "sourceHash": "f6235f1bd35789388ff954e626715a0b599bc4bbb462d126beeef80b75fc0b5a"
+    },
+    "bon-448": {
+      "title": "Azure Catalyst connects migration and modernization",
+      "summary": "Azure Catalyst brings together assisted discovery, planning, and execution to transform infrastructure, applications, and data between Azure and GitHub.",
+      "impact": "It helps to consider modernization as a connected process, not as isolated migrations.",
+      "application": "Identify dependencies of a legacy application and prepare reviewable modernization alternatives.",
+      "technical": "Catalyst and its agent are GA; Certain runtime features and scenarios, such as BizTalk to Logic Apps, remain in preview.",
+      "sourceHash": "b0f868705e0a9b35b5dfdeafdb06e57a96e056d5beede26c1c2897e933d574fc"
+    },
+    "bon-449": {
+      "title": "First look at Windows Server 2028",
+      "summary": "Windows Server 2028 enters preview with advances in security, storage, management and enterprise AI inference.",
+      "impact": "It allows you to prepare the evolution of the data center without confusing a preview with an immediate migration recommendation.",
+      "application": "Create a lab to evaluate security and compatibility of existing applications.",
+      "technical": "The proposal includes hardened Server Core, post-quantum cryptography, NVMe, and hybrid AI scenarios. Validate requirements and support of each function.",
+      "sourceHash": "05439706bb0f97dfcbe666e8e0ac4ee75e81e225fa594afaf3815a8f4da528b6"
+    },
+    "bon-451": {
+      "title": "Cosmos DB strengthens search and development",
+      "summary": "Cosmos DB incorporates recovery enhancements, development tools and data protection, with GA and other components still in preview.",
+      "impact": "Reduces integration work by improving relevance, modeling and data retrieval.",
+      "application": "Test semantic searches and review the protection of an application with distributed data.",
+      "technical": "Shell, Rust SDK, semantic reranker and Backup are GA; VS Code assisted modeler is in preview. Review availability by capacity.",
+      "sourceHash": "b5d828ea7cf43c53056b183b90d08fce279db3f1217329036554a4f27fa0ea9e"
+    },
+    "bon-452": {
+      "title": "DocumentDB extends to the hybrid environment",
+      "summary": "Azure DocumentDB adds more agile provisioning and tools, while preparing deployments with Arc, Azure Local, and finer permissions.",
+      "impact": "Provides new options for MongoDB-compatible loads with sovereignty needs.",
+      "application": "Explore development from VS Code and study where documents should reside.",
+      "technical": "The VS Code extension and M10–M30 provisioning are GA; Arc, Azure Local, and granular RBAC are in preview.",
+      "sourceHash": "b70e5f7a1e427f7c06521bd8ea4b8007479e9f4d8cd84a770f35e45b7a681bd2"
+    },
+    "bon-453": {
+      "title": "HorizonDB: PostgreSQL for critical loads",
+      "summary": "Azure HorizonDB reaches general availability as a PostgreSQL-compatible managed database, with vector search and new AI features in preview.",
+      "impact": "Combine transactional needs with options for intelligent applications.",
+      "application": "Evaluate a PostgreSQL application that requires resiliency and information retrieval for AI.",
+      "technical": "Includes Entra ID, private endpoints and multi-zone replication; AI Functions, AI Pipelines and mirroring to Fabric are still in preview.",
+      "sourceHash": "1d6970888673622799d1dd6a4c0468151356b3a9137e06d5fae7ffb82427eb6a"
+    },
+    "bon-454": {
+      "title": "Redis 8 and a kit to develop with agents",
+      "summary": "Azure Managed Redis presents in preview Redis 8 and an agent kit that reviews configurations and proposes improvements for the use of the service.",
+      "impact": "The memory and context of the agents become part of the data layout.",
+      "application": "Experiment with vector recovery or reuse of similar responses.",
+      "technical": "Redis 8 brings together JSON, search, time series, and vectors; kit recommendations should be evaluated by the developer.",
+      "sourceHash": "d1683251d5aad35b870d43f8977c5dd80b258eaba8c87ef20181c39e0f43d5e4"
+    },
+    "bon-455": {
+      "title": "Azure SQL extends resiliency and local development",
+      "summary": "Azure SQL incorporates GA improvements in Managed Instance and a proposal in preview to develop with a local Azure SQL Database container.",
+      "impact": "It makes it easy to modernize SQL Server applications and test scenarios without always depending on the cloud.",
+      "application": "Review disaster recovery and test local development flow.",
+      "technical": "Managed Instance adds zone redundancy and flexible memory in supported configurations; MI link supports Always On groups with multiple bases.",
+      "sourceHash": "f78439162ef8c7001648b652495cf8522024fbfc27c1bebf9413fc9b1bed4331"
+    },
+    "bon-456": {
+      "title": "A control point for databases",
+      "summary": "Database Hub in Fabric is already GA and brings together database management; new SQL and PostgreSQL agents provide operational assistance in preview.",
+      "impact": "Reduces tool fragmentation for teams managing multiple engines and locations.",
+      "application": "Centralize the observation of the database park and study assisted recommendations.",
+      "technical": "Agents respect permits, approvals and auditing; Database Hub and the VS Code PostgreSQL extension are intended access points.",
+      "sourceHash": "afa8257733bfcd95ba2683c10f2ba798306030e27250003107df3cc0bb3d2710"
+    },
+    "bon-457": {
+      "title": "Serverless PostgreSQL enters Fabric",
+      "summary": "Fabric HorizonDB is previewed to connect PostgreSQL applications, OneLake analytics, and backend services for Fabric apps.",
+      "impact": "You can simplify applications with variable demand and connected operational and analytical data.",
+      "application": "Prototype an application that queries transactional and analytical data together.",
+      "technical": "Includes pause and resume, translytical queries, mirroring and reverse ETL provided. It is different from the Azure HorizonDB service.",
+      "sourceHash": "8bd8bd0b8f8ffbe1d7fe5498cc47bef9438270e3c73d43c15d36299b2e021ba3"
+    },
+    "bon-458": {
+      "title": "More ways to modernize with PostgreSQL",
+      "summary": "Azure expands PostgreSQL migration, computing, and protection options, combining available advances with new previews.",
+      "impact": "It allows modernization paths to be compared without treating all scenarios as equivalent.",
+      "application": "Study a migration from Oracle or the evolution towards HorizonDB.",
+      "technical": "DMS for Oracle to PostgreSQL and towards HorizonDB is in preview; Cobalt 200 and AMD Confidential Protection v6 are listed as GA.",
+      "sourceHash": "1cf742846a1f067480d292d4ea8d1ff4366707bc1e7e05a9ceabf57b008b19fe"
+    },
+    "bon-459": {
+      "title": "From report to app in Power BI",
+      "summary": "Power BI Pro includes in preview the creation of data applications from Desktop with semantic models and natural language.",
+      "impact": "Brings data entry and actions closer to where they are analyzed.",
+      "application": "Test a planning application that updates records, rather than just displaying them.",
+      "technical": "The proposal is based on governed semantic models and Fabric Database capabilities. Review preview and licensing conditions.",
+      "sourceHash": "a11497e3012d18e699b6da2922db0d15df60aa133ab0a4b44ede655e88afd5db"
+    },
+    "bon-460": {
+      "title": "Rayfin and Fabric apps reach general availability",
+      "summary": "Rayfin and Fabric apps bring together backend, data, and governance to create enterprise applications connected to the Fabric ecosystem.",
+      "impact": "It reduces the pieces a team must assemble to go from an idea to an application.",
+      "application": "Design an internal application on already governed business data and definitions.",
+      "technical": "The platform supports SQL or Fabric HorizonDB and connection to semantic models, warehouses and lakehouses; check the maturity of the chosen backend.",
+      "sourceHash": "d533376cdffdc9a4cc113345f957ae672179a4eec3bf4a36102804986715dfa9"
+    },
+    "bon-465": {
+      "title": "Upgrade agents with production evidence",
+      "summary": "Foundry connects evaluation, traces, annotation, optimization, and training to test whether changes actually improve an agent.",
+      "impact": "Replace intuitive adjustments with a measurable cycle of quality, cost and latency.",
+      "application": "Define a set of verified cases and compare configurations before deploying them.",
+      "technical": "Multi-turn evaluation, insights and Agent Optimizer are GA; Human annotation and new training options include features in preview.",
+      "sourceHash": "b4de423548ba6899cb60433bc9fd5f113592b1046abd025742b2bee099528cf0"
+    },
+    "bon-467": {
+      "title": "A specialized model for making decisions",
+      "summary": "Microsoft-Decision-1.1 is generally available for classification, routing, and action selection within defined limits.",
+      "impact": "It allows you to reserve the largest models for tasks that really require complex reasoning.",
+      "application": "Evaluate a request classifier that can abstain when confidence is insufficient.",
+      "technical": "Supports image input and confidence scores; Allowed actions and bypass thresholds must be defined in the application.",
+      "sourceHash": "3dbe391fe4037bc0c9c615cea8b5aefbd0ac28ff49b1e44d087c7d9c9ab34141"
+    },
+    "bon-468": {
+      "title": "More models, chosen according to the task",
+      "summary": "Foundry expands options for code, images, security, decisions and routing, with different availability by model and platform.",
+      "impact": "The selection of models depends on the balance between quality, cost and specialization.",
+      "application": "Prepare one assessment per task instead of adopting a single model for all uses.",
+      "technical": "MAI-Code-2 is GA on GitHub; other offers have public previews, private previews, or limited access to MDASH. Consult each card before planning.",
+      "sourceHash": "1b9a25a25166a46614d4bcaa99409ad35c8303f3bd5fc8689093f4a7b09da48d"
+    },
+    "bon-473": {
+      "title": "Copilot SDK 2.0 to integrate agents into your apps",
+      "summary": "Copilot SDK 2.0 comes to general availability with a native Rust runtime and focus on large-scale, multi-tenant enterprise applications.",
+      "impact": "Brings agent execution technology closer to your own applications.",
+      "application": "Evaluate an agent integrated into an existing application with its security limits.",
+      "technical": "The SDK supports six languages and uses the harness used by Microsoft and GitHub; review isolation and needs of each integration.",
+      "sourceHash": "81aab219ddad2eb45c9c31584b1c08ceba2f3419e7cdca90d05a46b167512049"
+    },
+    "bon-478": {
+      "title": "FinOps to understand the value of AI",
+      "summary": "Agent 365 connects spend management and business analytics to observe costs, limits and results of AI services and agents.",
+      "impact": "It helps discuss the return of AI with data, not just token consumption.",
+      "application": "Define cost indicators per useful task before expanding a pilot.",
+      "technical": "Cost Management is in preview and Business Analytics in Frontier; Extensions announced for December should not be considered available today.",
+      "sourceHash": "3c167f0fcff2e1c48cb8e839e9b86766a407e6caf0cf3c49b8fc0a092d3dabc7"
+    },
+    "bon-479": {
+      "title": "Autopilot: work that continues between conversations",
+      "summary": "Autopilot begins to be deployed in Frontier as a long-term personal agent with its own identity, memory and tools.",
+      "impact": "Explore productivity based on delegating follow-up and recurring work.",
+      "application": "Try periodic monitoring with minimal permissions and explicit supervision.",
+      "technical": "It resides in the tenant, its actions are linked to the Agent ID and can be managed by administrators; It is not general availability.",
+      "sourceHash": "0012c960c02b6a9bd7b8140d6462e1a86ea3c03df949a95957c4210902a97b7a"
+    },
+    "bon-480": {
+      "title": "A managed runtime for publishing applications",
+      "summary": "Copilot Managed Runtime reaches general availability and connects hosting and governance with an optional Fabric data backend.",
+      "impact": "It separates the tool with which an app is created from the environment where it is executed and governed.",
+      "application": "Compare a managed publication for an app that requires data persistence.",
+      "technical": "Fabric can provide database, storage and APIs; The announcement also introduces Agents and Workflows and publishing from local tools.",
+      "sourceHash": "0c3d24f071142aaaab3cf473a9348cbc84dbca48cc019887b31b399118a1d7c6"
+    },
+    "bon-481": {
+      "title": "Workspaces bring together people, context and Copilot",
+      "summary": "Copilot Workspaces evolve Notebooks into shared spaces for documents, work in progress, and team context, within Frontier.",
+      "impact": "It can make it easier for a team to get up to speed and coordinate next steps.",
+      "application": "Organize the documents and decisions of an initiative in a shared space.",
+      "technical": "Autopilot integration is announced as future. Current access to Workspaces is through the Frontier program.",
+      "sourceHash": "6688baa73d95287e533a30737f5254a72758c85c33800f8e0dfbbb32fd05663f"
+    },
+    "bon-482": {
+      "title": "CRM and ERP come to the Copilot flow",
+      "summary": "Dynamics 365 Sales and ERP plugins are already GA to bring commercial, financial and operational tasks closer to Copilot.",
+      "impact": "Reduces tool changes when preparing accounts or managing business processes.",
+      "application": "Explore the preparation of a business meeting or an assisted purchasing process.",
+      "technical": "Sales incorporates opportunity context; ERP integrates tasks with Copilot Cowork and Excel. Review permissions and conditions of each application.",
+      "sourceHash": "f69b0ab03b9bbbee5f18112b92a081895c52af0cb24d9e2bf8dc6a4e3bcc7e60"
+    },
+    "bon-483": {
+      "title": "Create applications with natural language and controls",
+      "summary": "Copilot Code allows you to create applications in Frontier, with sandboxes and compatible app publishing through Copilot Managed Runtime.",
+      "impact": "Brings the creation of tools closer to business teams while maintaining a governance role for IT.",
+      "application": "Prototype a team tracker and review its data access before sharing it.",
+      "technical": "The local sandbox is available on Windows; macOS is announced later. General availability of Copilot Code is announced for December.",
+      "sourceHash": "828da9bc0dc18ba6971d551cdabe41bde3d4785ce9326e917632bdaec1048c0b"
+    },
+    "bon-484": {
+      "title": "Copilot Home connects ask, delegate and create",
+      "summary": "Home brings together Chat and Cowork, incorporates Office and expands task routing with GA, Frontier and previews features.",
+      "impact": "It allows you to move from a conversation to more elaborate work without losing context.",
+      "application": "Compare when to resolve a query in Chat and when to delegate a flow in Cowork.",
+      "technical": "Office on Copilot and recommendations to switch to Cowork are GA; other functions, such as declarative agents, have more restricted access.",
+      "sourceHash": "bcab26e627cc969b6a33ea1e742c267d27d385665e5f9de558d5f7e490d2b82d"
+    },
+    "bon-485": {
+      "title": "Activate expands assisted migration to ERP",
+      "summary": "Dynamics 365 Activate extends its reach to SAP ECC with discovery, requirements, configuration and migration, through a progressive deployment.",
+      "impact": "Helps analyze which processes and integrations should be moved, simplified or redesigned.",
+      "application": "Evaluate the scope of an ERP modernization before committing to a project.",
+      "technical": "CRM migration from Salesforce is GA; ERP functions are deployed over the following weeks and require human validation.",
+      "sourceHash": "a3526d06de349effbfe82d60822452f66591c5e25ad9c14c283285b2be56c6ce"
+    },
+    "bon-486": {
+      "title": "Salesforce connects with Copilot, Teams and Fabric",
+      "summary": "Microsoft and Salesforce announce new business context, collaboration, and data integrations with varying availability states.",
+      "impact": "It allows you to bring context from the client to the tools where the team already works.",
+      "application": "Explore business queries in Copilot while respecting existing Salesforce permissions.",
+      "technical": "Salesforce on Copilot is in preview, Sales Cloud on Teams is in pilot, and Data Federation with OneLake is GA. They are not a single release.",
+      "sourceHash": "1a157b94221e1d792396c73f3934bbb052677ad360a9703fa46f922df64a1500"
+    },
+    "bon-487": {
+      "title": "Today prepares priorities and next steps",
+      "summary": "Today is announced in a private Frontier preview to gather priorities and prepare drafts and actions that the user reviews and approves.",
+      "impact": "Explore a more proactive day, without eliminating people's approval.",
+      "application": "Evaluate a daily briefing and measure if it reduces preparation time.",
+      "technical": "Today Brief is included with Microsoft 365 Copilot; Recurring Today Feed updates require Copilot credits per announcement.",
+      "sourceHash": "616130822a2228b071162b15f08cd01a4216993130c4b89f2d304421b460b896"
+    },
+    "bon-492": {
+      "title": "The browser also governs working with agents",
+      "summary": "Edge for Business adds flow recording and agent navigation in preview, along with extension risk inventory and GA.",
+      "impact": "It places the browser as a control point for productivity, identity and security.",
+      "application": "Review installed extensions and rehearse a repeatable Cowork flow with IT control.",
+      "technical": "Skills recorder and managed agent browsing are in preview; Extension safety is GA and Extension leak control remains in preview.",
+      "sourceHash": "f0ac478e6c2b7ed9cc5f20d5c5f72dbead49c314c8bd438e5509c648ff383deb"
+    },
+    "bon-497": {
+      "title": "Microsoft IQ connects context and continuous improvement",
+      "summary": "Microsoft IQ is presented as an enterprise platform to bring together organizational knowledge and learning from application and agent experience.",
+      "impact": "It helps understand how the different IQ pieces fit into an AI strategy.",
+      "application": "Map what sources and metrics a use case needs before choosing tools.",
+      "technical": "The platform is announced GA and without new SKU; This does not imply that all its components or consumer services are free or GA.",
+      "sourceHash": "08630056a0c36438cf7208a758424e6106c360d3954c2844295dd303ede55957"
+    },
+    "bon-499": {
+      "title": "Turn business experience into reusable context",
+      "summary": "Microsoft IQ connects Work, Fabric, Foundry, and Web IQ with reusable tools, skills, and agents; business plugins add scenario guidance in Frontier.",
+      "impact": "You can prevent each team from rebuilding the same instructions and integrations.",
+      "application": "Define a process guide with authorized sources and those responsible for maintenance.",
+      "technical": "Access to context and reusable blocks is GA; business plugins with managed hierarchy have Frontier availability.",
+      "sourceHash": "605c05196fca8f50ad9ce6c614cd421a10cdad6e7c0b928b14676eee96cbfda8"
+    },
+    "bon-501": {
+      "title": "Foundry IQ goes deeper into documents and relationships",
+      "summary": "Foundry IQ extends retrieval with knowledge graphs and Microsoft-Retriever-1 in preview, while SharePoint indexed feed reaches GA.",
+      "impact": "Improves options for basing responses on organizational information.",
+      "application": "Evaluate questions that require connecting clauses, suppliers and documents with citations.",
+      "technical": "Combines lexical, vector and hybrid search; Access to SharePoint respects origin permissions. New serverless graphs and resources are still in preview.",
+      "sourceHash": "1a64664c7bf5560511704516b3eaf245bff5c5d722c076e9926af9958ddf6867"
+    },
+    "bon-503": {
+      "title": "Fabric IQ brings the meaning of data to more tools",
+      "summary": "Fabric IQ expands its integrations to connect governed data and business context with Copilot, third-party applications and experiences.",
+      "impact": "Ensure that people and agents use consistent definitions of metrics and rules.",
+      "application": "Test business questions on a semantic model validated by those responsible.",
+      "technical": "GA integrations coexist with previews for Excel, ontologies in GitHub Copilot and ChatGPT and Claude connectors. Verify each destination.",
+      "sourceHash": "8dc26ea3bdd1a230f4cbb6aa477da835f89effff1bb4ca0beead014946020bfa"
+    },
+    "bon-505": {
+      "title": "Web IQ opens access to the web context",
+      "summary": "Web IQ is now GA for Azure customers, with Auto, Auto Advanced and Scopes modes to retrieve and scope external information.",
+      "impact": "It allows you to complement business knowledge with recent information and controlled sources.",
+      "application": "Compare external recovery with allowed domains for an informational wizard.",
+      "technical": "Auto brings together content categories; Auto Advanced iterates queries and Scopes allows you to include or exclude URLs, domains and routes.",
+      "sourceHash": "c7e05a3afa1a583ac0e076928b5aac0d2c01bc0c0164e1d53edda796ee9cec7f"
+    },
+    "bon-507": {
+      "title": "Work IQ expands context, actions and control",
+      "summary": "Work IQ extends recovery and available actions, and adds preview capabilities to respond to events and apply more granular controls.",
+      "impact": "It brings together agents who act within the context of work, with new supervision needs.",
+      "application": "Study an event-based flow with approvals before executing sensitive actions.",
+      "technical": "Recovery and new actions are GA; listen and expanded controls are preview. Future integrations should be checked separately.",
+      "sourceHash": "01390d4b09257d0c01d2a3ee006ef8ceefa832de2a2866b936e0cafbe63a4cd2"
+    },
+    "bon-509": {
+      "title": "From real result to a better agent",
+      "summary": "Microsoft IQ connects production signals with Agent Optimizer and model training to improve applications under team-defined criteria.",
+      "impact": "It focuses on the cost and quality per result achieved, not only on isolated responses.",
+      "application": "Measure a task from start to finish and approve changes only if they improve the baseline.",
+      "technical": "Settings can be optimized before resorting to training; Programmed Training is in preview and offers control over compatible models.",
+      "sourceHash": "0e4298cf29cd1d8cb45ad22c68af397456e65c5e4c8f0a70f82f2bb8bea3b98b"
+    },
+    "bon-514": {
+      "title": "The agent's risk changes as he works",
+      "summary": "Dynamic Agent Risk arrives in preview to combine identity, data, devices and execution signals into an agent risk assessment.",
+      "impact": "Helps replace isolated views with more contextual prioritization.",
+      "application": "Explore how to incorporate execution signals into agent inventory and review.",
+      "technical": "Integrates context of exposure and impact; Partner signals contribute to a unified evaluation calculated by Microsoft.",
+      "sourceHash": "08ff77964cc6084741bd062aa6b1005fc1572099383c520001f27d9cd8193159"
+    },
+    "bon-515": {
+      "title": "More basic visibility into agent usage",
+      "summary": "Microsoft expands GA access to agent activity and usage metrics without requiring Agent 365 for all basic visibility.",
+      "impact": "Makes it easier to understand adoption before deciding on additional government investments.",
+      "application": "Review active users, sessions and exceptions as a starting point for inventory.",
+      "technical": "Not equivalent to all unlicensed features: advanced governance and security maintain requirements. Viva Insights requires at least 50 assigned Copilot licenses.",
+      "sourceHash": "550606fad64abc7ce63d2e7ebc4737081d6dea17d5ba0483f950620eb7030254"
+    },
+    "bon-516": {
+      "title": "Govern agents, skills and tools from a common view",
+      "summary": "Agent 365 expands plugin governance, MCP tools and agents with GA capabilities, previews and an action center announced for later.",
+      "impact": "The inventory needs to also include tools and dependencies, not just agents.",
+      "application": "Identify unowned agents and review who can use each plugin.",
+      "technical": "Plugins and skills governance is GA; MCP gateway support and other capabilities are in preview. Action Center is scheduled for private preview in December.",
+      "sourceHash": "15f17d0517d0d6ab9944dfbc79fa93caf994347e48d29277c9ec10a8b1cbbaf3"
+    },
+    "bon-517": {
+      "title": "Measure where investing in agents adds value",
+      "summary": "Agent 365 Business Analytics offers a view of costs and results for Microsoft and third-party agents in Frontier Preview.",
+      "impact": "It connects investment decisions with the observed utility of the agents.",
+      "application": "Define indicators of success and efficiency to compare AI initiatives.",
+      "technical": "The announcement places Business Analytics in Frontier preview; Confirm eligibility and cost coverage before creating a scorecard.",
+      "sourceHash": "723bc06692371eed78eacb72b781d2e3f9f0f5ca5dabb211621f6d8ed640f528"
+    },
+    "bon-519": {
+      "title": "MDASH seeks better validated code findings",
+      "summary": "Codename MDASH is in preview for eligible organizations with agent-based code analysis, validation of findings, and improvements for large repositories.",
+      "impact": "Seeks to reduce time spent reviewing low-quality results.",
+      "application": "Evaluate the service only on authorized repositories and with review of the results.",
+      "technical": "The flow combines identification, analysis, discussion between agents and reproduction when possible; Model coverage evolves with evaluations.",
+      "sourceHash": "6c8d19b39cd77115935ebc3d14071b8486d43329f9dfb1e9258e9b865b48440e"
+    },
+    "bon-521": {
+      "title": "An integrated SOC and new temporary defenses",
+      "summary": "The core capabilities of the Integrated SOC are GA; SIEM breadth and vulnerability shielding are presented in preview.",
+      "impact": "It connects detection and response, with temporary measures while a definitive correction is applied.",
+      "application": "Review how to coordinate telemetry, investigation and remediation in the SOC.",
+      "technical": "Shielding is not a substitute for patching: it applies temporary controls against active attacks. The 90-day Defender retention cited is from the preview.",
+      "sourceHash": "419ad53487a2c6759d34594e2153e05ec2f984f927607c736f5668ee54b3bb85"
+    },
+    "bon-522": {
+      "title": "Defender protects local agents while they are running",
+      "summary": "Defender extends protection on Windows for supported local agents, with audit or blocking modes and differentiated coverage by tool.",
+      "impact": "Helps limit the risk of malicious instructions hidden in processed content.",
+      "application": "Start in Audit and review the impact before activating locks.",
+      "technical": "The advertised protections are GA for specific tools; Defender for Endpoint P2 is indicated. Verify native or network coverage according to agent.",
+      "sourceHash": "039c9160a64aecd1622dcd3e55f883002b365e89eff5ad265f470a9028ca6315"
+    },
+    "bon-523": {
+      "title": "More context for emerging and zero-day threats",
+      "summary": "Defender previews new labels, views, warnings, and protection validation for rapidly evolving threats.",
+      "impact": "It allows prioritizing research according to the real context of the organization.",
+      "application": "Review exposure by sector and region and validate relevant protections.",
+      "technical": "The experience links threat analytics with Perception's protection playbook; confirm access to the preview and intelligence sources.",
+      "sourceHash": "6d68254d31b0b2a4986a394eff64dbe63878d17bbe7e8a7b5f6c6f33d02df0bf"
+    },
+    "bon-524": {
+      "title": "Reduces the risk of on-premises systems",
+      "summary": "Microsoft announces an initiative to support Exchange, SharePoint and Skype for Business Server, combining hardening, migration and progressive protections.",
+      "impact": "Recognize that some systems will remain local and need a foundation of security maintained.",
+      "application": "Inventory versions, apply updates, and check recovery plans.",
+      "technical": "Baseline Security Mode and future capabilities have variable availability by product; Don't assume that the entire program is already deployed.",
+      "sourceHash": "2f6e0ded393eead9d0658984c1842b3e4c29d0866c7d3d257f939fedb6fba806"
+    },
+    "bon-526": {
+      "title": "Entra extends identity and access to the world of agents",
+      "summary": "Entra incorporates Agent ID for new scenarios, conditional access plans and recovery and governance improvements between tenants, mostly in preview.",
+      "impact": "The identity of agents requires distinguishing their actions from those of people.",
+      "application": "Review a permissions and traceability model for local and cloud agents.",
+      "technical": "Microsoft MCP Server for Enterprise is GA; Agent ID discovered, new credentials and Backup and Recovery Premium announced in preview.",
+      "sourceHash": "5e27e4016d28165b7855c17d7ddeb7fa7b98bb68f7b8aea3f8f2200ff08ef1b9"
+    },
+    "bon-527": {
+      "title": "Measurable plans to prepare for AI security",
+      "summary": "AI Readiness Initiatives are announced for preview in January, with roadmaps on vulnerabilities, authentication and agent governance.",
+      "impact": "It proposes measuring exposure reduction with evidence from the tenant, not just task lists.",
+      "application": "Prepare responsible parties and metrics for patching and phishing-resistant authentication.",
+      "technical": "It is a future availability, not a preview open today. The initiatives align with Secure Now and Perception and maintain administrator control.",
+      "sourceHash": "a3a77f6b2e15b5b8b786e2e7e091f6b9179cf38f89ced7a6918da77b8e34547d"
+    },
+    "bon-529": {
+      "title": "Intune limits what local agents can do",
+      "summary": "Intune previews discovery and policies for local agents, connecting device compliance, identity, and isolation.",
+      "impact": "Helps adopt agents without losing visibility over managed teams.",
+      "application": "Prepare an inventory of approved agents and evaluate policies in a pilot group.",
+      "technical": "Combines Agent 365, Conditional Access, Microsoft Execution Containers, and Global Secure Access for execution and network boundaries.",
+      "sourceHash": "2bb180b8ec68cb20ade32ed88ffba029295c80b93d0c5d64a2dc255f822cbc92"
+    },
+    "bon-531": {
+      "title": "Perception brings specialized agents to security work",
+      "summary": "Microsoft Perception reaches GA for already announced agents and playbooks and expands research, third-party coverage and other features with specific availability.",
+      "impact": "It can help organize repetitive security tasks and prioritize human work.",
+      "application": "Evaluate a triage playbook on your own alerts with analyst supervision.",
+      "technical": "Specialized agents collaborate on flows; Web App Pen Test Agent remains in preview and should only be used with express permission.",
+      "sourceHash": "80851fad9943cafe6cfdca466dc280a9376fe4397b5607543982bf6d02d5b466"
+    },
+    "bon-533": {
+      "title": "Purview expands data protection against agents",
+      "summary": "Purview previews improved classification and tagging, new Copilot protections, and controls for Windows endpoint agents.",
+      "impact": "Ensure that protection does not depend solely on all files being labeled.",
+      "application": "Review Copilot and agent access to sensitive data with data loss policies.",
+      "technical": "The ad includes grounding protection and coverage of attachments, links and text; validate scenarios and scope of each control in preview.",
+      "sourceHash": "c1b7f513936f468effb28a4ee309e5f5fa5b573d3f94f09107cceeafb3ae046e"
+    },
+    "bon-538": {
+      "title": "Copilot in Windows helps with files and diagnostics",
+      "summary": "Windows prepares in preview file management in natural language, PC diagnosis and access to Copilot from the new search.",
+      "impact": "Brings support closer to the team's local context and common support tasks.",
+      "application": "Test organization of non-sensitive files and compare diagnostic recommendations.",
+      "technical": "Access from Search requires opt-in and supports management by IT policy. Advertised capabilities should not be treated as GA.",
+      "sourceHash": "971a210f882d5d17bf963554775300c6d41381166081f48244c837ad66b3a0f4"
+    },
+    "bon-539": {
+      "title": "Windows 365 improves connection and management",
+      "summary": "Windows 365 combines GA previews of Direct Stream and redirects with assisted management previews and access protection for Cloud PCs.",
+      "impact": "The cloud desktop experience depends on both connectivity and its management.",
+      "application": "Evaluate session quality and clipboard restrictions based on connection confidence.",
+      "technical": "Admin assistant and Windows MAM are in preview; GPU improvements with NVIDIA are announced for next year in specific regions.",
+      "sourceHash": "d5264295f8d42edf053e97bc5519312b998ce3deefbfd8535766ec56589e5d1c"
+    },
+    "bon-540": {
+      "title": "Windows and Intune move towards results-based management",
+      "summary": "Windows and Intune combine a GA endpoint security platform with new previews of core protection, declarative management, and reliability.",
+      "impact": "It seeks to maintain the desired configuration and give IT control over system changes.",
+      "application": "Prepare a pilot of reliability policies and metrics before extending new experiences.",
+      "technical": "Endpoint Security Platform is GA; Baseline protection, experience controls, and various Autopatch improvements are announced in private previews.",
+      "sourceHash": "a23f07d157abb4d01a22af0da90f3d1eff9264f7d3e1305a69c67e7a64099c87"
+    },
+    "bon-541": {
+      "title": "Cloud PCs as a workspace for agents",
+      "summary": "Windows 365 for Agents expands its connections with Copilot Studio and announces Foundry integration and Cloud PC persistence in different preview programs.",
+      "impact": "Opens an avenue of automation for legacy applications without APIs.",
+      "application": "Study a computer usage flow on an authorized testing application.",
+      "technical": "Includes eligibility for Copilot Credits; Foundry MCP announced for next year and persistent Cloud PCs in Frontier preview.",
+      "sourceHash": "0722baf2603066b50a5ee42d841284c460c121d010c5733d15f705dd300d6f84"
+    },
+    "bon-542": {
+      "title": "More options to run local and hybrid AI",
+      "summary": "Windows expands model execution on Cloud PCs and announces AVD Hybrid in Windows Server 2025 in private preview.",
+      "impact": "Allows you to compare execution locations based on scenario control, resources, and economics.",
+      "application": "Measure a compatible model on a sized Cloud PC before choosing a platform.",
+      "technical": "Cloud PCs with up to 32 vCPUs and GPU options are GA; AVD Hybrid is in private preview. Foundry Local requires supported models and resources.",
+      "sourceHash": "eb9ac0d772b5ecff722b3dcd86ffd42816ebae07fa306a85829f290c7f2f2b4c"
+    },
+    "bon-543": {
+      "title": "More precise limits for agents in Windows",
+      "summary": "Windows introduces new process, network and identity controls in preview; learning and permissive modes are already GA.",
+      "impact": "It helps establish what an agent can communicate, reach, or impersonate on a device.",
+      "application": "Observe an agent's legitimate communications first before imposing restrictions.",
+      "technical": "COM and IPC controls and granular policies do not share state with learning modes. Review each capability and its deployment phase.",
+      "sourceHash": "5bfe02e9eb1d57f37ef4747a9adceab580b88c16e07c319c94866cfb16c59380"
+    }
+  },
+  "products": {
+    "AKS": "AKS",
+    "Agent 365": "Agent 365",
+    "Agent Grid": "Agent Grid",
+    "Agent ID": "Agent ID",
+    "Agent Optimizer": "Agent Optimizer",
+    "Agentes locales": "Local agents",
+    "Autopilot": "Autopilot",
+    "Azure Arc": "Azure Arc",
+    "Azure Catalyst": "Azure Catalyst",
+    "Azure Copilot": "Azure Copilot",
+    "Azure DMS": "Azure DMS",
+    "Azure HorizonDB": "Azure HorizonDB",
+    "Azure Local": "Azure Local",
+    "Azure Managed Redis": "Azure Managed Redis",
+    "Azure Monitor": "Azure Monitor",
+    "Azure SQL": "Azure SQL",
+    "Azure Virtual Desktop": "Azure Virtual Desktop",
+    "Business Analytics": "Business Analytics",
+    "Business plugins": "Business plugins",
+    "Chaos Studio": "Chaos Studio",
+    "Cobalt 200": "Cobalt 200",
+    "Codename MDASH": "Codename MDASH",
+    "Confidential Computing": "Confidential Computing",
+    "Copilot Code": "Copilot Code",
+    "Copilot Cowork": "Copilot Cowork",
+    "Copilot Managed Runtime": "Copilot Managed Runtime",
+    "Copilot SDK": "Copilot SDK",
+    "Copilot Studio": "Copilot Studio",
+    "Copilot Workspaces": "Copilot Workspaces",
+    "Cosmos DB": "Cosmos DB",
+    "DLP": "DLP",
+    "Database Hub": "Database Hub",
+    "DocumentDB": "DocumentDB",
+    "Dynamic Agent Risk": "Dynamic Agent Risk",
+    "Dynamics 365": "Dynamics 365",
+    "Dynamics 365 Activate": "Dynamics 365 Activate",
+    "Edge for Business": "Edge for Business",
+    "Exchange Server": "Exchange Server",
+    "Fabric HorizonDB": "Fabric HorizonDB",
+    "Fabric IQ": "Fabric IQ",
+    "Fabric apps": "Fabric apps",
+    "FinOps": "FinOps",
+    "Foundry IQ": "Foundry IQ",
+    "Foundry Local": "Foundry Local",
+    "GitHub": "GitHub",
+    "GitHub Copilot": "GitHub Copilot",
+    "Integrated SOC": "Integrated SOC",
+    "MCP": "MCP",
+    "Microsoft Copilot": "Microsoft Copilot",
+    "Microsoft Defender": "Microsoft Defender",
+    "Microsoft Entra": "Microsoft Entra",
+    "Microsoft Execution Containers": "Microsoft Execution Containers",
+    "Microsoft Fabric": "Microsoft Fabric",
+    "Microsoft Foundry": "Microsoft Foundry",
+    "Microsoft IQ": "Microsoft IQ",
+    "Microsoft Intune": "Microsoft Intune",
+    "Microsoft Perception": "Microsoft Perception",
+    "Microsoft Purview": "Microsoft Purview",
+    "Microsoft Sentinel": "Microsoft Sentinel",
+    "Microsoft-Decision-1.1": "Microsoft-Decision-1.1",
+    "Microsoft-Retriever-1": "Microsoft-Retriever-1",
+    "Model router": "Model router",
+    "Modelos MAI": "MAI models",
+    "Máquinas virtuales": "Virtual machines",
+    "Office": "Office",
+    "Outlook": "Outlook",
+    "PostgreSQL": "PostgreSQL",
+    "Power BI": "Power BI",
+    "Rayfin": "Rayfin",
+    "Redis 8": "Redis 8",
+    "SAP ECC": "SAP ECC",
+    "SQL Server": "SQL Server",
+    "SRE Agent": "SRE Agent",
+    "Salesforce": "Salesforce",
+    "Secure Now": "Secure Now",
+    "SharePoint": "SharePoint",
+    "SharePoint Server": "SharePoint Server",
+    "Threat intelligence": "Threat intelligence",
+    "Today": "Today",
+    "VS Code": "VS Code",
+    "Viva Insights": "Viva Insights",
+    "Web IQ": "Web IQ",
+    "Windows": "Windows",
+    "Windows 365": "Windows 365",
+    "Windows 365 for Agents": "Windows 365 for Agents",
+    "Windows Autopatch": "Windows Autopatch",
+    "Windows Server 2028": "Windows Server 2028",
+    "Work IQ": "Work IQ"
+  }
+}

@@ -1,5 +1,10 @@
 import { expect, test } from '@playwright/test';
 
+test.beforeEach(async ({ page }, testInfo) => {
+  if (testInfo.title.startsWith('cambia todo el portal')) return;
+  await page.addInitScript(() => localStorage.setItem('tdsynnex-ignite-2026:language', 'es'));
+});
+
 test('mapa navegable con zoom, migas, historial y enlaces directos bajo una subruta Pages', async ({ page }) => {
   await page.goto('./');
   await expect(page).toHaveTitle('Ignite Navigator 2026 · TD SYNNEX');
@@ -35,6 +40,47 @@ test('mapa navegable con zoom, migas, historial y enlaces directos bajo una subr
   await expect(page.getByRole('heading', { name: 'No encontramos esa combinación' })).toBeVisible();
   await page.reload();
   await expect(page.getByRole('searchbox')).toHaveValue('zzzzsinresultados');
+});
+
+test('cambia todo el portal entre español, inglés, portugués y alemán y recuerda la elección', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+  await page.locator('.language-picker select').selectOption('en');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('.hero h1')).toContainText('What matters.');
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Explore Microsoft Ignite 2026/);
+  await expect(page.locator('.explorer')).toHaveAttribute('aria-label', 'Ignite 2026 interactive map');
+  await expect(page.locator('.node-area').first()).toHaveAttribute('aria-label', /Explore Azure: \d+ news items/);
+  const map = page.locator('.explorer');
+  await map.getByRole('button', { name: 'Explore GitHub: 1 news item', exact: true }).click();
+  await map.getByRole('button', { name: 'Product Copilot SDK: 1 announcement', exact: true }).click();
+  await map.getByRole('button', { name: /Copilot SDK 2.0 to integrate agents into your apps/ }).click();
+  await expect(map.locator('.explorer-center h3')).toHaveText('Copilot SDK 2.0 to integrate agents into your apps');
+  await page.locator('.language-picker select').selectOption('pt');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'pt');
+  await expect(page.locator('.hero h1')).toContainText('O que importa.');
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Explore o Microsoft Ignite 2026/);
+  await expect(map.locator('.explorer-center h3')).toHaveText('Copilot SDK 2.0 para integrar agentes em seus aplicativos');
+  await expect(page.getByPlaceholder(/O que você quer descobrir/)).toBeAttached();
+  await page.locator('.language-picker select').selectOption('de');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+  await expect(page.locator('.hero h1')).toContainText('Was zählt.');
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Entdecken Sie Microsoft Ignite 2026/);
+  await expect(map.locator('.explorer-center h3')).toHaveText('Copilot SDK 2.0 zur Integration von Agenten in Ihre Apps');
+  await expect(page.locator('.language-picker select')).toHaveValue('de');
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+  await expect(page.locator('.hero h1')).toContainText('Was zählt.');
+  await page.locator('.language-picker select').selectOption('es');
+  await expect(page.locator('.hero h1')).toContainText('Lo que importa.');
+  await expect(map.locator('.explorer-center h3')).toHaveText('Copilot SDK 2.0 para integrar agentes en tus apps');
+
+  const detectedContext = await page.context().browser()!.newContext({ locale: 'de-DE' });
+  const detectedPage = await detectedContext.newPage();
+  await detectedPage.goto(page.url());
+  await expect(detectedPage.locator('html')).toHaveAttribute('lang', 'de');
+  await expect(detectedPage.locator('.hero h1')).toContainText('Was zählt.');
+  await detectedContext.close();
 });
 
 test('favoritos persistentes, recorrido y presentación con teclado', async ({ page }) => {

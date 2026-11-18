@@ -1,19 +1,30 @@
-# TD SYNNEX · Ignite Navigator 2026
+# TD SYNNEX Ignite Navigator 2026
 
-Portal editorial público y estático sobre el [Microsoft Ignite 2026 Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/). Incluye 59 anuncios de la fuente inicial, resúmenes propios en español, mapa interactivo navegable (zoom por niveles Ignite → área → producto → anuncio, con saltos a productos y anuncios relacionados desde cada anuncio, migas de pan, arrastre y rueda para zoom, vista de lista en móvil y tableta vertical), búsqueda, filtros, cuatro recorridos, favoritos locales y presentación.
+An interactive guide to the [Microsoft Ignite 2026 Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/).
 
-No es un portal oficial de Microsoft. Las aplicaciones propuestas son interpretación editorial, no compromisos de producto. Verificar siempre las fuentes, disponibilidad, licencias y requisitos. Algunas novedades combinan capacidades GA, preview y futuras.
+**Live site:** [Ignite Navigator 2026](https://gabriel-tdsynnex.github.io/Ignite-2026/)
 
-## Desarrollo
+## Explore the portal
 
-Requiere Node.js 24 y npm.
+- Navigate the interactive map from an area to a product and then to an announcement.
+- Search and filter announcements, follow curated journeys, save favorites, or use presentation mode.
+- Choose English, Spanish, Brazilian Portuguese, or German in the header. The portal uses your browser's preferred supported language on your first visit and falls back to Spanish.
+- Open the original Microsoft sources from each announcement. Favorites, read status, and language preferences are stored in your browser and are not synced across devices.
+
+The portal is an independent editorial resource, not an official Microsoft website. Editorial interpretations are not product commitments. Check the original sources for availability, licensing, and requirements. Translations are machine-assisted and should be reviewed before reuse outside the portal.
+
+## Run locally
+
+Requirements: Node.js 24 and npm.
 
 ```powershell
 npm ci
 npm run dev
 ```
 
-Abrir la dirección local indicada por Vite. El navegador no envía búsquedas ni favoritos a un servidor. No hay analítica, autenticación, chat ni llamadas a modelos. Los enlaces a fuentes externas se abren en otra pestaña.
+Open the local address displayed by Vite.
+
+## Validate
 
 ```powershell
 npm test
@@ -22,9 +33,9 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Las pruebas de navegador compilan y sirven el artefacto real bajo `/Ignite-2026/`, no solo el servidor de desarrollo. Requieren el puerto local 4173 libre. En Linux CI se utiliza `npx playwright install --with-deps chromium`.
+The browser tests build and serve the production artifact under the `/Ignite-2026/` path and require local port 4173. On Linux CI, install Chromium with `npx playwright install --with-deps chromium`.
 
-Para comprobar manualmente una compilación con subruta:
+To preview the production build locally:
 
 ```powershell
 $env:PAGES_BASE = '/Ignite-2026/'
@@ -32,72 +43,29 @@ npm run build
 npm run preview
 ```
 
-Los favoritos y anuncios leídos se guardan bajo la clave local `tdsynnex-ignite-2026`. No se sincronizan entre dispositivos. El portal informa si el almacenamiento está bloqueado. Borrar los datos del sitio elimina la selección.
+## Deployment
 
-## GitHub Pages
+The [repository](https://github.com/Gabriel-TDSYNNEX/Ignite-2026) publishes to GitHub Pages through the **Publish GitHub Pages** workflow when changes are pushed to `main`. GitHub Pages must use **GitHub Actions** as its source. The workflow tests and builds the site before deployment; check the Actions run and the live site after a release.
 
-Repositorio creado por el usuario: **[`Gabriel-TDSYNNEX/Ignite-2026`](https://github.com/Gabriel-TDSYNNEX/Ignite-2026)**.
+No custom secrets or AI service keys are required. The content update workflow uses GitHub's built-in `GITHUB_TOKEN` and requires permission to create pull requests.
 
-Cuenta autorizada por el propietario: **Gabriel-TDSYNNEX**. URL prevista: `https://gabriel-tdsynnex.github.io/Ignite-2026/`. El estado real de publicación debe comprobarse en GitHub Actions y en esa URL.
+## Update editorial content
 
-1. Antes de inicializar o subir Git, confirmar que `.gitignore` excluye `tdsynnex-customizacion/`, `.env*`, `node_modules/` y los textos originales descargados en `content/incoming.json`.
-2. Comprobar que solo están autorizados para publicación los activos necesarios de `public/brand/`. El catálogo PowerPoint y documentos de referencia no deben entrar en el historial público.
-3. Usar el repositorio público indicado con la rama `main` y subir únicamente el código y activos públicos revisados.
-4. En Settings → Pages, seleccionar **GitHub Actions** como origen.
-5. Habilitar en Settings → Actions → General la creación de pull requests por GitHub Actions y, si la política de la organización lo exige, autorizar los permisos de escritura del workflow de contenido.
-6. Ejecutar **Publish GitHub Pages** o hacer push a `main`. El workflow obtiene la ruta base de Pages automáticamente.
-7. Comprobar la URL desplegada, cargar un enlace con `#article=bon-473` y verificar logo, assets, favoritos y navegación móvil.
+The **Review Book of News updates** workflow checks the official source daily at 07:23 UTC and can also be started manually. It creates or updates a pull request for review; it does not automatically publish new or changed announcements.
 
-No se necesitan claves de IA ni secretos personalizados. `GITHUB_TOKEN` lo proporciona GitHub al workflow; no debe copiarse a la aplicación. Configurar revisión obligatoria y proteger `main` es recomendable. Los workflows asumen `main`; adaptar los triggers si se usa otro nombre.
+To review a content proposal:
 
-## Cómo actualizar el contenido
+1. Review `content/changes.json` and `content/pending.json`, then run `npm run content:fetch` to compare against the current official source. If the source has changed since the proposal, refresh the proposal before accepting it.
+2. Update the original Spanish summaries, products, profiles, and availability in `content/editorial.json`. Write original summaries rather than copying Microsoft's text. Remove retired entries and review affected journeys and featured items.
+3. After reviewing each changed announcement, set its `sourceHash` to the corresponding `hash` in `content/pending.json` and keep `reviewed: true`.
+4. Update the corresponding entries, hashes, and product labels in `content/translations.en.json`, `content/translations.pt.json`, and `content/translations.de.json`. Remove retired entries from all catalogs.
+5. Run `npm run content:accept`, followed by the validation commands above. Acceptance checks editorial review, hashes, and complete translations before updating the snapshot.
+6. Commit the reviewed changes to the pull request and merge it after review. The Pages workflow publishes the accepted version.
 
-Archivos:
+`npm run content:check` checks the source manually. `content/snapshot.json` stores the accepted source metadata and hashes; `content/incoming.json` is a local, ignored copy of source text for review. Human commits on the automated proposal branch pause automatic updates to protect editorial work.
 
-- `content/snapshot.json`: metadatos oficiales y huellas de la fuente aceptada. No contiene el texto completo del Book of News.
-- `content/editorial.json`: textos originales en español, productos, perfiles y disponibilidad revisada.
-- `content/pending.json` y `content/changes.json`: propuesta detectada, solo presentes cuando hay cambios pendientes.
-- `content/incoming.json`: descarga local con el texto fuente para revisión; está excluida de Git y del build.
+## Privacy and publishing
 
-**Review Book of News updates** comprueba la página cada día a las 07:23 UTC y también mediante ejecución manual. El cron de GitHub puede retrasarse. El job crea o actualiza una única PR en `automation/book-of-news`. No publica contenido automáticamente, no traduce con IA y no cambia los resúmenes aceptados.
+Searches and favorites are not sent to a server. The portal has no analytics, authentication, chat, or model calls. Clearing site data removes locally saved preferences and activity.
 
-### Revisar una PR de contenido
-
-1. Abrir la rama propuesta y consultar las altas, cambios y posibles retiradas en `content/changes.json`.
-2. Ejecutar `npm run content:fetch` para obtener los textos oficiales actuales en el archivo local ignorado. Compararlos con las fuentes enlazadas; si han cambiado respecto a la propuesta, no aceptar una instantánea obsoleta: actualizar la propuesta primero.
-3. Editar `content/editorial.json`: añadir resúmenes propios, corregir los anuncios modificados, retirar los eliminados y revisar productos, perfiles y disponibilidad. No copiar los párrafos originales de Microsoft.
-4. Solo después de revisar cada anuncio modificado, actualizar su `sourceHash` al `hash` correspondiente de `content/pending.json` y mantener `reviewed: true`.
-5. Revisar también los IDs de los recorridos y destacados si una retirada los afecta.
-6. Ejecutar `npm run content:accept`. Comprueba cobertura y huellas, guarda la nueva instantánea y elimina los archivos pendientes. Si falta revisión, falla explícitamente.
-7. Ejecutar `npm test` y `npm run test:e2e`; el build valida que no queden anuncios pendientes.
-8. Subir los cambios a la PR, obtener revisión y hacer merge. Pages despliega la versión aceptada.
-
-Los commits humanos en la rama de propuesta pausan su actualización automática para no sobrescribir la revisión. Para incorporar nuevas novedades durante esa revisión, ejecutar manualmente `npm run content:check`, revisar los cambios y continuar el mismo proceso. El bot usa force-with-lease exclusivamente sobre su rama dedicada para mantener una sola propuesta y nunca debe usarse esa rama para otros trabajos.
-
-GitHub no dispara normalmente otros workflows a partir de pushes hechos con `GITHUB_TOKEN`. La PR inicial del bot es una propuesta pendiente, no una publicación validada. El commit humano de aceptación dispara la validación normal; también se puede ejecutar **Validate portal** manualmente sobre la rama.
-
-Para comprobar la fuente fuera de GitHub:
-
-```powershell
-npm run content:check
-```
-
-Sin cambios, no modifica la instantánea ni su fecha. Si la fuente vuelve al estado aceptado, retira una propuesta local obsoleta. Si falta el contenedor esperado, un área, un ID o un cuerpo de anuncio, falla de forma visible y conserva el catálogo publicado.
-
-### Esquema editorial
-
-Cada registro identifica el anuncio oficial mediante su `data-bon-entry`, no por el título traducido. `sourceHash` verifica la revisión contra cambios de fuente. `Mixto` significa que el anuncio agrupa capacidades en fases distintas; `Próximamente` no equivale a acceso disponible hoy.
-
-La extracción utiliza los cuerpos originales de las entradas, excluye introducciones marcadas por Microsoft y no usa sus resúmenes automáticos. Admite anuncios en `h3` y `h4`. No inventa anchors: si el encabezado no tiene uno, enlaza al Book of News y muestra el título original. Los enlaces de ampliación proceden de la propia fuente.
-
-## Marca y privacidad
-
-La referencia de marca se conserva **solo en local** en la carpeta ignorada `tdsynnex-customizacion/`. El sitio utiliza Arial y colores derivados de la guía; no distribuye fuentes comerciales. El SVG suministrado se mantiene sin modificaciones sobre fondo blanco.
-
-Publicar únicamente contenido público y activos autorizados. No añadir nombres de clientes, planes internos o información confidencial al catálogo. La aplicación no necesita ningún fichero `.env`.
-
-## Estado de verificación
-
-Los comandos locales permiten verificar catálogo, tipos, build, búsqueda, favoritos, presentación, responsive y subruta Pages. Los workflows remotos, apertura real de PR y URL pública solo pueden verificarse después de crear el repositorio, autorizar Actions y habilitar Pages.
-
-El aviso de auditoría de `picomatch` afecta a herramientas de desarrollo transitivas; el registro consultado no ofrece una versión corregida. No se envían patrones glob del usuario a estas herramientas y no se incluyen en el bundle público. Revisar `npm audit` y actualizar cuando exista corrección; no aplicar downgrades automáticos que rompan la cadena de herramientas.
+Publish only public content and authorized brand assets. Keep customer information, internal plans, reference documents, and secrets out of the repository. The local brand reference folder and source downloads are excluded by `.gitignore`.

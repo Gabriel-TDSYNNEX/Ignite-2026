@@ -8,6 +8,7 @@ export default defineConfig({
   use: {
     baseURL: 'http://127.0.0.1:4173/Ignite-2026/',
     browserName: 'chromium',
+    locale: 'es-ES',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },

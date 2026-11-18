@@ -18,6 +18,14 @@ it('bloquea propuestas sin revisar y acepta solo huellas revisadas sin sobrescri
     const pending = { ...accepted, items: [{ ...accepted.items[0], hash: changedHash }] };
     write('snapshot.json', accepted);
     write('editorial.json', [articles[0]]);
+    for (const locale of ['en', 'pt', 'de']) {
+      const source = JSON.parse(readFileSync(resolve(`content/translations.${locale}.json`), 'utf8'));
+      const id = articles[0].id;
+      write(`translations.${locale}.json`, {
+        articles: { [id]: source.articles[id] },
+        products: Object.fromEntries(articles[0].products.map(product => [product, source.products[product]])),
+      });
+    }
     expect(run('validate').status).toBe(0);
     write('pending.json', pending);
     write('changes.json', { added: [], modified: [articles[0].id], removed: [] });
@@ -26,6 +34,12 @@ it('bloquea propuestas sin revisar y acepta solo huellas revisadas sin sobrescri
     expect(JSON.parse(readFileSync(join(workspace, 'content', 'snapshot.json'), 'utf8'))).toEqual(accepted);
     const reviewed = [{ ...articles[0], sourceHash: changedHash, title: 'Un título editorial revisado en español' }];
     write('editorial.json', reviewed);
+    expect(run('accept').stderr).toContain('Traducciones desactualizadas');
+    for (const locale of ['en', 'pt', 'de']) {
+      const localized = JSON.parse(readFileSync(join(workspace, 'content', `translations.${locale}.json`), 'utf8'));
+      localized.articles[articles[0].id] = { ...localized.articles[articles[0].id], sourceHash: changedHash, title: `Reviewed title ${locale}` };
+      write(`translations.${locale}.json`, localized);
+    }
     expect(run('accept').status).toBe(0);
     expect(existsSync(join(workspace, 'content', 'pending.json'))).toBe(false);
     expect(existsSync(join(workspace, 'content', 'changes.json'))).toBe(false);

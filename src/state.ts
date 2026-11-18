@@ -43,15 +43,16 @@ const preferencesSchema = z.object({
   read: z.array(z.string()).max(1000),
 });
 type Preferences = z.infer<typeof preferencesSchema>;
+export type StorageError = '' | 'read' | 'write';
 const key = 'tdsynnex-ignite-2026';
 export function usePreferences() {
-  const [loaded] = useState((): { data: Preferences; error: string } => {
+  const [loaded] = useState((): { data: Preferences; error: StorageError } => {
     try {
       const raw = localStorage.getItem(key);
       return { data: raw ? preferencesSchema.parse(JSON.parse(raw)) : { favorites: [], read: [] }, error: '' };
     } catch (error) {
       console.error('No se pudo leer la selección local', error);
-      return { data: { favorites: [], read: [] }, error: 'No se pudo recuperar tu selección local. Los cambios se conservarán solo en esta sesión.' };
+      return { data: { favorites: [], read: [] }, error: 'read' };
     }
   });
   const [preferences, setPreferences] = useState(loaded.data);
@@ -61,7 +62,7 @@ export function usePreferences() {
     try { localStorage.setItem(key, JSON.stringify(preferences)); }
     catch (error) {
       console.error('No se pudo guardar la selección local', error);
-      setStorageError('El navegador no permite guardar tu selección. Los cambios se conservarán solo en esta sesión.');
+      setStorageError('write');
     }
   }, [preferences, loaded.error]);
   function toggleFavorite(id: string) {
