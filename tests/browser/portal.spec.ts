@@ -1,17 +1,29 @@
 import { expect, test } from '@playwright/test';
 
-test('mapa, búsqueda, filtros y enlaces directos bajo una subruta Pages', async ({ page }) => {
+test('mapa navegable con zoom, migas, historial y enlaces directos bajo una subruta Pages', async ({ page }) => {
   await page.goto('./');
   await expect(page).toHaveTitle('Ignite Navigator 2026 · TD SYNNEX');
-  await page.getByRole('button', { name: 'Explorar GitHub: 1 novedad', exact: true }).click();
-  await expect(page.getByRole('status')).toContainText('1 novedad');
-  await page.locator('.article-grid').getByRole('heading', { name: 'Copilot SDK 2.0 para integrar agentes en tus apps' }).getByRole('button').click();
+  const map = page.getByRole('region', { name: 'Mapa interactivo de Ignite 2026' });
+  await map.getByRole('button', { name: 'Explorar GitHub: 1 novedad', exact: true }).click();
+  await expect(map.getByRole('navigation', { name: 'Ruta en el mapa' })).toContainText('GitHub');
+  await map.getByRole('button', { name: /Copilot SDK 2.0 para integrar agentes en tus apps/ }).click();
+  await expect(map.getByRole('heading', { name: 'Copilot SDK 2.0 para integrar agentes en tus apps' })).toBeVisible();
+  await map.getByRole('button', { name: /Producto Copilot SDK/ }).click();
+  await expect(map.getByRole('navigation', { name: 'Ruta en el mapa' }).getByRole('button', { name: 'Copilot SDK', exact: true })).toHaveAttribute('aria-current', 'location');
+  await page.goBack();
+  await expect(map.getByRole('heading', { name: 'Copilot SDK 2.0 para integrar agentes en tus apps' })).toBeVisible();
+  await map.getByRole('button', { name: 'Ver ficha completa' }).click();
   await expect(page.getByRole('dialog')).toContainText('runtime nativo Rust');
   await page.reload();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);
+  await map.getByRole('button', { name: 'Volver un nivel' }).click();
+  await map.getByRole('button', { name: 'Ver en el catálogo' }).click();
+  await expect(page.getByRole('status')).toContainText('1 novedad');
   await page.getByRole('button', { name: 'Limpiar filtros' }).click();
+  await map.getByRole('button', { name: 'Ignite 2026', exact: true }).click();
+  await expect(map.getByRole('button', { name: /Explorar Azure/ })).toBeVisible();
   await page.getByRole('searchbox').fill('evaluacion');
   await page.getByLabel('Producto', { exact: true }).selectOption('Microsoft Foundry');
   await expect(page.locator('.article-grid')).toContainText('Mejora los agentes con evidencia de producción');
@@ -50,8 +62,9 @@ test('móvil sin desbordamiento y alternativa de mapa accesible', async ({ page 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('./');
   await expect(page.locator('body')).toHaveJSProperty('scrollWidth', 390);
-  await page.getByRole('button', { name: 'Vista lista de áreas', exact: true }).click();
-  await page.locator('.area-list').getByRole('button', { name: /Seguridad/ }).click();
+  await expect(page.getByRole('button', { name: 'Vista lista', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: /Explorar Seguridad/ }).click();
+  await page.getByRole('button', { name: 'Ver en el catálogo' }).click();
   await expect(page.getByLabel('Área', { exact: true })).toHaveValue('Security');
   await page.getByLabel('Disponibilidad', { exact: true }).selectOption('Próximamente');
   await expect(page.locator('.article-grid .article-card')).toHaveCount(1);

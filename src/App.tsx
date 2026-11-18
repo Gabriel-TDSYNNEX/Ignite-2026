@@ -1,25 +1,16 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import {
   ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Bookmark, Check, ChevronLeft, ChevronRight,
-  CircleHelp, Cloud, Code2, Compass, Fingerprint, GitBranch, Globe2, Layers3,
-  LayoutGrid, List, Monitor, Network, Play, Search, ShieldCheck, Sparkles, Target, Trash2, Users, X,
+  CircleHelp, Code2, Compass, Fingerprint, GitBranch,
+  LayoutGrid, Monitor, Play, Search, ShieldCheck, Target, Trash2, Users, X,
 } from 'lucide-react';
 import { articles, emptyFilters, filterArticles, productNames, routeArticles, routes, snapshot } from './catalog';
-import { areas, profiles, SOURCE_URL, statuses, type Article, type Area } from './schema';
+import { areas, profiles, SOURCE_URL, statuses, type Article } from './schema';
+import { areaIcons, areaLabels, MapExplorer } from './MapExplorer';
 import { useNavigation, usePreferences, type View } from './state';
 
-const areaIcons = {
-  Azure: Cloud, 'Microsoft Foundry': Layers3, GitHub: GitBranch, 'Microsoft Copilot': Sparkles,
-  'Microsoft Edge': Globe2, 'Microsoft IQ': Network, Security: ShieldCheck, Windows: Monitor,
-};
-const areaLabels: Record<Area, string> = { Azure: 'Azure', 'Microsoft Foundry': 'Foundry', GitHub: 'GitHub', 'Microsoft Copilot': 'Copilot', 'Microsoft Edge': 'Edge', 'Microsoft IQ': 'Microsoft IQ', Security: 'Seguridad', Windows: 'Windows' };
 const profileIcons = { Negocio: Target, Desarrollo: Code2, IT: Monitor, Seguridad: ShieldCheck };
-const positions = [[22, 23], [56, 13], [83, 28], [80, 57], [73, 83], [40, 85], [17, 66], [12, 43]];
 const statusClass = (status: string) => status === 'GA' ? 'ga' : status === 'Preview' ? 'preview' : 'mixed';
-function areaCountLabel(area: Area) {
-  const count = articles.filter(article => article.area === area).length;
-  return `${count} ${count === 1 ? 'novedad' : 'novedades'}`;
-}
 
 function OfficialLink({ href, children }: { href: string; children: ReactNode }) {
   return <a href={href} target="_blank" rel="noreferrer">{children}<ArrowUpRight size={15} aria-hidden="true" /><span className="sr-only"> (abre otra pestaña)</span></a>;
@@ -72,29 +63,9 @@ function ArticleDetail({ article, saved, toggleFavorite }: { article: Article; s
   </div>;
 }
 
-function Constellation({ selectArea }: { selectArea: (area: Area) => void }) {
-  return <div className="constellation" aria-label="Mapa de las ocho áreas de Ignite">
-    <div className="map-coordinate">IGNITE 2026 / ECOSISTEMA MICROSOFT</div>
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="map-lines" aria-hidden="true">
-      <ellipse cx="48" cy="49" rx="34" ry="33" /><ellipse cx="48" cy="49" rx="20" ry="20" />
-      {positions.map(([x, y], i) => <path key={i} d={`M48 49 Q${x} 49 ${x} ${y}`} />)}
-      <path d="M22 23 L56 13 L83 28 L80 57 L73 83 L40 85 L17 66 L12 43 Z" />
-    </svg>
-    <div className="map-core" aria-hidden="true"><div className="core-symbol"><Sparkles size={25} /></div><strong>Todo está<br />conectado.</strong><span>DESCUBRE TU SIGUIENTE PASO</span></div>
-    {areas.map((area, index) => {
-      const Icon = areaIcons[area]; const [x, y] = positions[index];
-      return <button key={area} className={`map-node node-${index}`} style={{ left: `${x}%`, top: `${y}%` }} onClick={() => selectArea(area)} aria-label={`Explorar ${areaLabels[area]}: ${areaCountLabel(area)}`}>
-        <span className="node-icon"><Icon size={21} /></span><span className="node-text"><strong>{areaLabels[area]}</strong><small>{areaCountLabel(area)}</small></span><ArrowUpRight className="node-arrow" size={13} />
-      </button>;
-    })}
-    <div className="map-caption"><span className="live-dot" />Selecciona un área para empezar<Compass size={15} /></div>
-  </div>;
-}
-
 export default function App() {
   const { navigation: nav, navigate } = useNavigation();
   const { preferences, storageError, toggleFavorite, markRead, clear } = usePreferences();
-  const [mapView, setMapView] = useState(true);
   const [presentation, setPresentation] = useState<{ items: Article[]; index: number; label: string } | null>(null);
   const catalogRef = useRef<HTMLElement>(null);
   const selectedArticle = articles.find(article => article.id === nav.article);
@@ -123,7 +94,7 @@ export default function App() {
   }, [Boolean(presentation)]);
 
   function openArticle(article: Article) { navigate({ article: article.id }); }
-  function changeView(view: View) { navigate({ ...emptyFilters, view, article: '', route: '' }); window.scrollTo({ top: 0, behavior: 'instant' }); }
+  function changeView(view: View) { navigate({ ...emptyFilters, view, article: '', route: '', map: '' }); window.scrollTo({ top: 0, behavior: 'instant' }); }
   function focusCatalog(changes: Partial<typeof nav> = {}) {
     navigate({ view: 'explore', ...changes });
     requestAnimationFrame(() => catalogRef.current?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }));
@@ -150,16 +121,18 @@ export default function App() {
       {nav.view === 'explore' && <>
         <section className="hero">
           <div className="hero-copy"><div className="event-label"><span className="live-dot" />MICROSOFT IGNITE <span className="event-year">2026</span></div>
-            <h1>Lo que viene.<br /><span>Lo que importa.</span><br />Lo que puedes hacer.</h1>
-            <p>La innovación no está en leerlo todo.<br className="desktop-break" /> Está en descubrir qué cambia para ti.</p>
-            <div className="hero-actions"><button className="button primary" onClick={() => focusCatalog()}><Compass size={18} />Explorar las novedades<ArrowDown size={17} /></button>
+            <h1>Lo que viene. <span>Lo que importa.</span> Lo que puedes hacer.</h1></div>
+          <div className="hero-side"><p>La innovación no está en leerlo todo. Está en descubrir qué cambia para ti. Navega el mapa: entra en un área, acércate a un anuncio y salta a todo lo que está conectado.</p>
+            <div className="hero-actions"><button className="button primary" onClick={() => focusCatalog()}><Search size={18} />Buscar en las novedades<ArrowDown size={17} /></button>
               <button className="text-button" onClick={() => changeView('routes')}>Encuentra tu recorrido<ArrowRight size={17} /></button></div>
             <div className="hero-footnote"><span>17–20 NOV</span><span className="tiny-divider" />SAN FRANCISCO + ONLINE<span className="hero-edition">EDICIÓN EN ESPAÑOL</span></div>
           </div>
-          <div className="hero-map"><div className="map-toolbar"><span className="eyebrow"><span className="live-dot" />EL MAPA DE LA INNOVACIÓN</span><div className="segmented" aria-label="Vista de áreas"><button aria-label="Vista mapa" aria-pressed={mapView} onClick={() => setMapView(true)}><Network size={16} /></button><button aria-label="Vista lista de áreas" aria-pressed={!mapView} onClick={() => setMapView(false)}><List size={16} /></button></div></div>
-            {mapView ? <Constellation selectArea={area => focusCatalog({ ...emptyFilters, area })} /> : <div className="area-list">{areas.map(area => { const Icon = areaIcons[area]; return <button key={area} onClick={() => focusCatalog({ ...emptyFilters, area })}><Icon size={20} /><strong>{areaLabels[area]}</strong><span>{areaCountLabel(area)}</span><ArrowUpRight size={17} /></button>; })}</div>}
-          </div>
         </section>
+        <div className="explorer-wrap">
+          <MapExplorer path={nav.map} onPath={map => navigate({ map })} onOpenArticle={openArticle}
+            onShowCatalog={filter => focusCatalog({ ...emptyFilters, ...filter })}
+            read={preferences.read} favorites={preferences.favorites} toggleFavorite={toggleFavorite} markRead={markRead} />
+        </div>
         <div className="metrics-strip"><div><strong>{articles.length}<span>novedades para explorar</span></strong></div><div><strong>{areas.length}<span>áreas conectadas</span></strong></div><div><strong>{routes.length}<span>recorridos a tu medida</span></strong></div><div className="progress-metric"><span className="progress-ring" style={{ '--progress': `${readCount / articles.length * 100}%` } as CSSProperties}><Fingerprint size={23} /></span><strong>{readCount}/{articles.length}<span>tu progreso de exploración</span></strong></div></div>
         {!activeFilters && <section className="highlights section-wrap" aria-labelledby="highlights-title"><div className="section-heading"><div><span className="eyebrow">UNA BUENA FORMA DE EMPEZAR</span><h2 id="highlights-title">En nuestro radar<span className="accent">.</span></h2></div><span className="section-note">Cuatro ideas para abrir la conversación</span></div><div className="highlight-grid">{['bon-497', 'bon-479', 'bon-448', 'bon-519'].map(id => articles.find(article => article.id === id)).filter((article): article is Article => Boolean(article)).map(renderCard)}</div></section>}
       </>}

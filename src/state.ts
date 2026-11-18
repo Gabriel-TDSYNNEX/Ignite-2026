@@ -4,7 +4,7 @@ import { areas, profiles, statuses } from './schema';
 import { emptyFilters, productNames, type Filters } from './catalog';
 
 export type View = 'explore' | 'routes' | 'saved';
-export type Navigation = Filters & { view: View; article: string; route: string };
+export type Navigation = Filters & { view: View; article: string; route: string; map: string };
 export function parseHash(hash: string): Navigation {
   const params = new URLSearchParams(hash.replace(/^#/, ''));
   const view = params.get('view');
@@ -16,7 +16,7 @@ export function parseHash(hash: string): Navigation {
     q: params.get('q') || '', area: pick('area', areas), profile: pick('profile', profiles),
     product: pick('product', productNames), status: pick('status', statuses),
     view: view === 'routes' || view === 'saved' ? view : 'explore',
-    article: params.get('article') || '', route: pick('route', profiles),
+    article: params.get('article') || '', route: pick('route', profiles), map: params.get('map') || '',
   };
 }
 export function useNavigation() {
@@ -24,7 +24,8 @@ export function useNavigation() {
   useEffect(() => {
     const onHash = () => setNavigation(parseHash(window.location.hash));
     window.addEventListener('hashchange', onHash);
-    return () => window.removeEventListener('hashchange', onHash);
+    window.addEventListener('popstate', onHash);
+    return () => { window.removeEventListener('hashchange', onHash); window.removeEventListener('popstate', onHash); };
   }, []);
   function navigate(changes: Partial<Navigation>, replace = false) {
     const next = { ...navigation, ...changes };
