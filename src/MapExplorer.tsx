@@ -38,6 +38,17 @@ export function parseMapPath(value: string): Step[] {
 const serialize = (steps: Step[]) => steps.map(step => `${step.kind}:${step.id}`).join('/');
 const stepLabel = (step: Step) => step.kind === 'area' ? areaLabels[step.id as Area] : step.kind === 'product' ? step.id : articleById(step.id)?.title ?? step.id;
 
+function productNode(product: string): MapNode {
+  const count = productArticles(product).length;
+  return { key: `product:${product}`, kind: 'product', id: product, label: product, sub: plural(count, 'anuncio', 'anuncios'), icon: Package, color: '#ccd814' };
+}
+
+function areaProducts(area: string) {
+  const inArea = new Map<string, number>();
+  for (const article of articles) if (article.area === area) for (const product of article.products) inArea.set(product, (inArea.get(product) ?? 0) + 1);
+  return [...inArea.keys()].sort((a, b) => (inArea.get(b)! - inArea.get(a)!) || (productArticles(b).length - productArticles(a).length) || a.localeCompare(b, 'es'));
+}
+
 function articleNode(article: Article, read: string[]): MapNode {
   return { key: `article:${article.id}`, kind: 'article', id: article.id, label: article.title, sub: article.status === 'GA' ? 'Disponible · GA' : article.status, icon: areaIcons[article.area], color: areaHues[article.area], status: article.status, read: read.includes(article.id) };
 }
@@ -50,11 +61,19 @@ function layout(count: number, center: 'small' | 'large') {
     });
   }
   if (count > 10) {
-    // Dense levels: pick the slots of a radial grid that are closest to the core, then order them clockwise.
+    // Dense levels: pick the slots of a grid that are closest to the core, then order them clockwise.
     const slots: number[][] = [];
-    for (const x of [11, 30.5, 50, 69.5, 89]) for (const y of [11, 30.5, 50, 69.5, 89]) {
-      if (x === 50 && y > 20 && y < 80) continue;
-      slots.push([x, y]);
+    if (count > 22) {
+      // Very dense levels use a staggered grid so neighbouring rows never stack on top of each other.
+      [7, 21, 35, 50, 65, 79, 93].forEach((y, row) => {
+        const columns = row % 2 ? [17.2, 33.6, 50, 66.4, 82.8] : [9, 25.4, 41.8, 58.2, 74.6, 91];
+        for (const x of columns) if (!(Math.abs(y - 50) <= 15 && Math.abs(x - 50) < 17)) slots.push([x, y]);
+      });
+    } else {
+      for (const x of [11, 30.5, 50, 69.5, 89]) for (const y of [11, 30.5, 50, 69.5, 89]) {
+        if (x === 50 && y > 20 && y < 80) continue;
+        slots.push([x, y]);
+      }
     }
     const distance = ([x, y]: number[]) => Math.hypot((x - 50) * 1.9, y - 50);
     const angle = ([x, y]: number[]) => (Math.atan2(y - 50, (x - 50) * 1.9) + Math.PI * 2.5) % (Math.PI * 2);
@@ -68,6 +87,7 @@ function layout(count: number, center: 'small' | 'large') {
 }
 
 type Camera = { x: number; y: number; s: number };
+const listQuery = '(max-width: 860px)';
 const restingCamera: Camera = { x: 0, y: 0, s: 1 };
 
 export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, favorites, toggleFavorite, markRead }: {
@@ -82,9 +102,9 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
 }) {
   const steps = useMemo(() => parseMapPath(path), [path]);
   const current = steps.at(-1);
-  const [listMode, setListMode] = useState(() => window.matchMedia('(max-width: 700px)').matches);
+  const [listMode, setListMode] = useState(() => window.matchMedia(listQuery).matches);
   useEffect(() => {
-    const query = window.matchMedia('(max-width: 700px)');
+    const query = window.matchMedia(listQuery);
     const onChange = () => setListMode(query.matches);
     query.addEventListener('change', onChange);
     return () => query.removeEventListener('change', onChange);
@@ -110,13 +130,15 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
       const count = articles.filter(article => article.area === area).length;
       return { key: `area:${area}`, kind: 'area', id: area, label: areaLabels[area], sub: plural(count, 'novedad', 'novedades'), icon: areaIcons[area], color: areaHues[area], weight: count };
     });
-    if (current.kind === 'area') return articles.filter(article => article.area === current.id).map(article => articleNode(article, read));
-    if (current.kind === 'product') return productArticles(current.id).map(article => articleNode(article, read));
+    if (current.kind === 'area') return areaProducts(current.id).map(productNode);
+    if (current.kind === 'product') {
+      const parentArea = steps.at(-2)?.kind === 'area' ? steps.at(-2)!.id : undefined;
+      return productArticles(current.id)
+        .sort((a, b) => Number(b.area === parentArea) - Number(a.area === parentArea))
+        .map(article => articleNode(article, read));
+    }
     const article = articleById(current.id)!;
-    const products: MapNode[] = article.products.map(product => {
-      const count = productArticles(product).length;
-      return { key: `product:${product}`, kind: 'product', id: product, label: product, sub: plural(count, 'anuncio', 'anuncios'), icon: Package, color: '#ccd814' };
-    });
+    const products: MapNode[] = article.products.map(productNode);
     const related = articles
       .filter(other => other.id !== article.id)
       .map(other => ({ other, score: other.products.filter(product => article.products.includes(product)).length * 3 + (other.area === article.area ? 1 : 0) + other.profiles.filter(profile => article.profiles.includes(profile)).length * 0.1 }))
@@ -125,7 +147,7 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
       .slice(0, Math.max(3, 9 - products.length))
       .map(entry => articleNode(entry.other, read));
     return [...products.slice(0, 6), ...related];
-  }, [current, read]);
+  }, [current, steps, read]);
   const positions = useMemo(() => layout(nodes.length, centerArticle ? 'large' : 'small'), [nodes.length, centerArticle]);
 
   const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -173,11 +195,13 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
   }
 
   const title = !current ? 'Ignite 2026' : stepLabel(current);
-  const levelHint = !current ? 'Elige un área para entrar' : current.kind === 'article' ? 'Salta a productos o anuncios conectados' : 'Elige un anuncio para acercarte';
+  const levelHint = !current ? 'Elige un área para entrar' : current.kind === 'area' ? 'Elige un producto para ver sus anuncios' : current.kind === 'article' ? 'Salta a productos o anuncios conectados' : 'Elige un anuncio para acercarte';
   const centerColor = current?.kind === 'area' ? areaHues[current.id as Area] : current?.kind === 'product' ? '#ccd814' : centerArticle ? areaHues[centerArticle.area] : '#08bed5';
   const CenterIcon = current?.kind === 'area' ? areaIcons[current.id as Area] : current?.kind === 'product' ? Package : Sparkles;
-  const levelRead = nodes.filter(node => node.kind === 'article' && node.read).length;
-  const levelArticles = nodes.filter(node => node.kind === 'article').length;
+  const levelArticleIds = current?.kind === 'area' ? articles.filter(article => article.area === current.id).map(article => article.id)
+    : nodes.filter(node => node.kind === 'article').map(node => node.id);
+  const levelRead = levelArticleIds.filter(id => read.includes(id)).length;
+  const levelArticles = levelArticleIds.length;
 
   return <section className={`explorer ${listMode ? 'is-list' : ''}`} aria-label="Mapa interactivo de Ignite 2026" style={{ '--focus': centerColor } as CSSProperties}>
     <div className="explorer-bar">
@@ -220,7 +244,7 @@ export function MapExplorer({ path, onPath, onOpenArticle, onShowCatalog, read, 
       onPointerCancel={() => { drag.current = null; }}>
       <div className="explorer-grid" aria-hidden="true" style={{ backgroundPosition: `${camera.x}px ${camera.y}px`, backgroundSize: `${28 * camera.s}px ${28 * camera.s}px` }} />
       <div className="explorer-camera" style={{ transform: listMode ? undefined : `translate(${camera.x}px, ${camera.y}px) scale(${camera.s})` }}>
-        <div key={path} className={`explorer-world ${arrival} ${leaving ? `leave-${leaving.dir}` : ''} ${centerArticle ? 'article-level' : ''} ${nodes.length > 10 ? 'dense' : ''}`}
+        <div key={path} className={`explorer-world ${arrival} ${leaving ? `leave-${leaving.dir}` : ''} ${centerArticle ? 'article-level' : ''} ${nodes.length > 10 ? 'dense' : ''} ${nodes.length > 22 ? 'crowded' : ''}`}
           style={leaving ? { transformOrigin: `${leaving.x}% ${leaving.y}%` } : undefined}>
           {!listMode && <svg className="explorer-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             {!current && <><ellipse cx="50" cy="50" rx="34" ry="35" /><ellipse cx="50" cy="50" rx="20" ry="21" /></>}

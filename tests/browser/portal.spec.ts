@@ -6,6 +6,10 @@ test('mapa navegable con zoom, migas, historial y enlaces directos bajo una subr
   const map = page.getByRole('region', { name: 'Mapa interactivo de Ignite 2026' });
   await map.getByRole('button', { name: 'Explorar GitHub: 1 novedad', exact: true }).click();
   await expect(map.getByRole('navigation', { name: 'Ruta en el mapa' })).toContainText('GitHub');
+  await expect(map.getByRole('button', { name: /Copilot SDK 2.0 para integrar agentes en tus apps/ })).toHaveCount(0);
+  await expect(map.getByRole('button', { name: /^Producto GitHub/ })).toBeVisible();
+  await map.getByRole('button', { name: /Producto Copilot SDK/ }).click();
+  await expect(map.getByRole('navigation', { name: 'Ruta en el mapa' })).toContainText('Copilot SDK');
   await map.getByRole('button', { name: /Copilot SDK 2.0 para integrar agentes en tus apps/ }).click();
   await expect(map.getByRole('heading', { name: 'Copilot SDK 2.0 para integrar agentes en tus apps' })).toBeVisible();
   await map.getByRole('button', { name: /Producto Copilot SDK/ }).click();

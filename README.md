@@ -1,6 +1,6 @@
 # TD SYNNEX · Ignite Navigator 2026
 
-Portal editorial público y estático sobre el [Microsoft Ignite 2026 Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/). Incluye 59 anuncios de la fuente inicial, resúmenes propios en español, mapa interactivo navegable (zoom por niveles Ignite → área → anuncio → producto, migas de pan, arrastre y rueda para zoom, vista de lista en móvil), búsqueda, filtros, cuatro recorridos, favoritos locales y presentación.
+Portal editorial público y estático sobre el [Microsoft Ignite 2026 Book of News](https://news.microsoft.com/events/ignite/2026/book-of-news/). Incluye 59 anuncios de la fuente inicial, resúmenes propios en español, mapa interactivo navegable (zoom por niveles Ignite → área → producto → anuncio, con saltos a productos y anuncios relacionados desde cada anuncio, migas de pan, arrastre y rueda para zoom, vista de lista en móvil y tableta vertical), búsqueda, filtros, cuatro recorridos, favoritos locales y presentación.
 
 No es un portal oficial de Microsoft. Las aplicaciones propuestas son interpretación editorial, no compromisos de producto. Verificar siempre las fuentes, disponibilidad, licencias y requisitos. Algunas novedades combinan capacidades GA, preview y futuras.
 

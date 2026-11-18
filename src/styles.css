@@ -136,6 +136,10 @@ h1, h2, h3, p { margin-top: 0; }
 .node-copy strong { font-size: 12px; font-weight: 500; line-height: 1.3; max-width: 185px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .node-copy small { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; color: var(--muted); }
 .dense .node-copy strong { max-width: 150px; }
+.crowded .explorer-node { gap: 7px; padding: 6px 12px 6px 6px; }
+.crowded .node-glyph { width: 26px; height: 26px; }
+.crowded .node-copy { gap: 2px; }
+.crowded .node-copy strong { max-width: 118px; font-size: 11px; }
 .node-area { padding: 13px 18px 13px 13px; border-radius: 14px; }
 .node-area .node-glyph { width: 46px; height: 46px; border-radius: 13px; }
 .node-area .node-copy strong { font-size: 15px; font-weight: 600; white-space: nowrap; }
@@ -323,6 +327,18 @@ footer p { font-size: 9px; line-height: 1.9; color: #9ca6c0; margin: 14px 0 0; }
 @media (max-width:1250px) {
   .dense .node-copy strong { max-width: 112px; font-size: 11px; }
   .dense .explorer-node { gap: 8px; padding-right: 10px; }
+  .crowded .node-copy strong { max-width: 96px; font-size: 10px; }
+  .crowded .node-copy small { font-size: 9px; }
+}
+@media (max-width:1000px) {
+  .dense .explorer-node { gap: 6px; padding: 5px 9px 5px 5px; }
+  .dense .node-glyph { width: 24px; height: 24px; }
+  .dense .node-copy { gap: 1px; }
+  .dense .node-copy strong { max-width: 92px; font-size: 10px; }
+  .dense .node-copy small { font-size: 9px; }
+  .dense .explorer-center { width: 160px; }
+  .dense .explorer-center > strong { font-size: 20px; margin-top: 10px; }
+  .dense .center-symbol { transform: scale(.8); }
 }
 @media (max-width:850px) {
   .hero { grid-template-columns: 1fr; gap: 18px; padding-top: 26px; }
