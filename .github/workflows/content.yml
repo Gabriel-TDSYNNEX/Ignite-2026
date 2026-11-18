@@ -1,0 +1,65 @@
+name: Review Book of News updates
+on:
+  schedule:
+    - cron: '23 7 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: book-of-news
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Check source and maintain one editorial proposal
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          branch=automation/book-of-news
+          if git ls-remote --exit-code --heads origin "$branch"; then
+            git fetch origin "$branch:refs/remotes/origin/$branch"
+            if git log "HEAD..origin/$branch" --format=%ae | grep -qv '^41898282+github-actions\[bot\]@users.noreply.github.com$'; then
+              echo "::notice::Human review is in progress. Preserving all reviewer commits; no automatic changes."
+              exit 0
+            fi
+            if git cat-file -e "origin/$branch:content/pending.json"; then
+              git restore --source="origin/$branch" -- content/pending.json content/changes.json
+            fi
+          fi
+          npm run content:check
+          pr=$(gh pr list --head "$branch" --state open --json number --jq '.[0].number // empty')
+          if [ ! -f content/pending.json ]; then
+            if [ -n "$pr" ]; then
+              gh pr close "$pr" --comment "The official source matches the accepted catalog again. No update is needed."
+            fi
+            exit 0
+          fi
+          git add content/pending.json content/changes.json
+          if git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+            if git diff --cached --quiet "origin/$branch" -- content/pending.json content/changes.json; then
+              echo "The existing proposal is up to date."
+              exit 0
+            fi
+            lease=$(git rev-parse "origin/$branch")
+          else
+            lease=""
+          fi
+          git switch -c "$branch"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Review official Ignite Book of News changes" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+          git push "--force-with-lease=refs/heads/$branch:$lease" origin "HEAD:refs/heads/$branch"
+          if [ -z "$pr" ]; then
+            gh pr create --head "$branch" --title "Review Ignite Book of News changes" --body "Official source changes detected. Review content/changes.json and content/pending.json. Update the original Spanish summaries and sourceHash values in content/editorial.json, remove retired entries, then run npm run content:accept. Pending content intentionally blocks publication. See README for the full review process."
+          fi

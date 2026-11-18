@@ -1,0 +1,10 @@
+node_modules/
+dist/
+playwright-report/
+test-results/
+tdsynnex-customizacion/
+.env
+.env.*
+!.env.example
+content/incoming.json
+*.tsbuildinfo
