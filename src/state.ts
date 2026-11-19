@@ -3,13 +3,11 @@ import { z } from 'zod';
 import { areas, profiles, statuses } from './schema';
 import { emptyFilters, productNames, type Filters } from './catalog';
 
-export type View = 'explore' | 'ideas' | 'routes' | 'saved';
-export const lenses = ['ideas', 'constellation', 'matrix', 'products', 'status', 'all'] as const;
-export type Lens = typeof lenses[number];
-/** Ideas explorer state: lens '' = ideas, st/au = comma lists, conn '0' = connections off. */
-export type IdeaState = { lens: string; idea: string; cell: string; st: string; au: string; conn: string };
-export const emptyIdeaState: IdeaState = { lens: '', idea: '', cell: '', st: '', au: '', conn: '' };
-export type Navigation = Filters & IdeaState & { view: View; article: string; route: string; map: string };
+export type View = 'explore' | 'routes' | 'saved';
+/** Map lenses: by 'idea' groups the map root by idea, st is a comma list of statuses, cross filters the current level. */
+export type MapLens = { by: string; st: string; cross: string };
+export const emptyMapLens: MapLens = { by: '', st: '', cross: '' };
+export type Navigation = Filters & MapLens & { view: View; article: string; route: string; map: string };
 export const splitList = (value: string) => value ? value.split(',') : [];
 export function parseHash(hash: string): Navigation {
   const params = new URLSearchParams(hash.replace(/^#/, ''));
@@ -22,10 +20,9 @@ export function parseHash(hash: string): Navigation {
   return {
     q: params.get('q') || '', area: pick('area', areas), profile: pick('profile', profiles),
     product: pick('product', productNames), status: pick('status', statuses),
-    view: view === 'routes' || view === 'saved' || view === 'ideas' ? view : 'explore',
+    view: view === 'routes' || view === 'saved' ? view : 'explore',
     article: params.get('article') || '', route: pick('route', profiles), map: params.get('map') || '',
-    lens: pick('lens', lenses.slice(1)), idea: params.get('idea') || '', cell: params.get('cell') || '',
-    st: pickList('st', statuses), au: pickList('au', profiles), conn: params.get('conn') === '0' ? '0' : '',
+    by: pick('by', ['idea']), st: pickList('st', statuses), cross: params.get('cross') || '',
   };
 }
 export function useNavigation() {

@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import ideaData from '../content/ideas.json';
 import { articles } from '../src/catalog';
-import { coIdeas, constellationLayout, ideas, inIdea } from '../src/ideas';
+import { coIdeas, ideas, inIdea } from '../src/ideas';
+import { parseMapPath } from '../src/MapExplorer';
 import { validateIdeas } from '../src/schema';
 
 const ids = articles.map(article => article.id);
@@ -23,15 +24,13 @@ describe('Taxonomía de ideas', () => {
     expect(() => validateIdeas(empty, ids)).toThrow(`Idea sin anuncios principales: ${target}`);
   });
 
-  it('las conexiones solo cuentan cuando se incluyen y la constelación coloca cada idea dentro del lienzo', () => {
+  it('las conexiones solo cuentan cuando se incluyen y el mapa acepta rutas por idea', () => {
     const connected = articles.find(article => ideaData.assignments[article.id as keyof typeof ideaData.assignments].also.length)!;
     const other = ideaData.assignments[connected.id as keyof typeof ideaData.assignments].also[0];
     expect(inIdea(connected, other, true)).toBe(true);
     expect(inIdea(connected, other, false)).toBe(false);
     expect(coIdeas(other).some(([id]) => id !== other)).toBe(true);
-    const layout = constellationLayout();
-    expect(layout.order).toHaveLength(ideas.length);
-    expect([...layout.primaries.values()].reduce((total, items) => total + items.length, 0)).toBe(articles.length);
-    for (const { x, y } of layout.positions.values()) expect(x > 0 && x < layout.W && y > 0 && y < layout.H).toBe(true);
+    expect(parseMapPath(`idea:${other}/article:${connected.id}`)).toEqual([{ kind: 'idea', id: other }, { kind: 'article', id: connected.id }]);
+    expect(parseMapPath('idea:no-existe/area:Azure')).toEqual([]);
   });
 });

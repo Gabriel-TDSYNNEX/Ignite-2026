@@ -1,15 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import {
   ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Bookmark, Check, ChevronLeft, ChevronRight,
-  CircleHelp, Code2, Compass, Fingerprint, GitBranch, Globe2, Link2, Moon, Orbit,
+  CircleHelp, Code2, Compass, Fingerprint, GitBranch, Globe2, Link2, Moon,
   LayoutGrid, Monitor, Play, Search, ShieldCheck, Sun, SunMoon, Target, Trash2, Users, X,
 } from 'lucide-react';
 import { articles, emptyFilters, filterArticles, productNames, routeArticles, routes, snapshot } from './catalog';
 import { areas, profiles, SOURCE_URL, statuses, type Article } from './schema';
-import { areaIcons, MapExplorer } from './MapExplorer';
-import { IdeasExplorer, ideaColor, ideaIcons } from './IdeasExplorer';
+import { areaIcons, ideaColor, ideaIcons, MapExplorer } from './MapExplorer';
 import { connectedIdeas, primaryIdea, relatedArticles, statusKeys } from './ideas';
-import { emptyIdeaState, useNavigation, usePreferences, useTheme, type View } from './state';
+import { emptyMapLens, useNavigation, usePreferences, useTheme, type View } from './state';
 import { areaLabel, localizeArticle, localeOptions, productLabel, profileLabel, routeCopy, statusLabel, text, useLocale, type Locale } from './i18n';
 
 const profileIcons = { Negocio: Target, Desarrollo: Code2, IT: Monitor, Seguridad: ShieldCheck };
@@ -132,7 +131,7 @@ export default function App() {
     function onSlash(event: KeyboardEvent) {
       if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey) return;
       if (event.target instanceof HTMLElement && event.target.closest('input,select,textarea,[contenteditable="true"],dialog')) return;
-      const input = document.querySelector<HTMLInputElement>('#ideas-search, #search');
+      const input = document.querySelector<HTMLInputElement>('#search');
       if (!input) return;
       event.preventDefault();
       input.focus();
@@ -151,10 +150,13 @@ export default function App() {
     try { await navigator.clipboard.writeText(window.location.href); setToast(tr('linkCopied')); }
     catch (error) { console.error('No se pudo copiar el enlace', error); setToast(tr('copyFailed')); }
   }
-  function showIdea(id: string) { navigate({ ...emptyFilters, ...emptyIdeaState, view: 'ideas', idea: id, article: '', route: '', map: '' }); window.scrollTo({ top: 0, behavior: 'instant' }); }
+  function showIdea(id: string) {
+    navigate({ ...emptyFilters, ...emptyMapLens, view: 'explore', article: '', route: '', map: `idea:${id}`, by: 'idea' });
+    requestAnimationFrame(() => document.querySelector('.explorer-wrap')?.scrollIntoView({ behavior: 'instant', block: 'start' }));
+  }
 
   function openArticle(article: Article) { navigate({ article: article.id }); document.querySelector('dialog.dialog')?.scrollTo({ top: 0 }); }
-  function changeView(view: View) { navigate({ ...emptyFilters, ...emptyIdeaState, view, article: '', route: '', map: '' }); window.scrollTo({ top: 0, behavior: 'instant' }); }
+  function changeView(view: View) { navigate({ ...emptyFilters, ...emptyMapLens, view, article: '', route: '', map: '' }); window.scrollTo({ top: 0, behavior: 'instant' }); }
   function focusCatalog(changes: Partial<typeof nav> = {}) {
     navigate({ view: 'explore', ...changes });
     requestAnimationFrame(() => catalogRef.current?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }));
@@ -170,7 +172,6 @@ export default function App() {
       <span className="brand-divider" /><span className="product-wordmark">Ignite<span> Navigator <b>26</b></span></span>
       <nav aria-label={tr('navPrimary')}>
         <button className={nav.view === 'explore' ? 'active' : ''} onClick={() => changeView('explore')} aria-current={nav.view === 'explore' ? 'page' : undefined}><Compass size={16} />{tr('explore')}</button>
-        <button className={nav.view === 'ideas' ? 'active' : ''} onClick={() => changeView('ideas')} aria-current={nav.view === 'ideas' ? 'page' : undefined}><Orbit size={16} />{tr('navIdeas')}</button>
         <button className={nav.view === 'routes' ? 'active' : ''} onClick={() => changeView('routes')} aria-current={nav.view === 'routes' ? 'page' : undefined}><GitBranch size={16} />{tr('routes')}</button>
         <button className={nav.view === 'saved' ? 'active' : ''} onClick={() => changeView('saved')} aria-current={nav.view === 'saved' ? 'page' : undefined}><Bookmark size={16} />{tr('saved')}<span className="nav-count">{savedArticles.length}</span></button>
       </nav>
@@ -195,7 +196,7 @@ export default function App() {
           </div>
         </section>
         <div className="explorer-wrap">
-          <MapExplorer path={nav.map} onPath={map => navigate({ map })} onOpenArticle={openArticle}
+          <MapExplorer state={nav} onChange={patch => navigate(patch)} onOpenArticle={openArticle}
             onShowCatalog={filter => focusCatalog({ ...emptyFilters, ...filter })}
             read={preferences.read} favorites={preferences.favorites} toggleFavorite={toggleFavorite} markRead={markRead}
             articles={localizedArticles} locale={locale} />
@@ -204,8 +205,7 @@ export default function App() {
         {!activeFilters && <section className="highlights section-wrap" aria-labelledby="highlights-title"><div className="section-heading"><div><span className="eyebrow">{tr('highlightsEyebrow')}</span><h2 id="highlights-title">{tr('highlightsTitle')}<span className="accent">.</span></h2></div><span className="section-note">{tr('highlightsNote')}</span></div><div className="highlight-grid">{['bon-497', 'bon-479', 'bon-448', 'bon-519'].map(id => localizedArticles.find(article => article.id === id)).filter((article): article is Article => Boolean(article)).map(renderCard)}</div></section>}
       </>}
 
-      {nav.view === 'ideas' ? <IdeasExplorer articles={localizedArticles} locale={locale} nav={nav} navigate={navigate} openArticle={openArticle} renderCard={renderCard} searchable={searchable} />
-      : nav.view === 'routes' ? <section className="section-wrap routes-page">
+      {nav.view === 'routes' ? <section className="section-wrap routes-page">
         {currentRoute ? <>
           <button className="text-button muted" onClick={() => navigate({ route: '' })}><ArrowLeft size={17} />{tr('routesBack')}</button>
           <div className="page-intro"><span className="eyebrow">{tr('routeEyebrow')} / {profileLabel(locale, currentRoute.profile).toUpperCase()}</span><h1>{currentRoute.subtitle}<span className="accent">.</span></h1><p>{currentRoute.description}</p><div className="intro-actions"><button className="button primary" onClick={() => startPresentation(currentRouteItems, profileLabel(locale, currentRoute.profile))}><Play size={17} />{tr('presentRoute')}</button><span>{currentRouteItems.filter(a => preferences.read.includes(a.id)).length} / {currentRouteItems.length} {tr('explored')}</span></div></div>
