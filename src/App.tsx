@@ -1,17 +1,20 @@
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import {
   ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Bookmark, Check, ChevronLeft, ChevronRight,
-  CircleHelp, Code2, Compass, Fingerprint, GitBranch, Globe2,
-  LayoutGrid, Monitor, Play, Search, ShieldCheck, Target, Trash2, Users, X,
+  CircleHelp, Code2, Compass, Fingerprint, GitBranch, Globe2, Link2, Moon, Orbit,
+  LayoutGrid, Monitor, Play, Search, ShieldCheck, Sun, SunMoon, Target, Trash2, Users, X,
 } from 'lucide-react';
 import { articles, emptyFilters, filterArticles, productNames, routeArticles, routes, snapshot } from './catalog';
 import { areas, profiles, SOURCE_URL, statuses, type Article } from './schema';
 import { areaIcons, MapExplorer } from './MapExplorer';
-import { useNavigation, usePreferences, type View } from './state';
+import { IdeasExplorer, ideaColor, ideaIcons } from './IdeasExplorer';
+import { connectedIdeas, primaryIdea, relatedArticles, statusKeys } from './ideas';
+import { emptyIdeaState, useNavigation, usePreferences, useTheme, type View } from './state';
 import { areaLabel, localizeArticle, localeOptions, productLabel, profileLabel, routeCopy, statusLabel, text, useLocale, type Locale } from './i18n';
 
 const profileIcons = { Negocio: Target, Desarrollo: Code2, IT: Monitor, Seguridad: ShieldCheck };
 const statusClass = (status: string) => status === 'GA' ? 'ga' : status === 'Preview' ? 'preview' : 'mixed';
+const themeIcons = { auto: SunMoon, dark: Moon, light: Sun };
 
 function OfficialLink({ href, children, locale }: { href: string; children: ReactNode; locale: Locale }) {
   return <a href={href} target="_blank" rel="noreferrer">{children}<ArrowUpRight size={15} aria-hidden="true" /><span className="sr-only"> {text(locale, 'externalTab')}</span></a>;
@@ -49,11 +52,22 @@ function ArticleCard({ article, saved, read, onOpen, onSave, locale }: {
   </article>;
 }
 
-function ArticleDetail({ article, saved, toggleFavorite, locale }: { article: Article; saved: boolean; toggleFavorite: () => void; locale: Locale }) {
+function ArticleDetail({ article, saved, toggleFavorite, locale, related = [], onIdea, onOpen, onCopy }: {
+  article: Article; saved: boolean; toggleFavorite: () => void; locale: Locale;
+  related?: Article[]; onIdea?: (id: string) => void; onOpen?: (article: Article) => void; onCopy?: () => void;
+}) {
   const Icon = areaIcons[article.area];
+  const ideaButton = (idea: ReturnType<typeof primaryIdea>, primary: boolean) => {
+    const IdeaIcon = ideaIcons[idea.icon];
+    return <button key={idea.id} type="button" className={`idea-chip ${primary ? 'primary' : ''}`} style={{ '--idea': ideaColor(idea.hue), '--idea-soft': ideaColor(idea.hue, 0.14) } as CSSProperties}
+      onClick={() => onIdea?.(idea.id)} disabled={!onIdea}><IdeaIcon size={14} aria-hidden="true" />{idea.short[locale]}</button>;
+  };
+  const also = connectedIdeas(article);
   return <div className="article-detail">
     <div className="eyebrow"><Icon size={17} />{areaLabel(locale, article.area)} <span className={`status ${statusClass(article.status)}`}>{statusLabel(locale, article.status)}</span></div>
     <h2>{article.title}</h2><p className="detail-lead">{article.summary}</p>
+    <div className="detail-ideas"><div><span className="eyebrow">{text(locale, 'primaryIdea')}</span><div className="chip-row">{ideaButton(primaryIdea(article), true)}</div></div>
+      {also.length > 0 && <div><span className="eyebrow">{text(locale, 'alsoConnects')}</span><div className="chip-row">{also.map(idea => ideaButton(idea, false))}</div></div>}</div>
     <div className="detail-block"><span className="eyebrow">{text(locale, 'detailWhy')}</span><p>{article.impact}</p></div>
     <div className="detail-block opportunity"><span className="eyebrow">{text(locale, 'detailApplication')}</span><p>{article.application}</p><small>{text(locale, 'editorialDisclaimer')}</small></div>
     <details className="technical"><summary>{text(locale, 'technicalDetails')}</summary><p>{article.technical}</p><div className="tags">{article.products.map(product => <span key={product}>{productLabel(locale, product)}</span>)}</div></details>
@@ -61,7 +75,13 @@ function ArticleDetail({ article, saved, toggleFavorite, locale }: { article: Ar
       <OfficialLink href={article.sourceUrl} locale={locale}>{text(locale, 'officialSource')}</OfficialLink>
       {article.learnMore.slice(0, 2).map((href, i) => <OfficialLink key={href} href={href} locale={locale}>{text(locale, 'moreFromMicrosoft')}{i > 0 ? ` ${i + 1}` : ''}</OfficialLink>)}
     </div>
-    <div className="detail-footer"><span>{article.profiles.map(profile => profileLabel(locale, profile)).join(' · ')}</span><button className="button secondary" onClick={toggleFavorite}><Bookmark size={17} fill={saved ? 'currentColor' : 'none'} />{text(locale, saved ? 'savedLabel' : 'saveLabel')}</button></div>
+    {related.length > 0 && onOpen && <div className="detail-related"><span className="eyebrow">{text(locale, 'relatedNews')}</span><ul className="idea-rows">{related.map(other => {
+      const idea = primaryIdea(other);
+      return <li key={other.id} className="idea-row"><button type="button" onClick={() => onOpen(other)}><span className="idea-dot" style={{ '--idea': ideaColor(idea.hue) } as CSSProperties} title={idea.short[locale]} /><span className="idea-row-title">{other.title}</span><span className={`status-pill st-${statusKeys[other.status]}`}>{statusLabel(locale, other.status)}</span><ArrowUpRight size={15} aria-hidden="true" /></button></li>;
+    })}</ul></div>}
+    <div className="detail-footer"><span>{article.profiles.map(profile => profileLabel(locale, profile)).join(' · ')}</span><div className="detail-actions">
+      {onCopy && <button className="button secondary" onClick={onCopy}><Link2 size={17} />{text(locale, 'copyLink')}</button>}
+      <button className="button secondary" onClick={toggleFavorite}><Bookmark size={17} fill={saved ? 'currentColor' : 'none'} />{text(locale, saved ? 'savedLabel' : 'saveLabel')}</button></div></div>
   </div>;
 }
 
@@ -69,6 +89,9 @@ export default function App() {
   const { navigation: nav, navigate } = useNavigation();
   const { locale, setLocale, ui, localeTag, contentLocale, translationLoadError } = useLocale();
   const { preferences, storageError, toggleFavorite, markRead, clear } = usePreferences();
+  const { theme, cycleTheme } = useTheme();
+  const [toast, setToast] = useState('');
+  const ThemeIcon = themeIcons[theme];
   const [presentation, setPresentation] = useState<{ items: Article[]; index: number; label: string } | null>(null);
   const catalogRef = useRef<HTMLElement>(null);
   const tr = (key: keyof typeof ui.text, values: Record<string, string | number> = {}) => text(locale, key, values);
@@ -76,12 +99,12 @@ export default function App() {
   const selectedArticle = localizedArticles.find(article => article.id === nav.article);
   const savedArticles = localizedArticles.filter(article => preferences.favorites.includes(article.id));
   const readCount = articles.filter(article => preferences.read.includes(article.id)).length;
-  const searchable = (article: Article) => [
+  const searchable = useCallback((article: Article) => [
     areaLabel(locale, article.area),
     ...article.products.map(product => productLabel(locale, product)),
     ...article.profiles.map(profile => profileLabel(locale, profile)),
     statusLabel(locale, article.status),
-  ];
+  ], [locale]);
   const visible = filterArticles(nav.view === 'saved' ? savedArticles : localizedArticles, nav, searchable);
   const activeFilters = Boolean(nav.q || nav.area || nav.profile || nav.product || nav.status);
   const currentRouteSource = routes.find(route => route.profile === nav.route);
@@ -105,9 +128,33 @@ export default function App() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [Boolean(presentation)]);
+  useEffect(() => {
+    function onSlash(event: KeyboardEvent) {
+      if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey) return;
+      if (event.target instanceof HTMLElement && event.target.closest('input,select,textarea,[contenteditable="true"],dialog')) return;
+      const input = document.querySelector<HTMLInputElement>('#ideas-search, #search');
+      if (!input) return;
+      event.preventDefault();
+      input.focus();
+      input.select();
+    }
+    window.addEventListener('keydown', onSlash);
+    return () => window.removeEventListener('keydown', onSlash);
+  }, []);
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(''), 2200);
+    return () => clearTimeout(timer);
+  }, [toast]);
 
-  function openArticle(article: Article) { navigate({ article: article.id }); }
-  function changeView(view: View) { navigate({ ...emptyFilters, view, article: '', route: '', map: '' }); window.scrollTo({ top: 0, behavior: 'instant' }); }
+  async function copyLink() {
+    try { await navigator.clipboard.writeText(window.location.href); setToast(tr('linkCopied')); }
+    catch (error) { console.error('No se pudo copiar el enlace', error); setToast(tr('copyFailed')); }
+  }
+  function showIdea(id: string) { navigate({ ...emptyFilters, ...emptyIdeaState, view: 'ideas', idea: id, article: '', route: '', map: '' }); window.scrollTo({ top: 0, behavior: 'instant' }); }
+
+  function openArticle(article: Article) { navigate({ article: article.id }); document.querySelector('dialog.dialog')?.scrollTo({ top: 0 }); }
+  function changeView(view: View) { navigate({ ...emptyFilters, ...emptyIdeaState, view, article: '', route: '', map: '' }); window.scrollTo({ top: 0, behavior: 'instant' }); }
   function focusCatalog(changes: Partial<typeof nav> = {}) {
     navigate({ view: 'explore', ...changes });
     requestAnimationFrame(() => catalogRef.current?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }));
@@ -123,6 +170,7 @@ export default function App() {
       <span className="brand-divider" /><span className="product-wordmark">Ignite<span> Navigator <b>26</b></span></span>
       <nav aria-label={tr('navPrimary')}>
         <button className={nav.view === 'explore' ? 'active' : ''} onClick={() => changeView('explore')} aria-current={nav.view === 'explore' ? 'page' : undefined}><Compass size={16} />{tr('explore')}</button>
+        <button className={nav.view === 'ideas' ? 'active' : ''} onClick={() => changeView('ideas')} aria-current={nav.view === 'ideas' ? 'page' : undefined}><Orbit size={16} />{tr('navIdeas')}</button>
         <button className={nav.view === 'routes' ? 'active' : ''} onClick={() => changeView('routes')} aria-current={nav.view === 'routes' ? 'page' : undefined}><GitBranch size={16} />{tr('routes')}</button>
         <button className={nav.view === 'saved' ? 'active' : ''} onClick={() => changeView('saved')} aria-current={nav.view === 'saved' ? 'page' : undefined}><Bookmark size={16} />{tr('saved')}<span className="nav-count">{savedArticles.length}</span></button>
       </nav>
@@ -130,6 +178,7 @@ export default function App() {
       <label className="language-picker"><Globe2 size={15} aria-hidden="true" /><span className="sr-only">{ui.language}</span><select aria-label={ui.language} value={locale} onChange={event => setLocale(event.target.value as Locale)}>
         {localeOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
       </select></label>
+      <button type="button" className="icon-button theme-toggle" onClick={cycleTheme} aria-label={tr('themeLabel', { theme: tr(theme === 'auto' ? 'themeAuto' : theme === 'dark' ? 'themeDark' : 'themeLight') })} title={tr('themeLabel', { theme: tr(theme === 'auto' ? 'themeAuto' : theme === 'dark' ? 'themeDark' : 'themeLight') })}><ThemeIcon size={18} /></button>
     </header>
 
     {storageError && <div role="alert" className="storage-warning"><CircleHelp size={18} />{storageError === 'read' ? tr('storageReadError') : tr('storageWriteError')}</div>}
@@ -155,7 +204,8 @@ export default function App() {
         {!activeFilters && <section className="highlights section-wrap" aria-labelledby="highlights-title"><div className="section-heading"><div><span className="eyebrow">{tr('highlightsEyebrow')}</span><h2 id="highlights-title">{tr('highlightsTitle')}<span className="accent">.</span></h2></div><span className="section-note">{tr('highlightsNote')}</span></div><div className="highlight-grid">{['bon-497', 'bon-479', 'bon-448', 'bon-519'].map(id => localizedArticles.find(article => article.id === id)).filter((article): article is Article => Boolean(article)).map(renderCard)}</div></section>}
       </>}
 
-      {nav.view === 'routes' ? <section className="section-wrap routes-page">
+      {nav.view === 'ideas' ? <IdeasExplorer articles={localizedArticles} locale={locale} nav={nav} navigate={navigate} openArticle={openArticle} renderCard={renderCard} searchable={searchable} />
+      : nav.view === 'routes' ? <section className="section-wrap routes-page">
         {currentRoute ? <>
           <button className="text-button muted" onClick={() => navigate({ route: '' })}><ArrowLeft size={17} />{tr('routesBack')}</button>
           <div className="page-intro"><span className="eyebrow">{tr('routeEyebrow')} / {profileLabel(locale, currentRoute.profile).toUpperCase()}</span><h1>{currentRoute.subtitle}<span className="accent">.</span></h1><p>{currentRoute.description}</p><div className="intro-actions"><button className="button primary" onClick={() => startPresentation(currentRouteItems, profileLabel(locale, currentRoute.profile))}><Play size={17} />{tr('presentRoute')}</button><span>{currentRouteItems.filter(a => preferences.read.includes(a.id)).length} / {currentRouteItems.length} {tr('explored')}</span></div></div>
@@ -187,8 +237,11 @@ export default function App() {
     <footer><div><span className="footer-title">TD SYNNEX <span>/ Ignite Navigator 2026</span></span><p>{tr('sourceDescription')}<br />{tr('unofficial')}</p></div><div className="footer-right"><OfficialLink href={SOURCE_URL} locale={locale}>{tr('officialMicrosoft')}</OfficialLink><span>{tr('acceptedSource')} {new Date(snapshot.acceptedAt).toLocaleDateString(localeTag, { timeZone: 'UTC' })}</span><span>{tr('localSaved')}</span></div></footer>
 
     {nav.article && <Dialog locale={locale} onClose={() => navigate({ article: '' }, true)}>
-      {selectedArticle ? <ArticleDetail article={selectedArticle} locale={locale} saved={preferences.favorites.includes(selectedArticle.id)} toggleFavorite={() => toggleFavorite(selectedArticle.id)} /> : <div className="empty-state"><CircleHelp size={30} /><h2>{tr('notFoundTitle')}</h2><p>{tr('notFound')}</p></div>}
+      {selectedArticle ? <ArticleDetail article={selectedArticle} locale={locale} saved={preferences.favorites.includes(selectedArticle.id)} toggleFavorite={() => toggleFavorite(selectedArticle.id)}
+        related={relatedArticles(selectedArticle, localizedArticles, 6)} onOpen={openArticle} onIdea={showIdea} onCopy={copyLink} /> : <div className="empty-state"><CircleHelp size={30} /><h2>{tr('notFoundTitle')}</h2><p>{tr('notFound')}</p></div>}
+      {toast && <div className="toast" role="status">{toast}</div>}
     </Dialog>}
+    {toast && !nav.article && <div className="toast" role="status">{toast}</div>}
     {presentation && presented && <Dialog locale={locale} presentation onClose={() => setPresentation(null)}><div className="slide-label"><span>IGNITE NAVIGATOR / {presentation.label.toUpperCase()}</span><span>{String(presentation.index + 1).padStart(2, '0')} / {String(presentation.items.length).padStart(2, '0')}</span></div><ArticleDetail article={presented} locale={locale} saved={preferences.favorites.includes(presented.id)} toggleFavorite={() => toggleFavorite(presented.id)} /><div className="slide-controls"><button className="button secondary" disabled={presentation.index === 0} onClick={() => setPresentation({ ...presentation, index: presentation.index - 1 })}><ChevronLeft size={18} />{tr('previous')}</button><span>{tr('presentationNav')}</span><button className="button primary" disabled={presentation.index === presentation.items.length - 1} onClick={() => setPresentation({ ...presentation, index: presentation.index + 1 })}>{tr('next')}<ChevronRight size={18} /></button></div></Dialog>}
   </>;
 }

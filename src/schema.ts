@@ -68,3 +68,47 @@ export function validateCatalog(snapshotInput: unknown, editorialInput: unknown)
   });
   return { snapshot, articles };
 }
+
+const localized = z.object({ es: z.string().min(2), en: z.string().min(2), pt: z.string().min(2), de: z.string().min(2) }).strict();
+export const ideaIcons = ['layout-dashboard', 'bot', 'briefcase', 'trending-up', 'rocket', 'cpu', 'network', 'refresh-ccw', 'badge-check', 'radar', 'shield-check', 'database', 'wrench', 'server', 'monitor'] as const;
+const pillarSchema = z.object({ id: z.string().regex(/^[a-z-]+$/), name: localized, description: localized }).strict();
+const ideaSchema = z.object({
+  id: z.string().regex(/^[a-z-]+$/),
+  pillar: z.string(),
+  hue: z.number().int().min(0).max(359),
+  icon: z.enum(ideaIcons),
+  short: localized,
+  name: localized,
+  tagline: localized,
+  description: localized,
+}).strict();
+const assignmentSchema = z.object({ primary: z.string(), also: z.array(z.string()) }).strict();
+export const ideasFileSchema = z.object({
+  pillars: z.array(pillarSchema).min(1),
+  ideas: z.array(ideaSchema).min(1),
+  assignments: z.record(z.string(), assignmentSchema),
+}).strict();
+export type Pillar = z.infer<typeof pillarSchema>;
+export type Idea = z.infer<typeof ideaSchema>;
+export type IdeaIcon = Idea['icon'];
+
+export function validateIdeas(input: unknown, articleIds: string[]) {
+  const data = ideasFileSchema.parse(input);
+  const pillarIds = new Set(data.pillars.map(pillar => pillar.id));
+  const ideaIds = new Set(data.ideas.map(idea => idea.id));
+  if (pillarIds.size !== data.pillars.length) throw new Error('Pilares duplicados');
+  if (ideaIds.size !== data.ideas.length) throw new Error('Ideas duplicadas');
+  for (const idea of data.ideas) if (!pillarIds.has(idea.pillar)) throw new Error(`Pilar desconocido en ${idea.id}: ${idea.pillar}`);
+  for (const pillar of pillarIds) if (!data.ideas.some(idea => idea.pillar === pillar)) throw new Error(`Pilar sin ideas: ${pillar}`);
+  const assigned = Object.keys(data.assignments).sort();
+  const expected = [...articleIds].sort();
+  const missing = expected.filter(id => !data.assignments[id]);
+  const extra = assigned.filter(id => !expected.includes(id));
+  if (missing.length || extra.length) throw new Error(`Asignación de ideas incompleta. Faltan: ${missing.join(', ') || '-'}; sobran: ${extra.join(', ') || '-'}`);
+  for (const [id, { primary, also }] of Object.entries(data.assignments)) {
+    for (const idea of [primary, ...also]) if (!ideaIds.has(idea)) throw new Error(`Idea desconocida en ${id}: ${idea}`);
+    if (also.includes(primary) || new Set(also).size !== also.length) throw new Error(`Ideas conectadas repetidas en ${id}`);
+  }
+  for (const idea of data.ideas) if (!Object.values(data.assignments).some(item => item.primary === idea.id)) throw new Error(`Idea sin anuncios principales: ${idea.id}`);
+  return data;
+}

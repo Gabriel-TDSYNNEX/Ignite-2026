@@ -3,8 +3,14 @@ import { z } from 'zod';
 import { areas, profiles, statuses } from './schema';
 import { emptyFilters, productNames, type Filters } from './catalog';
 
-export type View = 'explore' | 'routes' | 'saved';
-export type Navigation = Filters & { view: View; article: string; route: string; map: string };
+export type View = 'explore' | 'ideas' | 'routes' | 'saved';
+export const lenses = ['ideas', 'constellation', 'matrix', 'products', 'status', 'all'] as const;
+export type Lens = typeof lenses[number];
+/** Ideas explorer state: lens '' = ideas, st/au = comma lists, conn '0' = connections off. */
+export type IdeaState = { lens: string; idea: string; cell: string; st: string; au: string; conn: string };
+export const emptyIdeaState: IdeaState = { lens: '', idea: '', cell: '', st: '', au: '', conn: '' };
+export type Navigation = Filters & IdeaState & { view: View; article: string; route: string; map: string };
+export const splitList = (value: string) => value ? value.split(',') : [];
 export function parseHash(hash: string): Navigation {
   const params = new URLSearchParams(hash.replace(/^#/, ''));
   const view = params.get('view');
@@ -12,11 +18,14 @@ export function parseHash(hash: string): Navigation {
     const value = params.get(key) || '';
     return allowed.includes(value) ? value : '';
   };
+  const pickList = (key: string, allowed: readonly string[]) => allowed.filter(value => splitList(params.get(key) || '').includes(value)).join(',');
   return {
     q: params.get('q') || '', area: pick('area', areas), profile: pick('profile', profiles),
     product: pick('product', productNames), status: pick('status', statuses),
-    view: view === 'routes' || view === 'saved' ? view : 'explore',
+    view: view === 'routes' || view === 'saved' || view === 'ideas' ? view : 'explore',
     article: params.get('article') || '', route: pick('route', profiles), map: params.get('map') || '',
+    lens: pick('lens', lenses.slice(1)), idea: params.get('idea') || '', cell: params.get('cell') || '',
+    st: pickList('st', statuses), au: pickList('au', profiles), conn: params.get('conn') === '0' ? '0' : '',
   };
 }
 export function useNavigation() {
@@ -72,4 +81,26 @@ export function usePreferences() {
     setPreferences(previous => previous.read.includes(id) ? previous : { ...previous, read: [...previous.read, id] });
   }, []);
   return { preferences, storageError, toggleFavorite, markRead, clear: () => setPreferences(previous => ({ ...previous, favorites: [] })) };
+}
+
+export const themes = ['auto', 'dark', 'light'] as const;
+export type Theme = typeof themes[number];
+const themeKey = 'tdsynnex-ignite-2026:theme';
+export function useTheme() {
+  const [theme, setTheme] = useState<Theme>(() => {
+    try {
+      const saved = localStorage.getItem(themeKey);
+      return themes.includes(saved as Theme) ? saved as Theme : 'auto';
+    } catch (error) {
+      console.error('No se pudo leer el tema guardado', error);
+      return 'auto';
+    }
+  });
+  useEffect(() => {
+    if (theme === 'auto') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem(themeKey, theme); }
+    catch (error) { console.error('No se pudo guardar el tema', error); }
+  }, [theme]);
+  return { theme, cycleTheme: () => setTheme(current => themes[(themes.indexOf(current) + 1) % themes.length]) };
 }

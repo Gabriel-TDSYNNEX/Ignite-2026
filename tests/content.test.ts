@@ -26,6 +26,14 @@ it('bloquea propuestas sin revisar y acepta solo huellas revisadas sin sobrescri
         products: Object.fromEntries(articles[0].products.map(product => [product, source.products[product]])),
       });
     }
+    const ideaFile = JSON.parse(readFileSync(resolve('content/ideas.json'), 'utf8'));
+    const assignment = ideaFile.assignments[articles[0].id];
+    const keptIdeas = ideaFile.ideas.filter((idea: { id: string }) => idea.id === assignment.primary);
+    write('ideas.json', {
+      pillars: ideaFile.pillars.filter((pillar: { id: string }) => pillar.id === keptIdeas[0].pillar),
+      ideas: keptIdeas,
+      assignments: { [articles[0].id]: { primary: assignment.primary, also: [] } },
+    });
     expect(run('validate').status).toBe(0);
     write('pending.json', pending);
     write('changes.json', { added: [], modified: [articles[0].id], removed: [] });

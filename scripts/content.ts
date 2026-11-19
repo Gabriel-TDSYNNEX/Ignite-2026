@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile, unlink } from 'node:fs/promises';
-import { SOURCE_URL, localeCatalogSchema, snapshotSchema, validateCatalog, type Article } from '../src/schema';
+import { SOURCE_URL, localeCatalogSchema, snapshotSchema, validateCatalog, validateIdeas, type Article } from '../src/schema';
 import { compareSource, extractSource } from './source';
 
 const read = async (path: string): Promise<unknown> => JSON.parse(await readFile(path, 'utf8'));
@@ -69,6 +69,7 @@ async function main() {
     const candidate = snapshotSchema.parse(await read(candidatePath));
     const result = validateCatalog(candidate, await read('content/editorial.json'));
     await validateTranslations(result.articles);
+    validateIdeas(await read('content/ideas.json'), result.articles.map(article => article.id));
     await save('content/snapshot.json', { ...candidate, acceptedAt: new Date().toISOString() });
     for (const path of ['content/pending.json', 'content/changes.json']) {
       if (existsSync(path)) await unlink(path);
@@ -78,7 +79,8 @@ async function main() {
     if (existsSync('content/pending.json')) throw new Error('Hay una actualización pendiente. Revisar y ejecutar npm run content:accept.');
     const result = validateCatalog(await read('content/snapshot.json'), await read('content/editorial.json'));
     await validateTranslations(result.articles);
-    console.log(`Catálogo válido: ${result.articles.length} anuncios con resumen y fuente.`);
+    validateIdeas(await read('content/ideas.json'), result.articles.map(article => article.id));
+    console.log(`Catálogo válido: ${result.articles.length} anuncios con resumen, fuente e ideas.`);
   } else {
     throw new Error('Comando esperado: fetch, check, accept o validate');
   }

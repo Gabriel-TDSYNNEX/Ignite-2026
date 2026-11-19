@@ -126,6 +126,42 @@ test('favoritos persistentes, recorrido y presentación con teclado', async ({ p
   await expect(page.locator('.progress-metric')).toContainText('3/59');
 });
 
+test('explorador de ideas con constelación, matriz, filtros, ficha de idea y tema', async ({ page }) => {
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Ideas', exact: true }).click();
+  await expect(page).toHaveURL(/view=ideas/);
+  const lenses = page.getByRole('group', { name: 'Vistas del explorador de ideas' });
+  await lenses.getByRole('button', { name: 'Constelación' }).click();
+  const constellation = page.getByRole('group', { name: /Constelación de ideas/ });
+  const hub = constellation.getByRole('button', { name: /^Abrir idea: Agentes listos para producción/ });
+  await hub.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: 'Agentes listos para producción', level: 2 })).toBeVisible();
+  await page.getByRole('button', { name: 'Todas las ideas' }).click();
+  await lenses.getByRole('button', { name: 'Matriz' }).click();
+  await page.getByRole('button', { name: 'Agentes en producción × Azure: 4' }).click();
+  await expect(page).toHaveURL(/cell=agent-runtime%7CAzure|cell=agent-runtime\|Azure/);
+  await expect(page.locator('.matrix-selection .idea-rows li')).toHaveCount(4);
+  await page.getByRole('group', { name: 'Disponibilidad' }).getByRole('button', { name: /GA/ }).click();
+  await expect(page).toHaveURL(/st=GA/);
+  await expect(page.locator('.matrix-selection .idea-rows li')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Agentes en producción × Azure: 1' }).click();
+  await page.keyboard.press('/');
+  await expect(page.locator('#ideas-search')).toBeFocused();
+  await page.reload();
+  await expect(page.getByRole('button', { name: 'Agentes en producción × Azure: 1' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.matrix-selection .idea-rows li')).toHaveCount(1);
+
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme');
+  const theme = page.locator('.theme-toggle');
+  await theme.click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await theme.click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+});
+
 test('móvil sin desbordamiento y alternativa de mapa accesible', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: 'reduce' });

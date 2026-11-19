@@ -1,0 +1,287 @@
+{
+  "pillars": [
+    {
+      "id": "work",
+      "name": { "es": "Trabajo y negocio", "en": "Work and business", "pt": "Trabalho e negócios", "de": "Arbeit und Geschäft" },
+      "description": {
+        "es": "Copilot y los agentes cambian cómo se organiza y se mide el trabajo.",
+        "en": "Copilot and agents change how work gets organised and measured.",
+        "pt": "O Copilot e os agentes mudam como o trabalho é organizado e medido.",
+        "de": "Copilot und Agenten verändern, wie Arbeit organisiert und gemessen wird."
+      }
+    },
+    {
+      "id": "build",
+      "name": { "es": "Construir con IA", "en": "Building with AI", "pt": "Construir com IA", "de": "Mit KI entwickeln" },
+      "description": {
+        "es": "Modelos, contexto y entornos de ejecución para llevar agentes a producción.",
+        "en": "Models, context and runtimes to take agents into production.",
+        "pt": "Modelos, contexto e ambientes de execução para levar agentes à produção.",
+        "de": "Modelle, Kontext und Laufzeitumgebungen, um Agenten in die Produktion zu bringen."
+      }
+    },
+    {
+      "id": "trust",
+      "name": { "es": "Confianza y control", "en": "Trust and control", "pt": "Confiança e controle", "de": "Vertrauen und Kontrolle" },
+      "description": {
+        "es": "Identidad, gobierno y seguridad para cada agente, dato y dispositivo.",
+        "en": "Identity, governance and security for every agent, dataset and device.",
+        "pt": "Identidade, governança e segurança para cada agente, dado e dispositivo.",
+        "de": "Identität, Governance und Sicherheit für jeden Agenten, jedes Datum und jedes Gerät."
+      }
+    },
+    {
+      "id": "platform",
+      "name": { "es": "Plataforma y datos", "en": "Platform and data", "pt": "Plataforma e dados", "de": "Plattform und Daten" },
+      "description": {
+        "es": "Bases de datos, infraestructura y puestos de trabajo preparados para cargas agénticas.",
+        "en": "Databases, infrastructure and endpoints ready for agentic workloads.",
+        "pt": "Bancos de dados, infraestrutura e estações de trabalho preparados para cargas agênticas.",
+        "de": "Datenbanken, Infrastruktur und Arbeitsplätze, bereit für agentische Workloads."
+      }
+    }
+  ],
+  "ideas": [
+    {
+      "id": "front-door", "pillar": "work", "hue": 196, "icon": "layout-dashboard",
+      "short": { "es": "Copilot como inicio", "en": "Copilot as home base", "pt": "Copilot como início", "de": "Copilot als Startpunkt" },
+      "name": { "es": "Copilot, punto de partida del trabajo", "en": "Copilot as the starting point for work", "pt": "Copilot, ponto de partida do trabalho", "de": "Copilot als Ausgangspunkt der Arbeit" },
+      "tagline": { "es": "Un solo lugar para priorizar, crear y colaborar.", "en": "One place to prioritise, create and collaborate.", "pt": "Um só lugar para priorizar, criar e colaborar.", "de": "Ein Ort zum Priorisieren, Erstellen und Zusammenarbeiten." },
+      "description": {
+        "es": "Home, Today y Workspaces convierten Copilot en el sitio desde el que se organiza la jornada, y Copilot en Windows lleva esa ayuda a archivos, búsqueda y diagnóstico del PC.",
+        "en": "Home, Today and Workspaces turn Copilot into the place where the working day is organised, and Copilot on Windows brings that help to files, search and PC diagnostics.",
+        "pt": "Home, Today e Workspaces transformam o Copilot no lugar onde o dia de trabalho é organizado, e o Copilot no Windows leva essa ajuda a arquivos, pesquisa e diagnóstico do PC.",
+        "de": "Home, Today und Workspaces machen Copilot zum Ort, an dem der Arbeitstag organisiert wird, und Copilot in Windows bringt diese Hilfe zu Dateien, Suche und PC-Diagnose."
+      }
+    },
+    {
+      "id": "delegation", "pillar": "work", "hue": 262, "icon": "bot",
+      "short": { "es": "Delegar en agentes", "en": "Delegating to agents", "pt": "Delegar a agentes", "de": "An Agenten delegieren" },
+      "name": { "es": "Del chat a la delegación", "en": "From chat to delegation", "pt": "Do chat à delegação", "de": "Vom Chat zur Delegation" },
+      "tagline": { "es": "Agentes que completan tareas, no solo responden.", "en": "Agents that complete tasks, not just answer.", "pt": "Agentes que concluem tarefas, não apenas respondem.", "de": "Agenten, die Aufgaben erledigen, statt nur zu antworten." },
+      "description": {
+        "es": "Autopilot y Copilot Code muestran el paso de pedir respuestas a encargar trabajo: los agentes ejecutan tareas de principio a fin dentro de límites definidos por la organización.",
+        "en": "Autopilot and Copilot Code show the shift from asking for answers to handing off work: agents carry tasks end to end within limits set by the organisation.",
+        "pt": "Autopilot e Copilot Code mostram a passagem de pedir respostas para delegar trabalho: os agentes executam tarefas de ponta a ponta dentro de limites definidos pela organização.",
+        "de": "Autopilot und Copilot Code zeigen den Schritt vom Fragen zum Delegieren: Agenten führen Aufgaben durchgängig aus, innerhalb der von der Organisation gesetzten Grenzen."
+      }
+    },
+    {
+      "id": "business", "pillar": "work", "hue": 322, "icon": "briefcase",
+      "short": { "es": "Procesos de negocio", "en": "Business processes", "pt": "Processos de negócio", "de": "Geschäftsprozesse" },
+      "name": { "es": "Los sistemas de negocio entran en Copilot", "en": "Business systems move into Copilot", "pt": "Os sistemas de negócio chegam ao Copilot", "de": "Geschäftssysteme ziehen in Copilot ein" },
+      "tagline": { "es": "CRM, ERP y datos de terceros donde se trabaja.", "en": "CRM, ERP and third-party data where work happens.", "pt": "CRM, ERP e dados de terceiros onde se trabalha.", "de": "CRM, ERP und Drittanbieterdaten dort, wo gearbeitet wird." },
+      "description": {
+        "es": "Dynamics 365, Salesforce y la migración agéntica de ERP acercan los sistemas de negocio a Copilot, Teams y Fabric para actuar sobre ellos sin cambiar de aplicación.",
+        "en": "Dynamics 365, Salesforce and agentic ERP migration bring business systems closer to Copilot, Teams and Fabric so people can act on them without switching apps.",
+        "pt": "Dynamics 365, Salesforce e a migração agêntica de ERP aproximam os sistemas de negócio do Copilot, Teams e Fabric para agir sobre eles sem trocar de aplicativo.",
+        "de": "Dynamics 365, Salesforce und die agentische ERP-Migration bringen Geschäftssysteme näher an Copilot, Teams und Fabric, damit man darauf reagieren kann, ohne die App zu wechseln."
+      }
+    },
+    {
+      "id": "ai-value", "pillar": "work", "hue": 44, "icon": "trending-up",
+      "short": { "es": "Valor de la IA", "en": "AI value", "pt": "Valor da IA", "de": "KI-Wert" },
+      "name": { "es": "Medir lo que aporta la IA", "en": "Measuring what AI delivers", "pt": "Medir o que a IA entrega", "de": "Messen, was KI leistet" },
+      "tagline": { "es": "Coste, uso y retorno de cada agente.", "en": "Cost, usage and return for every agent.", "pt": "Custo, uso e retorno de cada agente.", "de": "Kosten, Nutzung und Ertrag jedes Agenten." },
+      "description": {
+        "es": "FinOps para IA, analítica de negocio e informes de gestión ayudan a entender cuánto cuesta y qué produce cada agente, para decidir dónde invertir.",
+        "en": "FinOps for AI, business analytics and management insights help explain what each agent costs and produces, so teams can decide where to invest.",
+        "pt": "FinOps para IA, análise de negócio e relatórios de gestão ajudam a entender quanto custa e o que produz cada agente, para decidir onde investir.",
+        "de": "FinOps für KI, Geschäftsanalysen und Management-Einblicke zeigen, was jeder Agent kostet und leistet, damit Teams entscheiden können, wo sie investieren."
+      }
+    },
+    {
+      "id": "agent-runtime", "pillar": "build", "hue": 226, "icon": "rocket",
+      "short": { "es": "Agentes en producción", "en": "Agents in production", "pt": "Agentes em produção", "de": "Agenten in Produktion" },
+      "name": { "es": "Agentes listos para producción", "en": "Production-ready agents", "pt": "Agentes prontos para produção", "de": "Produktionsreife Agenten" },
+      "tagline": { "es": "SDK y entornos gestionados para ejecutar agentes.", "en": "SDKs and managed runtimes to run agents.", "pt": "SDKs e ambientes gerenciados para executar agentes.", "de": "SDKs und verwaltete Laufzeiten für Agenten." },
+      "description": {
+        "es": "Copilot SDK, Copilot Managed Runtime y Windows 365 para agentes ofrecen piezas gestionadas para crear, ejecutar y escalar agentes con seguridad empresarial.",
+        "en": "Copilot SDK, Copilot Managed Runtime and Windows 365 for Agents provide managed building blocks to create, run and scale agents with enterprise security.",
+        "pt": "Copilot SDK, Copilot Managed Runtime e Windows 365 para agentes oferecem peças gerenciadas para criar, executar e escalar agentes com segurança empresarial.",
+        "de": "Copilot SDK, Copilot Managed Runtime und Windows 365 für Agenten liefern verwaltete Bausteine, um Agenten mit Unternehmenssicherheit zu erstellen, auszuführen und zu skalieren."
+      }
+    },
+    {
+      "id": "models", "pillar": "build", "hue": 282, "icon": "cpu",
+      "short": { "es": "Modelos a medida", "en": "Purpose-built models", "pt": "Modelos sob medida", "de": "Maßgeschneiderte Modelle" },
+      "name": { "es": "Modelos especializados por tarea", "en": "Models specialised by task", "pt": "Modelos especializados por tarefa", "de": "Auf Aufgaben spezialisierte Modelle" },
+      "tagline": { "es": "Elegir el modelo adecuado para cada trabajo.", "en": "Choosing the right model for each job.", "pt": "Escolher o modelo certo para cada trabalho.", "de": "Das richtige Modell für jede Aufgabe wählen." },
+      "description": {
+        "es": "Microsoft-Decision, los modelos MAI y el enrutado de modelos en Foundry amplían el catálogo con opciones pensadas para decidir, programar, generar imágenes o reforzar la seguridad.",
+        "en": "Microsoft-Decision, MAI models and model routing in Foundry widen the catalogue with options designed for decisions, coding, image generation and security.",
+        "pt": "Microsoft-Decision, os modelos MAI e o roteamento de modelos no Foundry ampliam o catálogo com opções pensadas para decidir, programar, gerar imagens ou reforçar a segurança.",
+        "de": "Microsoft-Decision, MAI-Modelle und Modell-Routing in Foundry erweitern den Katalog um Optionen für Entscheidungen, Programmierung, Bilderzeugung und Sicherheit."
+      }
+    },
+    {
+      "id": "context", "pillar": "build", "hue": 176, "icon": "network",
+      "short": { "es": "Contexto (IQ)", "en": "Context (IQ)", "pt": "Contexto (IQ)", "de": "Kontext (IQ)" },
+      "name": { "es": "El contexto de empresa como ventaja", "en": "Business context as an advantage", "pt": "O contexto da empresa como vantagem", "de": "Unternehmenskontext als Vorteil" },
+      "tagline": { "es": "Agentes que entienden tu negocio, tus datos y la web.", "en": "Agents that understand your business, data and the web.", "pt": "Agentes que entendem seu negócio, seus dados e a web.", "de": "Agenten, die Ihr Geschäft, Ihre Daten und das Web verstehen." },
+      "description": {
+        "es": "Microsoft IQ reúne Work IQ, Fabric IQ, Foundry IQ y Web IQ para que Copilot y los agentes razonen con el conocimiento, los datos y los procesos de cada organización.",
+        "en": "Microsoft IQ brings together Work IQ, Fabric IQ, Foundry IQ and Web IQ so Copilot and agents can reason with each organisation's knowledge, data and processes.",
+        "pt": "O Microsoft IQ reúne Work IQ, Fabric IQ, Foundry IQ e Web IQ para que o Copilot e os agentes raciocinem com o conhecimento, os dados e os processos de cada organização.",
+        "de": "Microsoft IQ vereint Work IQ, Fabric IQ, Foundry IQ und Web IQ, damit Copilot und Agenten mit dem Wissen, den Daten und Prozessen jeder Organisation arbeiten können."
+      }
+    },
+    {
+      "id": "learning", "pillar": "build", "hue": 128, "icon": "refresh-ccw",
+      "short": { "es": "Mejora continua", "en": "Continuous improvement", "pt": "Melhoria contínua", "de": "Kontinuierliche Verbesserung" },
+      "name": { "es": "Agentes que aprenden en producción", "en": "Agents that learn in production", "pt": "Agentes que aprendem em produção", "de": "Agenten, die in der Produktion lernen" },
+      "tagline": { "es": "La experiencia real convertida en mejores agentes.", "en": "Real-world experience turned into better agents.", "pt": "A experiência real transformada em agentes melhores.", "de": "Echte Erfahrung wird zu besseren Agenten." },
+      "description": {
+        "es": "Agent Optimizer y la mejora continua de Microsoft IQ usan señales de uso real para evaluar, ajustar y mejorar agentes y modelos sin empezar de cero.",
+        "en": "Agent Optimizer and continuous improvement in Microsoft IQ use real usage signals to evaluate, tune and improve agents and models without starting over.",
+        "pt": "O Agent Optimizer e a melhoria contínua do Microsoft IQ usam sinais de uso real para avaliar, ajustar e melhorar agentes e modelos sem começar do zero.",
+        "de": "Agent Optimizer und die kontinuierliche Verbesserung in Microsoft IQ nutzen echte Nutzungssignale, um Agenten und Modelle zu bewerten, anzupassen und zu verbessern, ohne von vorn zu beginnen."
+      }
+    },
+    {
+      "id": "agent-gov", "pillar": "trust", "hue": 16, "icon": "badge-check",
+      "short": { "es": "Gobierno de agentes", "en": "Agent governance", "pt": "Governança de agentes", "de": "Agenten-Governance" },
+      "name": { "es": "Gobernar la flota de agentes", "en": "Governing the agent fleet", "pt": "Governar a frota de agentes", "de": "Die Agentenflotte steuern" },
+      "tagline": { "es": "Identidad, riesgo y permisos para cada agente.", "en": "Identity, risk and permissions for every agent.", "pt": "Identidade, risco e permissões para cada agente.", "de": "Identität, Risiko und Berechtigungen für jeden Agenten." },
+      "description": {
+        "es": "Agent 365 y Microsoft Entra dan a cada agente una identidad, controlan a qué herramientas accede y evalúan su riesgo de forma dinámica, igual que se hace con las personas.",
+        "en": "Agent 365 and Microsoft Entra give each agent an identity, control which tools it can reach and assess its risk dynamically, just as organisations do for people.",
+        "pt": "O Agent 365 e o Microsoft Entra dão a cada agente uma identidade, controlam a quais ferramentas ele acessa e avaliam seu risco de forma dinâmica, como já se faz com as pessoas.",
+        "de": "Agent 365 und Microsoft Entra geben jedem Agenten eine Identität, steuern, auf welche Tools er zugreift, und bewerten sein Risiko dynamisch – so wie bei Menschen."
+      }
+    },
+    {
+      "id": "secops", "pillar": "trust", "hue": 356, "icon": "radar",
+      "short": { "es": "Seguridad proactiva", "en": "Proactive security", "pt": "Segurança proativa", "de": "Proaktive Sicherheit" },
+      "name": { "es": "Seguridad que se adelanta", "en": "Security that gets ahead", "pt": "Segurança que se antecipa", "de": "Sicherheit, die vorausdenkt" },
+      "tagline": { "es": "Detectar, priorizar y corregir antes del ataque.", "en": "Detect, prioritise and fix before the attack.", "pt": "Detectar, priorizar e corrigir antes do ataque.", "de": "Erkennen, priorisieren und beheben vor dem Angriff." },
+      "description": {
+        "es": "El SOC integrado, la inteligencia de amenazas, Microsoft Perception y MDASH usan agentes para encontrar vulnerabilidades y responder antes, también en entornos locales.",
+        "en": "The integrated SOC, threat intelligence, Microsoft Perception and MDASH use agents to find vulnerabilities and respond sooner, including in on-premises environments.",
+        "pt": "O SOC integrado, a inteligência de ameaças, o Microsoft Perception e o MDASH usam agentes para encontrar vulnerabilidades e responder antes, também em ambientes locais.",
+        "de": "Das integrierte SOC, Threat Intelligence, Microsoft Perception und MDASH nutzen Agenten, um Schwachstellen zu finden und früher zu reagieren – auch in lokalen Umgebungen."
+      }
+    },
+    {
+      "id": "protect", "pillar": "trust", "hue": 302, "icon": "shield-check",
+      "short": { "es": "Datos y dispositivos", "en": "Data and devices", "pt": "Dados e dispositivos", "de": "Daten und Geräte" },
+      "name": { "es": "Proteger datos, navegador y dispositivos", "en": "Protecting data, browser and devices", "pt": "Proteger dados, navegador e dispositivos", "de": "Daten, Browser und Geräte schützen" },
+      "tagline": { "es": "Controles allí donde trabajan personas y agentes.", "en": "Controls wherever people and agents work.", "pt": "Controles onde pessoas e agentes trabalham.", "de": "Kontrollen dort, wo Menschen und Agenten arbeiten." },
+      "description": {
+        "es": "Purview, Defender, Intune, Edge y los nuevos controles de Windows protegen la información y aíslan a los agentes locales, mientras la computación confidencial cubre los datos en uso.",
+        "en": "Purview, Defender, Intune, Edge and new Windows controls protect information and isolate local agents, while confidential computing covers data in use.",
+        "pt": "Purview, Defender, Intune, Edge e os novos controles do Windows protegem a informação e isolam os agentes locais, enquanto a computação confidencial cobre os dados em uso.",
+        "de": "Purview, Defender, Intune, Edge und neue Windows-Kontrollen schützen Informationen und isolieren lokale Agenten, während Confidential Computing Daten während der Verarbeitung absichert."
+      }
+    },
+    {
+      "id": "data", "pillar": "platform", "hue": 156, "icon": "database",
+      "short": { "es": "Datos para IA", "en": "Data for AI", "pt": "Dados para IA", "de": "Daten für KI" },
+      "name": { "es": "Bases de datos preparadas para la IA", "en": "AI-ready databases", "pt": "Bancos de dados preparados para IA", "de": "KI-fähige Datenbanken" },
+      "tagline": { "es": "Datos operativos y analíticos más cerca de los agentes.", "en": "Operational and analytical data closer to agents.", "pt": "Dados operacionais e analíticos mais perto dos agentes.", "de": "Operative und analytische Daten näher an den Agenten." },
+      "description": {
+        "es": "Cosmos DB, HorizonDB, Redis, SQL y Fabric incorporan recuperación, agentes y nuevas experiencias para crear aplicaciones de datos sin mover la información de sitio.",
+        "en": "Cosmos DB, HorizonDB, Redis, SQL and Fabric add retrieval, agents and new experiences to build data apps without moving information around.",
+        "pt": "Cosmos DB, HorizonDB, Redis, SQL e Fabric incorporam recuperação, agentes e novas experiências para criar aplicativos de dados sem mover a informação de lugar.",
+        "de": "Cosmos DB, HorizonDB, Redis, SQL und Fabric ergänzen Retrieval, Agenten und neue Erlebnisse, um Datenanwendungen zu entwickeln, ohne Informationen zu verschieben."
+      }
+    },
+    {
+      "id": "modernize", "pillar": "platform", "hue": 72, "icon": "wrench",
+      "short": { "es": "Modernización", "en": "Modernisation", "pt": "Modernização", "de": "Modernisierung" },
+      "name": { "es": "Modernizar con ayuda de agentes", "en": "Modernising with agent help", "pt": "Modernizar com ajuda de agentes", "de": "Modernisieren mit Agentenhilfe" },
+      "tagline": { "es": "Migraciones y actualizaciones con menos fricción.", "en": "Migrations and upgrades with less friction.", "pt": "Migrações e atualizações com menos atrito.", "de": "Migrationen und Upgrades mit weniger Reibung." },
+      "description": {
+        "es": "Azure Catalyst, las herramientas de migración a PostgreSQL y Azure SQL y Windows Server 2028 combinan agentes y guías para actualizar aplicaciones y servidores más rápido.",
+        "en": "Azure Catalyst, migration tooling for PostgreSQL and Azure SQL, and Windows Server 2028 combine agents and guidance to upgrade applications and servers faster.",
+        "pt": "Azure Catalyst, as ferramentas de migração para PostgreSQL e Azure SQL e o Windows Server 2028 combinam agentes e guias para atualizar aplicativos e servidores mais rápido.",
+        "de": "Azure Catalyst, Migrationswerkzeuge für PostgreSQL und Azure SQL sowie Windows Server 2028 kombinieren Agenten und Anleitungen, um Anwendungen und Server schneller zu modernisieren."
+      }
+    },
+    {
+      "id": "infra", "pillar": "platform", "hue": 246, "icon": "server",
+      "short": { "es": "Infraestructura", "en": "Infrastructure", "pt": "Infraestrutura", "de": "Infrastruktur" },
+      "name": { "es": "Infraestructura para la era agéntica", "en": "Infrastructure for the agentic era", "pt": "Infraestrutura para a era agêntica", "de": "Infrastruktur für die agentische Ära" },
+      "tagline": { "es": "Cómputo, resiliencia y operaciones a escala.", "en": "Compute, resilience and operations at scale.", "pt": "Computação, resiliência e operações em escala.", "de": "Rechenleistung, Resilienz und Betrieb im großen Maßstab." },
+      "description": {
+        "es": "Cobalt 200, la base de AKS y Foundry para producción, Chaos Studio y las operaciones agénticas de Azure Monitor preparan la nube para cargas de IA exigentes.",
+        "en": "Cobalt 200, the AKS and Foundry production foundation, Chaos Studio and agentic operations in Azure Monitor prepare the cloud for demanding AI workloads.",
+        "pt": "Cobalt 200, a base de AKS e Foundry para produção, o Chaos Studio e as operações agênticas do Azure Monitor preparam a nuvem para cargas de IA exigentes.",
+        "de": "Cobalt 200, die Produktionsbasis aus AKS und Foundry, Chaos Studio und agentische Abläufe in Azure Monitor bereiten die Cloud auf anspruchsvolle KI-Workloads vor."
+      }
+    },
+    {
+      "id": "endpoints", "pillar": "platform", "hue": 96, "icon": "monitor",
+      "short": { "es": "Windows y puesto", "en": "Windows and endpoints", "pt": "Windows e estações", "de": "Windows und Endgeräte" },
+      "name": { "es": "Windows, del PC a la nube", "en": "Windows, from PC to cloud", "pt": "Windows, do PC à nuvem", "de": "Windows, vom PC bis in die Cloud" },
+      "tagline": { "es": "Puestos híbridos gestionados como un todo.", "en": "Hybrid endpoints managed as one.", "pt": "Estações híbridas gerenciadas como um todo.", "de": "Hybride Endgeräte, gemeinsam verwaltet." },
+      "description": {
+        "es": "Windows 365, Intune, Autopatch y las capacidades locales e híbridas de Windows unifican la gestión del puesto de trabajo, desde el PC físico hasta el Cloud PC.",
+        "en": "Windows 365, Intune, Autopatch and Windows local and hybrid capabilities unify endpoint management, from the physical PC to the Cloud PC.",
+        "pt": "Windows 365, Intune, Autopatch e as capacidades locais e híbridas do Windows unificam a gestão das estações de trabalho, do PC físico ao Cloud PC.",
+        "de": "Windows 365, Intune, Autopatch und die lokalen und hybriden Windows-Funktionen vereinheitlichen das Endgerätemanagement, vom physischen PC bis zum Cloud PC."
+      }
+    }
+  ],
+  "assignments": {
+    "bon-484": { "primary": "front-door", "also": ["delegation"] },
+    "bon-487": { "primary": "front-door", "also": [] },
+    "bon-481": { "primary": "front-door", "also": ["context"] },
+    "bon-538": { "primary": "front-door", "also": ["endpoints"] },
+    "bon-479": { "primary": "delegation", "also": ["agent-gov"] },
+    "bon-483": { "primary": "delegation", "also": ["agent-runtime"] },
+    "bon-482": { "primary": "business", "also": ["front-door"] },
+    "bon-486": { "primary": "business", "also": ["data", "context"] },
+    "bon-485": { "primary": "business", "also": ["modernize"] },
+    "bon-478": { "primary": "ai-value", "also": ["agent-gov"] },
+    "bon-517": { "primary": "ai-value", "also": ["agent-gov"] },
+    "bon-515": { "primary": "ai-value", "also": ["agent-gov"] },
+    "bon-480": { "primary": "agent-runtime", "also": ["data"] },
+    "bon-473": { "primary": "agent-runtime", "also": [] },
+    "bon-541": { "primary": "agent-runtime", "also": ["endpoints"] },
+    "bon-467": { "primary": "models", "also": ["learning"] },
+    "bon-468": { "primary": "models", "also": ["secops"] },
+    "bon-497": { "primary": "context", "also": ["agent-runtime"] },
+    "bon-499": { "primary": "context", "also": ["business"] },
+    "bon-501": { "primary": "context", "also": ["data"] },
+    "bon-505": { "primary": "context", "also": [] },
+    "bon-507": { "primary": "context", "also": ["front-door"] },
+    "bon-503": { "primary": "context", "also": ["data"] },
+    "bon-465": { "primary": "learning", "also": ["models"] },
+    "bon-509": { "primary": "learning", "also": ["context"] },
+    "bon-516": { "primary": "agent-gov", "also": [] },
+    "bon-514": { "primary": "agent-gov", "also": ["secops"] },
+    "bon-526": { "primary": "agent-gov", "also": ["protect"] },
+    "bon-521": { "primary": "secops", "also": [] },
+    "bon-523": { "primary": "secops", "also": [] },
+    "bon-519": { "primary": "secops", "also": ["models"] },
+    "bon-531": { "primary": "secops", "also": [] },
+    "bon-527": { "primary": "secops", "also": [] },
+    "bon-524": { "primary": "secops", "also": ["modernize"] },
+    "bon-533": { "primary": "protect", "also": ["agent-gov"] },
+    "bon-522": { "primary": "protect", "also": ["agent-gov"] },
+    "bon-529": { "primary": "protect", "also": ["endpoints"] },
+    "bon-543": { "primary": "protect", "also": ["endpoints", "agent-gov"] },
+    "bon-492": { "primary": "protect", "also": ["front-door"] },
+    "bon-443": { "primary": "protect", "also": ["infra"] },
+    "bon-451": { "primary": "data", "also": [] },
+    "bon-452": { "primary": "data", "also": ["protect"] },
+    "bon-453": { "primary": "data", "also": [] },
+    "bon-454": { "primary": "data", "also": ["agent-runtime"] },
+    "bon-456": { "primary": "data", "also": ["modernize"] },
+    "bon-457": { "primary": "data", "also": [] },
+    "bon-460": { "primary": "data", "also": ["agent-runtime"] },
+    "bon-459": { "primary": "data", "also": ["business"] },
+    "bon-448": { "primary": "modernize", "also": ["agent-runtime"] },
+    "bon-455": { "primary": "modernize", "also": ["data"] },
+    "bon-458": { "primary": "modernize", "also": ["data"] },
+    "bon-449": { "primary": "modernize", "also": ["infra"] },
+    "bon-444": { "primary": "infra", "also": [] },
+    "bon-442": { "primary": "infra", "also": [] },
+    "bon-446": { "primary": "infra", "also": ["delegation", "secops"] },
+    "bon-447": { "primary": "infra", "also": ["agent-runtime"] },
+    "bon-539": { "primary": "endpoints", "also": [] },
+    "bon-540": { "primary": "endpoints", "also": ["protect"] },
+    "bon-542": { "primary": "endpoints", "also": ["agent-runtime"] }
+  }
+}
